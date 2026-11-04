@@ -140,3 +140,11 @@ General_SERS_Analysis_Database/
 - 用户希望信息集中，优先维护现有文档，避免不断产生内容重叠的报告。
 - 后续规划需先尊重用户已有实验基础；不能以临床验证取代算法和数据的核心问题。
 - 在当前授权范围内完成工作后停下供用户检查，不自行扩展下一阶段功能。
+
+## 9. 本地 Python 环境
+
+2026-11-04 已在工程根目录创建 `.venv`，Python 3.12.15，基础解释器来自 `E:\DevTools\Anaconda3\envs\lxt_basic\python.exe`；虚拟环境不继承基础环境的第三方包。已安装 requirements.txt 全部依赖，并以 editable 模式安装本工程。
+
+环境解释器：`E:\myCode\Python\General_SERS_Analysis\.venv\Scripts\python.exe`。requirements 兼容性检查、全部工具模块导入及线性回归数值检查通过。此前 19 项 pytest 测试是在开发检查环境中运行；本次未向新 `.venv` 安装 pytest 开发依赖，也未在其中重跑该测试集。
+
+已安装运行依赖版本：numpy 2.5.4、scipy 1.18.1、scikit-learn 1.9.1、xgboost 3.4.1、pybaselines 1.2.1、joblib 1.6.0。`.venv` 已由 .gitignore 排除，不应提交。编辑器应选择工程 `.venv` 的解释器。
