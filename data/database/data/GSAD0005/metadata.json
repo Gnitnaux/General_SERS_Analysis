@@ -1,0 +1,120 @@
+{
+  "source_url": "https://figshare.com/articles/dataset/23712891",
+  "paper_doi": "10.1038/s41467-024-47044-7",
+  "paper_title": "Optics miniaturization strategy for demanding Raman spectroscopy applications",
+  "journal": "Nature Communications",
+  "publication_year": 2024,
+  "source_family": "Optics_miniaturization_NatCommun_47044",
+  "modality": "Raman",
+  "role": "auxiliary_non_SERS",
+  "license": "CC-BY-4.0 (Figshare record)",
+  "source_files": [
+    {
+      "path": "E:\\Research\\国自然\\data\\公开光谱任务库\\downloads\\figshare_23712891\\data for submission-20230719T180141Z-001.zip",
+      "sha256": "d23da6bcf6e84b8fdc0791f2866eba6313f93ce6011e251d0af43581ba2725e6"
+    }
+  ],
+  "recommended_split": "Block all replicates of a nominal concentration condition, and preserve source-family links across these calibration tasks. No sample preparation IDs beyond source conditions are provided.",
+  "limitations": [
+    "These distinct chemical tasks come from the same source study, not independent papers.",
+    "Groups are conservative concentration-condition groups, not confirmed independent preparations.",
+    "Published individual measurement traces are retained; detector-native processing history and uncertainty are not fully established. No further importer preprocessing is applied."
+  ],
+  "matrix": "40:60 ethanol/water background before addition of methanol.",
+  "label_basis": "Spreadsheet column labels, confirmed by article Methods: methanol 0, 0.1, 0.25, 0.5, 1, 5, 10, 20, 40 volume percent.",
+  "instrument_conditions": "Two source sheets named 660nm and 785nm; sheet names are retained rather than silently correcting the paper/source wavelength convention.",
+  "Data_id": "GSAD0005",
+  "task": "Single-Component Quantification",
+  "molecule_order": [
+    "Methanol"
+  ],
+  "n_group": 9,
+  "n_spectra": 72,
+  "groups": [
+    {
+      "folder": "Quan_0_000001",
+      "labels": [
+        0.0
+      ],
+      "n_spectra": 8,
+      "physical_preparation_id": null,
+      "group_definition": "All source measurements at the same nominal concentration; independent preparation IDs unavailable."
+    },
+    {
+      "folder": "Quan_0.1_000002",
+      "labels": [
+        0.1
+      ],
+      "n_spectra": 8,
+      "physical_preparation_id": null,
+      "group_definition": "All source measurements at the same nominal concentration; independent preparation IDs unavailable."
+    },
+    {
+      "folder": "Quan_0.25_000003",
+      "labels": [
+        0.25
+      ],
+      "n_spectra": 8,
+      "physical_preparation_id": null,
+      "group_definition": "All source measurements at the same nominal concentration; independent preparation IDs unavailable."
+    },
+    {
+      "folder": "Quan_0.5_000004",
+      "labels": [
+        0.5
+      ],
+      "n_spectra": 8,
+      "physical_preparation_id": null,
+      "group_definition": "All source measurements at the same nominal concentration; independent preparation IDs unavailable."
+    },
+    {
+      "folder": "Quan_1_000005",
+      "labels": [
+        1.0
+      ],
+      "n_spectra": 8,
+      "physical_preparation_id": null,
+      "group_definition": "All source measurements at the same nominal concentration; independent preparation IDs unavailable."
+    },
+    {
+      "folder": "Quan_5_000006",
+      "labels": [
+        5.0
+      ],
+      "n_spectra": 8,
+      "physical_preparation_id": null,
+      "group_definition": "All source measurements at the same nominal concentration; independent preparation IDs unavailable."
+    },
+    {
+      "folder": "Quan_10_000007",
+      "labels": [
+        10.0
+      ],
+      "n_spectra": 8,
+      "physical_preparation_id": null,
+      "group_definition": "All source measurements at the same nominal concentration; independent preparation IDs unavailable."
+    },
+    {
+      "folder": "Quan_20_000008",
+      "labels": [
+        20.0
+      ],
+      "n_spectra": 8,
+      "physical_preparation_id": null,
+      "group_definition": "All source measurements at the same nominal concentration; independent preparation IDs unavailable."
+    },
+    {
+      "folder": "Quan_40_000009",
+      "labels": [
+        40.0
+      ],
+      "n_spectra": 8,
+      "physical_preparation_id": null,
+      "group_definition": "All source measurements at the same nominal concentration; independent preparation IDs unavailable."
+    }
+  ],
+  "import_date": "2026-11-04",
+  "spectral_processing_by_importer": "None. Row sorting only; no interpolation, normalization, baseline correction or smoothing.",
+  "intensity_unit": "Original arbitrary instrument units; not harmonized across instruments.",
+  "raman_shift_unit": "cm^-1"
+}

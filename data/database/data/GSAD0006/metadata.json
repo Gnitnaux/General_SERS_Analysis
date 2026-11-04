@@ -1,0 +1,93 @@
+{
+  "source_url": "https://figshare.com/articles/dataset/23712891",
+  "paper_doi": "10.1038/s41467-024-47044-7",
+  "paper_title": "Optics miniaturization strategy for demanding Raman spectroscopy applications",
+  "journal": "Nature Communications",
+  "publication_year": 2024,
+  "source_family": "Optics_miniaturization_NatCommun_47044",
+  "modality": "Raman",
+  "role": "auxiliary_non_SERS",
+  "license": "CC-BY-4.0 (Figshare record)",
+  "source_files": [
+    {
+      "path": "E:\\Research\\国自然\\data\\公开光谱任务库\\downloads\\figshare_23712891\\data for submission-20230719T180141Z-001.zip",
+      "sha256": "d23da6bcf6e84b8fdc0791f2866eba6313f93ce6011e251d0af43581ba2725e6"
+    }
+  ],
+  "recommended_split": "Block all replicates of a nominal concentration condition, and preserve source-family links across these calibration tasks. No sample preparation IDs beyond source conditions are provided.",
+  "limitations": [
+    "These distinct chemical tasks come from the same source study, not independent papers.",
+    "Groups are conservative concentration-condition groups, not confirmed independent preparations.",
+    "Published individual measurement traces are retained; detector-native processing history and uncertainty are not fully established. No further importer preprocessing is applied."
+  ],
+  "matrix": "Calibration solutions; water control. Source filenames identify serine standards.",
+  "label_basis": "Original file names specify serine concentration in g/L. Water control is assigned serine concentration 0.",
+  "stereochemistry": "Serine stereoisomer is not established by the spectral filenames; a connectivity-only reference is used.",
+  "Data_id": "GSAD0006",
+  "task": "Single-Component Quantification",
+  "molecule_order": [
+    "Serine"
+  ],
+  "n_group": 6,
+  "n_spectra": 16,
+  "groups": [
+    {
+      "folder": "Quan_12.5_000001",
+      "labels": [
+        12.5
+      ],
+      "n_spectra": 3,
+      "physical_preparation_id": null,
+      "group_definition": "All source measurements at the same nominal concentration; independent preparation IDs unavailable."
+    },
+    {
+      "folder": "Quan_25_000002",
+      "labels": [
+        25.0
+      ],
+      "n_spectra": 3,
+      "physical_preparation_id": null,
+      "group_definition": "All source measurements at the same nominal concentration; independent preparation IDs unavailable."
+    },
+    {
+      "folder": "Quan_50_000003",
+      "labels": [
+        50.0
+      ],
+      "n_spectra": 3,
+      "physical_preparation_id": null,
+      "group_definition": "All source measurements at the same nominal concentration; independent preparation IDs unavailable."
+    },
+    {
+      "folder": "Quan_6.25_000004",
+      "labels": [
+        6.25
+      ],
+      "n_spectra": 3,
+      "physical_preparation_id": null,
+      "group_definition": "All source measurements at the same nominal concentration; independent preparation IDs unavailable."
+    },
+    {
+      "folder": "Quan_1_000005",
+      "labels": [
+        1.0
+      ],
+      "n_spectra": 3,
+      "physical_preparation_id": null,
+      "group_definition": "All source measurements at the same nominal concentration; independent preparation IDs unavailable."
+    },
+    {
+      "folder": "Quan_0_000006",
+      "labels": [
+        0.0
+      ],
+      "n_spectra": 1,
+      "physical_preparation_id": null,
+      "group_definition": "All source measurements at the same nominal concentration; independent preparation IDs unavailable."
+    }
+  ],
+  "import_date": "2026-11-04",
+  "spectral_processing_by_importer": "None. Row sorting only; no interpolation, normalization, baseline correction or smoothing.",
+  "intensity_unit": "Original arbitrary instrument units; not harmonized across instruments.",
+  "raman_shift_unit": "cm^-1"
+}

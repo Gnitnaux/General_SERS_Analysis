@@ -1,0 +1,163 @@
+{
+  "date": "2026-11-04",
+  "checks": "All indexed files: exact header, finite numeric pairs, strictly increasing coordinates, recorded SHA-256, group labels/counts, provenance links, molecule provenance.",
+  "scientific_scope": "Structural/numeric checks only; unresolved source-label, raw-status and sample-independence limitations remain in metadata.json.",
+  "datasets": [
+    {
+      "Data_id": "GSAD0001",
+      "groups": 32,
+      "spectra": 684,
+      "modality": "direct-SERS",
+      "bytes": 43291225,
+      "point_count_min": 3760,
+      "point_count_max": 3760,
+      "unique_csv_byte_hashes": 684,
+      "identical_csv_hashes_spanning_groups": 0,
+      "verified_source_files": [
+        "SERS Spectra of PAH Mixtures.zip"
+      ]
+    },
+    {
+      "Data_id": "GSAD0002",
+      "groups": 1744,
+      "spectra": 3516,
+      "modality": "direct-SERS",
+      "bytes": 127064501,
+      "point_count_min": 568,
+      "point_count_max": 15686,
+      "unique_csv_byte_hashes": 3512,
+      "identical_csv_hashes_spanning_groups": 2,
+      "verified_source_files": [
+        "Dataset.zip",
+        "ILSdata.csv"
+      ]
+    },
+    {
+      "Data_id": "GSAD0003",
+      "groups": 245,
+      "spectra": 9800,
+      "modality": "Raman",
+      "bytes": 371307352,
+      "point_count_min": 2000,
+      "point_count_max": 2000,
+      "unique_csv_byte_hashes": 9800,
+      "identical_csv_hashes_spanning_groups": 0,
+      "verified_source_files": [
+        "Sugar_Concentration_Test_ALL_spectra.csv",
+        "Sugar_Concentration_Test_ALL_metadata.csv",
+        "Sugar_Concentration_Test_Fast_ALL_spectra.csv",
+        "Sugar_Concentration_Test_Fast_ALL_metadata.csv"
+      ]
+    },
+    {
+      "Data_id": "GSAD0004",
+      "groups": 11,
+      "spectra": 33,
+      "modality": "direct-SERS",
+      "bytes": 1490393,
+      "point_count_min": 1556,
+      "point_count_max": 1556,
+      "unique_csv_byte_hashes": 33,
+      "identical_csv_hashes_spanning_groups": 0,
+      "verified_source_files": [
+        "source-main.zip"
+      ]
+    },
+    {
+      "Data_id": "GSAD0005",
+      "groups": 9,
+      "spectra": 72,
+      "modality": "Raman",
+      "bytes": 1044714,
+      "point_count_min": 687,
+      "point_count_max": 1018,
+      "unique_csv_byte_hashes": 72,
+      "identical_csv_hashes_spanning_groups": 0,
+      "verified_source_files": [
+        "data for submission-20230719T180141Z-001.zip"
+      ]
+    },
+    {
+      "Data_id": "GSAD0006",
+      "groups": 6,
+      "spectra": 16,
+      "modality": "Raman",
+      "bytes": 1111020,
+      "point_count_min": 2000,
+      "point_count_max": 2000,
+      "unique_csv_byte_hashes": 16,
+      "identical_csv_hashes_spanning_groups": 0,
+      "verified_source_files": [
+        "data for submission-20230719T180141Z-001.zip"
+      ]
+    },
+    {
+      "Data_id": "GSAD0007",
+      "groups": 9,
+      "spectra": 28,
+      "modality": "Raman",
+      "bytes": 1934103,
+      "point_count_min": 2000,
+      "point_count_max": 2000,
+      "unique_csv_byte_hashes": 28,
+      "identical_csv_hashes_spanning_groups": 0,
+      "verified_source_files": [
+        "data for submission-20230719T180141Z-001.zip"
+      ]
+    },
+    {
+      "Data_id": "GSAD0008",
+      "groups": 51,
+      "spectra": 14811,
+      "modality": "direct-SERS",
+      "bytes": 230636684,
+      "point_count_min": 541,
+      "point_count_max": 543,
+      "unique_csv_byte_hashes": 13583,
+      "identical_csv_hashes_spanning_groups": 504,
+      "verified_source_files": [
+        "microplastics-raman-spectra.zip",
+        "author_code.zip"
+      ]
+    },
+    {
+      "Data_id": "GSAD0009",
+      "groups": 12,
+      "spectra": 1468,
+      "modality": "Raman",
+      "bytes": 22901648,
+      "point_count_min": 541,
+      "point_count_max": 541,
+      "unique_csv_byte_hashes": 1279,
+      "identical_csv_hashes_spanning_groups": 0,
+      "verified_source_files": [
+        "microplastics-raman-spectra.zip",
+        "author_code.zip"
+      ]
+    },
+    {
+      "Data_id": "GSAD0010",
+      "groups": 7,
+      "spectra": 1407,
+      "modality": "direct-SERS",
+      "bytes": 17281339,
+      "point_count_min": 724,
+      "point_count_max": 724,
+      "unique_csv_byte_hashes": 1407,
+      "identical_csv_hashes_spanning_groups": 0,
+      "verified_source_files": [
+        "20211018-20211019 Au-Ag100NS 10-09M CV 638nm 100% 0,1s 10xObj 201spec -1 nobase.txt",
+        "20211018-20211019 Au-Ag100NS 10-10M CV 638nm 100% 0,1s 10xObj 201spec -1 nobase.txt",
+        "20211018-20211019 Au-Ag100NS 10-10M CV 638nm 100% 0,1s 10xObj 201spec -2 nobase.txt",
+        "20211018-20211019 Au-Ag100NS 10-10M CV 638nm 100% 0,1s 10xObj 201spec -3 nobase.txt",
+        "20211018-20211019 Au-Ag100NS BGethanol 638nm 100% 0,1s 10xObj 201spec -1 nobase.txt",
+        "20211018-20211019 Au-Ag100NS BGethanol 638nm 100% 0,1s 10xObj 201spec -2 nobase.txt",
+        "20211018-20211019 Au-Ag100NS BGethanol 638nm 100% 0,1s 10xObj 201spec -3 nobase.txt"
+      ]
+    }
+  ],
+  "errors": [],
+  "validation_scope": "New/changed datasets fully checked; unchanged dataset results retained from previous full validation.",
+  "total_spectra": 31835,
+  "status": "PASS"
+}

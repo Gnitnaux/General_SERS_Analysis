@@ -1,0 +1,142 @@
+{
+  "source_url": "https://figshare.com/articles/dataset/28107305",
+  "paper_doi": "10.1038/s42256-025-01027-5",
+  "paper_title": "Deep spectral component filtering as a foundation model for spectral analysis demonstrated in metabolic profiling",
+  "journal": "Nature Machine Intelligence",
+  "publication_year": 2025,
+  "source_family": "DSCF_CV_background_28107305",
+  "modality": "direct-SERS",
+  "role": "primary_small_calibration_panel",
+  "license": "CC-BY-4.0 (Figshare record)",
+  "source_files": [
+    {
+      "path": "E:\\Research\\国自然\\data\\公开光谱任务库\\downloads\\figshare_28107305\\20211018-20211019 Au-Ag100NS 10-09M CV 638nm 100% 0,1s 10xObj 201spec -1 nobase.txt",
+      "sha256": "fe7a2487094f54fa6d2d5e861a6ccb1aed3fcb6d78ba4f5c3607bf428a1e443c"
+    },
+    {
+      "path": "E:\\Research\\国自然\\data\\公开光谱任务库\\downloads\\figshare_28107305\\20211018-20211019 Au-Ag100NS 10-10M CV 638nm 100% 0,1s 10xObj 201spec -1 nobase.txt",
+      "sha256": "31a08433b4d3b1a205ee0fed6472735043e61d8d187d577cac88ac75e9223b15"
+    },
+    {
+      "path": "E:\\Research\\国自然\\data\\公开光谱任务库\\downloads\\figshare_28107305\\20211018-20211019 Au-Ag100NS 10-10M CV 638nm 100% 0,1s 10xObj 201spec -2 nobase.txt",
+      "sha256": "bccc90ce775a8a5954e9a0f44cea1a8b5a016787716f7a55786738e86ba1fd96"
+    },
+    {
+      "path": "E:\\Research\\国自然\\data\\公开光谱任务库\\downloads\\figshare_28107305\\20211018-20211019 Au-Ag100NS 10-10M CV 638nm 100% 0,1s 10xObj 201spec -3 nobase.txt",
+      "sha256": "ba3893613447632f9fa70413707dbd1810ed5582c287785880e0443cb070de06"
+    },
+    {
+      "path": "E:\\Research\\国自然\\data\\公开光谱任务库\\downloads\\figshare_28107305\\20211018-20211019 Au-Ag100NS BGethanol 638nm 100% 0,1s 10xObj 201spec -1 nobase.txt",
+      "sha256": "edf2b87ef3cbbc727f169834e8795ab5eb926dd80a4b95c53677e3bcf6d7375c"
+    },
+    {
+      "path": "E:\\Research\\国自然\\data\\公开光谱任务库\\downloads\\figshare_28107305\\20211018-20211019 Au-Ag100NS BGethanol 638nm 100% 0,1s 10xObj 201spec -2 nobase.txt",
+      "sha256": "750ede5287671e495f5f8d302cf1355265a0c7ed705adfac72267dbdd48a1659"
+    },
+    {
+      "path": "E:\\Research\\国自然\\data\\公开光谱任务库\\downloads\\figshare_28107305\\20211018-20211019 Au-Ag100NS BGethanol 638nm 100% 0,1s 10xObj 201spec -3 nobase.txt",
+      "sha256": "2a8c95070b70ef1a3909c0a19049a2b0fa746f285f2bd32911909e8d1e28b871"
+    }
+  ],
+  "label_basis": "Original source filenames explicitly identify CV at 10-09 M or 10-10 M; BGethanol files are CV-free substrate/ethanol backgrounds, assigned 0.",
+  "quant_unit_basis": "Author filename nominal molarity. Final substrate adsorption concentration or any mixing dilution has not been independently re-established.",
+  "processing_level": "Author-provided nobase TXT spectral exports. No baseline correction or normalization is applied by importer; prior acquisition-software correction history is not independently established.",
+  "coordinate_mapping": "First row after the empty first cell is the actual Raman-shift axis. First column of subsequent rows is the map coordinate, retained in manifest rather than misused as RamanShift.",
+  "acquisition_from_filename": {
+    "laser_nm": 638,
+    "integration_seconds": 0.1,
+    "objective": "10x",
+    "substrate": "Au-Ag100NS"
+  },
+  "recommended_split": "Keep each map in one split; do not split its 201 positions randomly. New-preparation generalization requires more independently prepared standards.",
+  "limitations": [
+    "Only two nonzero nominal concentrations plus blanks are available. This is a pilot/background challenge, not a broad concentration calibration curve.",
+    "Independent preparation and substrate-batch identities beyond source filenames remain unknown.",
+    "The original dataset was cited for background-removal evaluation. A quantitative task is derived from explicit filename labels; it is not a reproduction of the paper's prepared-mixture quantification experiment.",
+    "CV must not be silently expanded to crystal violet without explicit chemical identity evidence. The task can be used with identity/structure marked unknown; structure-conditioned analyses must mask it."
+  ],
+  "Data_id": "GSAD0010",
+  "task": "Single-Component Quantification",
+  "molecule_order": [
+    "CV"
+  ],
+  "n_group": 7,
+  "n_spectra": 1407,
+  "groups": [
+    {
+      "folder": "Quan_1e-09_000001",
+      "labels": [
+        1e-09
+      ],
+      "source_file": "20211018-20211019 Au-Ag100NS 10-09M CV 638nm 100% 0,1s 10xObj 201spec -1 nobase.txt",
+      "n_spectra": 201,
+      "group_definition": "One original line-map file; 201 positions are technical/spatial measurements, not independent preparations.",
+      "independent_preparation_id": null
+    },
+    {
+      "folder": "Quan_1e-10_000002",
+      "labels": [
+        1e-10
+      ],
+      "source_file": "20211018-20211019 Au-Ag100NS 10-10M CV 638nm 100% 0,1s 10xObj 201spec -1 nobase.txt",
+      "n_spectra": 201,
+      "group_definition": "One original line-map file; 201 positions are technical/spatial measurements, not independent preparations.",
+      "independent_preparation_id": null
+    },
+    {
+      "folder": "Quan_1e-10_000003",
+      "labels": [
+        1e-10
+      ],
+      "source_file": "20211018-20211019 Au-Ag100NS 10-10M CV 638nm 100% 0,1s 10xObj 201spec -2 nobase.txt",
+      "n_spectra": 201,
+      "group_definition": "One original line-map file; 201 positions are technical/spatial measurements, not independent preparations.",
+      "independent_preparation_id": null
+    },
+    {
+      "folder": "Quan_1e-10_000004",
+      "labels": [
+        1e-10
+      ],
+      "source_file": "20211018-20211019 Au-Ag100NS 10-10M CV 638nm 100% 0,1s 10xObj 201spec -3 nobase.txt",
+      "n_spectra": 201,
+      "group_definition": "One original line-map file; 201 positions are technical/spatial measurements, not independent preparations.",
+      "independent_preparation_id": null
+    },
+    {
+      "folder": "Quan_0_000005",
+      "labels": [
+        0.0
+      ],
+      "source_file": "20211018-20211019 Au-Ag100NS BGethanol 638nm 100% 0,1s 10xObj 201spec -1 nobase.txt",
+      "n_spectra": 201,
+      "group_definition": "One original line-map file; 201 positions are technical/spatial measurements, not independent preparations.",
+      "independent_preparation_id": null
+    },
+    {
+      "folder": "Quan_0_000006",
+      "labels": [
+        0.0
+      ],
+      "source_file": "20211018-20211019 Au-Ag100NS BGethanol 638nm 100% 0,1s 10xObj 201spec -2 nobase.txt",
+      "n_spectra": 201,
+      "group_definition": "One original line-map file; 201 positions are technical/spatial measurements, not independent preparations.",
+      "independent_preparation_id": null
+    },
+    {
+      "folder": "Quan_0_000007",
+      "labels": [
+        0.0
+      ],
+      "source_file": "20211018-20211019 Au-Ag100NS BGethanol 638nm 100% 0,1s 10xObj 201spec -3 nobase.txt",
+      "n_spectra": 201,
+      "group_definition": "One original line-map file; 201 positions are technical/spatial measurements, not independent preparations.",
+      "independent_preparation_id": null
+    }
+  ],
+  "import_date": "2026-11-04",
+  "spectral_processing_by_importer": "None. Row sorting only; no interpolation, normalization, baseline correction or smoothing.",
+  "intensity_unit": "Original arbitrary instrument units; not harmonized across instruments.",
+  "raman_shift_unit": "cm^-1",
+  "chemical_identity_status": "Source filenames use CV. Full name/CAS has not been explicitly verified; no confirmed molecular SMILES is assigned."
+}

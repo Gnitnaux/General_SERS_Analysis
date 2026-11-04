@@ -1,0 +1,206 @@
+{
+  "source_url": "https://github.com/jianlin-cheng/SERSFormer2",
+  "paper_doi": "10.1021/acsami.4c17777",
+  "source_family": "SERSFormer2_public_subset",
+  "modality": "direct-SERS",
+  "role": "primary_small_subset",
+  "license": "GPL-3.0 repository license; data-specific scope not separately stated.",
+  "source_files": [
+    {
+      "path": "E:\\Research\\国自然\\data\\公开光谱任务库\\downloads\\SERSFormer2\\source-main.zip",
+      "sha256": "013498175ca6539c0b37b6f23ae4fe95d39411181a36e477e7784235f095e86f"
+    }
+  ],
+  "label_basis": "Directory mixture names and nominal ppm levels, converted exactly according to author Dataset.py: concentration=float(level)*float(first_ratio)/100. All deposited non-control mixtures are 50:50.",
+  "label_evidence": "SERSFormer2-main/Dataset.py inside original downloaded ZIP. Source code was read only, never executed.",
+  "preprocessing_in_source": "Deposited two-column CSV spectra. Processing history before deposition is not established; importer does not run the author model preprocessing.",
+  "recommended_split": "Block source_condition and matrix when evaluating transfer. Do not randomly separate triplicate spectra.",
+  "limitations": [
+    "Only 33 spectra from 11 conditions are actually deposited: two pesticide pairs and a spinach control, despite broader coverage described by repository README.",
+    "Three deposited compounds are included, not the five compounds studied in the full paper.",
+    "Condition groups do not establish independent sample preparations. Matrix is confounded with pesticide pair.",
+    "ppm is preserved as the author label unit. The mass/mass versus mass/volume basis and spike recovery uncertainty are not verified; do not convert to molarity.",
+    "Concentration labels reproduce the author loader convention, not an independent validation of prepared component concentrations."
+  ],
+  "Data_id": "GSAD0004",
+  "task": "Multi-Component Quantification",
+  "molecule_order": [
+    "Carbophenothion",
+    "Oxamyl",
+    "Phosmet"
+  ],
+  "n_group": 11,
+  "n_spectra": 33,
+  "groups": [
+    {
+      "folder": "Quan_0_0_0_000001",
+      "labels": [
+        0,
+        0,
+        0
+      ],
+      "source_condition": "SERSFormer2-main/Spinach_Strawbery/Spinach/100_0/No_pest_present/No_pest_present",
+      "matrix": "Spinach",
+      "ratio": "100_0",
+      "original_level": "No_pest_present",
+      "n_spectra": 3,
+      "physical_preparation_id": null
+    },
+    {
+      "folder": "Quan_0.25_0.25_0_000002",
+      "labels": [
+        0.25,
+        0.25,
+        0
+      ],
+      "source_condition": "SERSFormer2-main/Spinach_Strawbery/Spinach/50_50/carbophenothion_oxamyl/0.5ppm",
+      "matrix": "Spinach",
+      "ratio": "50_50",
+      "original_level": "0.5ppm",
+      "n_spectra": 3,
+      "physical_preparation_id": null
+    },
+    {
+      "folder": "Quan_0.5_0.5_0_000003",
+      "labels": [
+        0.5,
+        0.5,
+        0
+      ],
+      "source_condition": "SERSFormer2-main/Spinach_Strawbery/Spinach/50_50/carbophenothion_oxamyl/1.0ppm",
+      "matrix": "Spinach",
+      "ratio": "50_50",
+      "original_level": "1.0ppm",
+      "n_spectra": 3,
+      "physical_preparation_id": null
+    },
+    {
+      "folder": "Quan_5_5_0_000004",
+      "labels": [
+        5.0,
+        5.0,
+        0
+      ],
+      "source_condition": "SERSFormer2-main/Spinach_Strawbery/Spinach/50_50/carbophenothion_oxamyl/10.0ppm",
+      "matrix": "Spinach",
+      "ratio": "50_50",
+      "original_level": "10.0ppm",
+      "n_spectra": 3,
+      "physical_preparation_id": null
+    },
+    {
+      "folder": "Quan_1_1_0_000005",
+      "labels": [
+        1.0,
+        1.0,
+        0
+      ],
+      "source_condition": "SERSFormer2-main/Spinach_Strawbery/Spinach/50_50/carbophenothion_oxamyl/2.0ppm",
+      "matrix": "Spinach",
+      "ratio": "50_50",
+      "original_level": "2.0ppm",
+      "n_spectra": 3,
+      "physical_preparation_id": null
+    },
+    {
+      "folder": "Quan_2.5_2.5_0_000006",
+      "labels": [
+        2.5,
+        2.5,
+        0
+      ],
+      "source_condition": "SERSFormer2-main/Spinach_Strawbery/Spinach/50_50/carbophenothion_oxamyl/5.0ppm",
+      "matrix": "Spinach",
+      "ratio": "50_50",
+      "original_level": "5.0ppm",
+      "n_spectra": 3,
+      "physical_preparation_id": null
+    },
+    {
+      "folder": "Quan_0.25_0_0.25_000007",
+      "labels": [
+        0.25,
+        0,
+        0.25
+      ],
+      "source_condition": "SERSFormer2-main/Spinach_Strawbery/Strawberry/50_50/carbophenothion_phosmet/0.5ppm",
+      "matrix": "Strawberry",
+      "ratio": "50_50",
+      "original_level": "0.5ppm",
+      "n_spectra": 3,
+      "physical_preparation_id": null
+    },
+    {
+      "folder": "Quan_0.5_0_0.5_000008",
+      "labels": [
+        0.5,
+        0,
+        0.5
+      ],
+      "source_condition": "SERSFormer2-main/Spinach_Strawbery/Strawberry/50_50/carbophenothion_phosmet/1.0ppm",
+      "matrix": "Strawberry",
+      "ratio": "50_50",
+      "original_level": "1.0ppm",
+      "n_spectra": 3,
+      "physical_preparation_id": null
+    },
+    {
+      "folder": "Quan_5_0_5_000009",
+      "labels": [
+        5.0,
+        0,
+        5.0
+      ],
+      "source_condition": "SERSFormer2-main/Spinach_Strawbery/Strawberry/50_50/carbophenothion_phosmet/10.0ppm",
+      "matrix": "Strawberry",
+      "ratio": "50_50",
+      "original_level": "10.0ppm",
+      "n_spectra": 3,
+      "physical_preparation_id": null
+    },
+    {
+      "folder": "Quan_1_0_1_000010",
+      "labels": [
+        1.0,
+        0,
+        1.0
+      ],
+      "source_condition": "SERSFormer2-main/Spinach_Strawbery/Strawberry/50_50/carbophenothion_phosmet/2.0ppm",
+      "matrix": "Strawberry",
+      "ratio": "50_50",
+      "original_level": "2.0ppm",
+      "n_spectra": 3,
+      "physical_preparation_id": null
+    },
+    {
+      "folder": "Quan_2.5_0_2.5_000011",
+      "labels": [
+        2.5,
+        0,
+        2.5
+      ],
+      "source_condition": "SERSFormer2-main/Spinach_Strawbery/Strawberry/50_50/carbophenothion_phosmet/5.0ppm",
+      "matrix": "Strawberry",
+      "ratio": "50_50",
+      "original_level": "5.0ppm",
+      "n_spectra": 3,
+      "physical_preparation_id": null
+    }
+  ],
+  "import_date": "2026-11-04",
+  "spectral_processing_by_importer": "None. Row sorting only; no interpolation, normalization, baseline correction or smoothing.",
+  "intensity_unit": "Original arbitrary instrument units; not harmonized across instruments.",
+  "raman_shift_unit": "cm^-1",
+  "modality_details": {
+    "scheme_version": "1.0",
+    "classification_basis": "The study interprets pesticide molecular Raman features enhanced by core-shell gold-silver nanoparticles; targets are detected through their own spectra.",
+    "evidence_url": "https://doi.org/10.1021/acsami.4c17777",
+    "signal_species_relationship": "Intrinsic Raman signatures of the analytical targets; reference SMILES do not establish adsorbed-state structures.",
+    "assignment_scope": "Imported measurement branch, including its associated blank controls.",
+    "signal_species_identifiers": [
+      "Carbophenothion",
+      "Oxamyl",
+      "Phosmet"
+    ]
+  }
+}

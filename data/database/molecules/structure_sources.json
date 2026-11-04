@@ -1,0 +1,220 @@
+{
+  "Anthracene": {
+    "query": "anthracene",
+    "CID": 8418,
+    "MolecularFormula": "C14H10",
+    "SMILES": "C1=CC=C2C=C3C=CC=CC3=CC2=C1",
+    "ConnectivitySMILES": "C1=CC=C2C=C3C=CC=CC3=CC2=C1",
+    "InChIKey": "MWPLVEDNUUSJAV-UHFFFAOYSA-N",
+    "source_url": "https://pubchem.ncbi.nlm.nih.gov/compound/8418",
+    "retrieved": "2026-11-04",
+    "source_response_file": "E:\\Research\\国自然\\data\\公开光谱任务库\\metadata\\pubchem_anthracene.json",
+    "source_response_sha256": "0b1700633100341165134eb9aa78c39d89aa769041748acf28016ce118f79514",
+    "representation": "PubChem returned SMILES, retained verbatim. Not recanonicalized with RDKit; not a claim of the adsorbed SERS species or solution equilibrium."
+  },
+  "Pyrene": {
+    "query": "pyrene",
+    "CID": 31423,
+    "MolecularFormula": "C16H10",
+    "SMILES": "C1=CC2=C3C(=C1)C=CC4=CC=CC(=C43)C=C2",
+    "ConnectivitySMILES": "C1=CC2=C3C(=C1)C=CC4=CC=CC(=C43)C=C2",
+    "InChIKey": "BBEAQIROQSPTKN-UHFFFAOYSA-N",
+    "source_url": "https://pubchem.ncbi.nlm.nih.gov/compound/31423",
+    "retrieved": "2026-11-04",
+    "source_response_file": "E:\\Research\\国自然\\data\\公开光谱任务库\\metadata\\pubchem_pyrene.json",
+    "source_response_sha256": "ae332aae952a536730f4ed9b87549039a7539e93ffbd90033c41fc1465867fba",
+    "representation": "PubChem returned SMILES, retained verbatim. Not recanonicalized with RDKit; not a claim of the adsorbed SERS species or solution equilibrium."
+  },
+  "Benzoapyrene": {
+    "query": "benzo[a]pyrene",
+    "CID": 2336,
+    "MolecularFormula": "C20H12",
+    "SMILES": "C1=CC=C2C3=C4C(=CC2=C1)C=CC5=C4C(=CC=C5)C=C3",
+    "ConnectivitySMILES": "C1=CC=C2C3=C4C(=CC2=C1)C=CC5=C4C(=CC=C5)C=C3",
+    "InChIKey": "FMMWHPNWAFZXNH-UHFFFAOYSA-N",
+    "source_url": "https://pubchem.ncbi.nlm.nih.gov/compound/2336",
+    "retrieved": "2026-11-04",
+    "source_response_file": "E:\\Research\\国自然\\data\\公开光谱任务库\\metadata\\pubchem_benzo[a]pyrene.json",
+    "source_response_sha256": "cacf206fb47ba5c7b6878bd2ba684a4b170d6de762894d41c34c72737584f2b1",
+    "representation": "PubChem returned SMILES, retained verbatim. Not recanonicalized with RDKit; not a claim of the adsorbed SERS species or solution equilibrium."
+  },
+  "Benzaanthracene": {
+    "query": "benz[a]anthracene",
+    "CID": 5954,
+    "MolecularFormula": "C18H12",
+    "SMILES": "C1=CC=C2C(=C1)C=CC3=CC4=CC=CC=C4C=C32",
+    "ConnectivitySMILES": "C1=CC=C2C(=C1)C=CC3=CC4=CC=CC=C4C=C32",
+    "InChIKey": "DXBHBZVCASKNBY-UHFFFAOYSA-N",
+    "source_url": "https://pubchem.ncbi.nlm.nih.gov/compound/5954",
+    "retrieved": "2026-11-04",
+    "source_response_file": "E:\\Research\\国自然\\data\\公开光谱任务库\\metadata\\pubchem_benz[a]anthracene.json",
+    "source_response_sha256": "cbc5de46b6bbcab36be509dec69e8c9a786ba2ea2866cc252c63f53aaddff138",
+    "representation": "PubChem returned SMILES, retained verbatim. Not recanonicalized with RDKit; not a claim of the adsorbed SERS species or solution equilibrium."
+  },
+  "Adenine": {
+    "query": "adenine",
+    "CID": 190,
+    "MolecularFormula": "C5H5N5",
+    "SMILES": "C1=NC2=NC=NC(=C2N1)N",
+    "ConnectivitySMILES": "C1=NC2=NC=NC(=C2N1)N",
+    "InChIKey": "GFFGJBXGBJISGV-UHFFFAOYSA-N",
+    "source_url": "https://pubchem.ncbi.nlm.nih.gov/compound/190",
+    "retrieved": "2026-11-04",
+    "source_response_file": "E:\\Research\\国自然\\data\\公开光谱任务库\\metadata\\pubchem_adenine.json",
+    "source_response_sha256": "0d09746f19c49acc320cb0db5b8729ff3932379f045d2369b8448bc0991a7763",
+    "representation": "PubChem returned SMILES, retained verbatim. Not recanonicalized with RDKit; not a claim of the adsorbed SERS species or solution equilibrium."
+  },
+  "Sucrose": {
+    "query": "sucrose",
+    "CID": 5988,
+    "MolecularFormula": "C12H22O11",
+    "SMILES": "C([C@@H]1[C@H]([C@@H]([C@H]([C@H](O1)O[C@]2([C@H]([C@@H]([C@H](O2)CO)O)O)CO)O)O)O)O",
+    "ConnectivitySMILES": "C(C1C(C(C(C(O1)OC2(C(C(C(O2)CO)O)O)CO)O)O)O)O",
+    "InChIKey": "CZMRCDWAGMRECN-UGDNZRGBSA-N",
+    "source_url": "https://pubchem.ncbi.nlm.nih.gov/compound/5988",
+    "retrieved": "2026-11-04",
+    "source_response_file": "E:\\Research\\国自然\\data\\公开光谱任务库\\metadata\\pubchem_sucrose.json",
+    "source_response_sha256": "e8c64463c125f30cd389afdec12f83a82f73f6d87e2edea195ae7b1d16005dae",
+    "representation": "PubChem returned SMILES, retained verbatim. Not recanonicalized with RDKit; not a claim of the adsorbed SERS species or solution equilibrium."
+  },
+  "Fructose": {
+    "query": "D-fructose",
+    "CID": 2723872,
+    "MolecularFormula": "C6H12O6",
+    "SMILES": "C1[C@H]([C@H]([C@@H](C(O1)(CO)O)O)O)O",
+    "ConnectivitySMILES": "C1C(C(C(C(O1)(CO)O)O)O)O",
+    "InChIKey": "LKDRXBCSQODPBY-VRPWFDPXSA-N",
+    "source_url": "https://pubchem.ncbi.nlm.nih.gov/compound/2723872",
+    "retrieved": "2026-11-04",
+    "source_response_file": "E:\\Research\\国自然\\data\\公开光谱任务库\\metadata\\pubchem_D-fructose.json",
+    "source_response_sha256": "b58733f60206b327bfba60e3c37000f1847c0f8e10208c6a45b13d473fc3195f",
+    "representation": "PubChem returned SMILES, retained verbatim. Not recanonicalized with RDKit; not a claim of the adsorbed SERS species or solution equilibrium."
+  },
+  "Maltose": {
+    "query": "maltose",
+    "CID": 439186,
+    "MolecularFormula": "C12H22O11",
+    "SMILES": "C([C@@H]1[C@H]([C@@H]([C@H]([C@H](O1)O[C@@H]2[C@H](OC([C@@H]([C@H]2O)O)O)CO)O)O)O)O",
+    "ConnectivitySMILES": "C(C1C(C(C(C(O1)OC2C(OC(C(C2O)O)O)CO)O)O)O)O",
+    "InChIKey": "GUBGYTABKSRVRQ-PICCSMPSSA-N",
+    "source_url": "https://pubchem.ncbi.nlm.nih.gov/compound/439186",
+    "retrieved": "2026-11-04",
+    "source_response_file": "E:\\Research\\国自然\\data\\公开光谱任务库\\metadata\\pubchem_maltose.json",
+    "source_response_sha256": "7650515b645b38051a4a503e07826f7cbd44f49a33a80264c9298d8423ac00e6",
+    "representation": "PubChem returned SMILES, retained verbatim. Not recanonicalized with RDKit; not a claim of the adsorbed SERS species or solution equilibrium."
+  },
+  "Glucose": {
+    "query": "D-glucose",
+    "CID": 5793,
+    "MolecularFormula": "C6H12O6",
+    "SMILES": "C([C@@H]1[C@H]([C@@H]([C@H](C(O1)O)O)O)O)O",
+    "ConnectivitySMILES": "C(C1C(C(C(C(O1)O)O)O)O)O",
+    "InChIKey": "WQZGKKKJIJFFOK-GASJEMHNSA-N",
+    "source_url": "https://pubchem.ncbi.nlm.nih.gov/compound/5793",
+    "retrieved": "2026-11-04",
+    "source_response_file": "E:\\Research\\国自然\\data\\公开光谱任务库\\metadata\\pubchem_D-glucose.json",
+    "source_response_sha256": "0ea98f23830d38397464d861c3f4c92a85333fe8ec7a71a18045db044b32e43f",
+    "representation": "PubChem returned SMILES, retained verbatim. Not recanonicalized with RDKit; not a claim of the adsorbed SERS species or solution equilibrium."
+  },
+  "Carbophenothion": {
+    "query": "carbophenothion",
+    "CID": 13081,
+    "MolecularFormula": "C11H16ClO2PS3",
+    "SMILES": "CCOP(=S)(OCC)SCSC1=CC=C(C=C1)Cl",
+    "ConnectivitySMILES": "CCOP(=S)(OCC)SCSC1=CC=C(C=C1)Cl",
+    "InChIKey": "VEDTXTNSFWUXGQ-UHFFFAOYSA-N",
+    "source_url": "https://pubchem.ncbi.nlm.nih.gov/compound/13081",
+    "retrieved": "2026-11-04",
+    "source_response_file": "E:\\Research\\国自然\\data\\公开光谱任务库\\metadata\\pubchem_carbophenothion.json",
+    "source_response_sha256": "cd85329f848b2a0fdfd3637e7582f849676a89bc3c872f54995757eab810a1aa",
+    "representation": "PubChem returned SMILES, retained verbatim. Not recanonicalized with RDKit; not a claim of the adsorbed SERS species or solution equilibrium."
+  },
+  "Oxamyl": {
+    "query": "oxamyl",
+    "CID": 31657,
+    "MolecularFormula": "C7H13N3O3S",
+    "SMILES": "CNC(=O)ON=C(C(=O)N(C)C)SC",
+    "ConnectivitySMILES": "CNC(=O)ON=C(C(=O)N(C)C)SC",
+    "InChIKey": "KZAUOCCYDRDERY-UHFFFAOYSA-N",
+    "source_url": "https://pubchem.ncbi.nlm.nih.gov/compound/31657",
+    "retrieved": "2026-11-04",
+    "source_response_file": "E:\\Research\\国自然\\data\\公开光谱任务库\\metadata\\pubchem_oxamyl.json",
+    "source_response_sha256": "82f79d485f8ba33a057602bb66f07f78f223a6b3b547980ec4d6df5bc0082233",
+    "representation": "PubChem returned SMILES, retained verbatim. Not recanonicalized with RDKit; not a claim of the adsorbed SERS species or solution equilibrium."
+  },
+  "Phosmet": {
+    "query": "phosmet",
+    "CID": 12901,
+    "MolecularFormula": "C11H12NO4PS2",
+    "SMILES": "COP(=S)(OC)SCN1C(=O)C2=CC=CC=C2C1=O",
+    "ConnectivitySMILES": "COP(=S)(OC)SCN1C(=O)C2=CC=CC=C2C1=O",
+    "InChIKey": "LMNZTLDVJIUSHT-UHFFFAOYSA-N",
+    "source_url": "https://pubchem.ncbi.nlm.nih.gov/compound/12901",
+    "retrieved": "2026-11-04",
+    "source_response_file": "E:\\Research\\国自然\\data\\公开光谱任务库\\metadata\\pubchem_phosmet.json",
+    "source_response_sha256": "a358b720d54dff7a30c91435ac495a4d2852b07bea9944ed52892786778cec5c",
+    "representation": "PubChem returned SMILES, retained verbatim. Not recanonicalized with RDKit; not a claim of the adsorbed SERS species or solution equilibrium."
+  },
+  "Methanol": {
+    "query": "methanol",
+    "CID": 887,
+    "MolecularFormula": "CH4O",
+    "SMILES": "CO",
+    "ConnectivitySMILES": "CO",
+    "InChIKey": "OKKJLVBELUTLKV-UHFFFAOYSA-N",
+    "source_url": "https://pubchem.ncbi.nlm.nih.gov/compound/887",
+    "retrieved": "2026-11-04",
+    "source_response_file": "E:\\Research\\国自然\\data\\公开光谱任务库\\metadata\\pubchem_methanol.json",
+    "source_response_sha256": "b0dcf691236d3204396aa7071ae3d0fd90e39294a7f1be3056fb3cce0065fda5",
+    "representation": "PubChem SMILES retained verbatim."
+  },
+  "Serine": {
+    "query": "serine",
+    "CID": 5951,
+    "MolecularFormula": "C3H7NO3",
+    "SMILES": "C(C(C(=O)O)N)O",
+    "ConnectivitySMILES": "C(C(C(=O)O)N)O",
+    "InChIKey": "MTCFGRXMJLQNBG-REOHCLBHSA-N",
+    "source_url": "https://pubchem.ncbi.nlm.nih.gov/compound/5951",
+    "retrieved": "2026-11-04",
+    "source_response_file": "E:\\Research\\国自然\\data\\公开光谱任务库\\metadata\\pubchem_serine.json",
+    "source_response_sha256": "9678677db63f7eca2343c1834c0f9cc917fefdd18303b4e8a98975f25cfc2345",
+    "representation": "PubChem connectivity-only SMILES; source serine stereoisomer unspecified."
+  },
+  "Polystyrene": {
+    "structure_status": "not_applicable_unique_small_molecule",
+    "SMILES": null,
+    "reason": "Polymer/material target with unspecified chain length, molecular-weight distribution and/or exact subtype. No monomer or arbitrary short chain is substituted for the full material.",
+    "source_url": "https://www.nature.com/articles/s41467-024-48148-w"
+  },
+  "Polyethylene": {
+    "structure_status": "not_applicable_unique_small_molecule",
+    "SMILES": null,
+    "reason": "Polymer/material target with unspecified chain length, molecular-weight distribution and/or exact subtype. No monomer or arbitrary short chain is substituted for the full material.",
+    "source_url": "https://www.nature.com/articles/s41467-024-48148-w"
+  },
+  "Polymethylmethacrylate": {
+    "structure_status": "not_applicable_unique_small_molecule",
+    "SMILES": null,
+    "reason": "Polymer/material target with unspecified chain length, molecular-weight distribution and/or exact subtype. No monomer or arbitrary short chain is substituted for the full material.",
+    "source_url": "https://www.nature.com/articles/s41467-024-48148-w"
+  },
+  "Polytetrafluoroethylene": {
+    "structure_status": "not_applicable_unique_small_molecule",
+    "SMILES": null,
+    "reason": "Polymer/material target with unspecified chain length, molecular-weight distribution and/or exact subtype. No monomer or arbitrary short chain is substituted for the full material.",
+    "source_url": "https://www.nature.com/articles/s41467-024-48148-w"
+  },
+  "Nylon": {
+    "structure_status": "not_applicable_unique_small_molecule",
+    "SMILES": null,
+    "reason": "Polymer/material target with unspecified chain length, molecular-weight distribution and/or exact subtype. No monomer or arbitrary short chain is substituted for the full material.",
+    "source_url": "https://www.nature.com/articles/s41467-024-48148-w"
+  },
+  "CV": {
+    "structure_status": "unavailable",
+    "SMILES": null,
+    "reason": "Source analyte abbreviation CV is retained. Full chemical identity and CAS need explicit verification; a candidate crystal-violet structure is not treated as confirmed.",
+    "source_url": "https://figshare.com/articles/dataset/28107305"
+  }
+}

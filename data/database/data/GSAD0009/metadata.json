@@ -1,0 +1,1293 @@
+{
+  "source_url": "https://www.kaggle.com/datasets/andriitrelin/microplastics-raman-spectra",
+  "paper_doi": "10.1038/s41467-024-48148-w",
+  "paper_title": "Pretreatment-free SERS sensing of microplastics using a self-attention-based neural network on hierarchically porous Ag foams",
+  "journal": "Nature Communications",
+  "publication_year": 2024,
+  "source_family": "SpecATNet_NatCommun_48148",
+  "modality": "Raman",
+  "role": "auxiliary_material_domain",
+  "license": "CC-BY-4.0; verified in original Kaggle metadata, version 2",
+  "source_files": [
+    {
+      "path": "E:\\Research\\国自然\\data\\公开光谱任务库\\downloads\\SpecATNet\\microplastics-raman-spectra.zip",
+      "sha256": "335008f155a8ab73a5be98ea120ce047b209e64bdfc5cf67ec232ae7b5293293"
+    },
+    {
+      "path": "E:\\Research\\国自然\\data\\公开光谱任务库\\downloads\\SpecATNet\\author_code.zip",
+      "sha256": "1f9571830de0c3fd4566c4be6c09a9cf8eb24ea2e74230d5187ccd644b906b50"
+    }
+  ],
+  "processing_level": "Vendor-native JWS spectra prior to author Python background correction, spike removal and normalization. Any acquisition-software processing before file export is not independently established.",
+  "decoding_basis": "Author jwslib.py: DataInfo format <LLLLLLdddLLLLdddd; indices 5..8 are point count, first coordinate, last coordinate, increment. Y-Data is 32-bit float. Endpoint consistency and finite values checked for every file.",
+  "coordinate_unit": "Raman shift cm^-1, consistent with author paper and conversion code; original calibrated axis retained.",
+  "label_basis": "Polymer tokens in original sample directories; AgFAgMC10 substrate directories are analyte-free controls. Full original directory is preserved in metadata.",
+  "material_target_status": "Targets are polymer/material identities; no unique small-molecule SMILES is assigned. Nylon subtype and polymer chain distribution are not established.",
+  "excluded_spectra": [
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X01_Y01(2).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X01_Y02(3).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X01_Y03(4).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X01_Y04(5).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X01_Y05(6).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X01_Y06(7).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X01_Y07(8).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X01_Y08(9).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X02_Y01(10).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X02_Y02(11).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X02_Y03(12).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X02_Y04(13).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X02_Y05(14).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X02_Y06(15).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X02_Y07(16).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X02_Y08(17).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X03_Y01(18).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X03_Y02(19).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X03_Y03(20).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X03_Y04(21).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X03_Y05(22).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X03_Y06(23).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X03_Y07(24).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X03_Y08(25).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X04_Y01(26).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X04_Y02(27).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X04_Y03(28).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X04_Y04(29).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X04_Y05(30).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X04_Y06(31).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X04_Y07(32).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X04_Y08(33).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X05_Y01(34).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X05_Y02(35).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X05_Y03(36).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X05_Y04(37).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X05_Y05(38).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X05_Y06(39).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X05_Y07(40).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X05_Y08(41).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X06_Y01(42).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X06_Y02(43).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X06_Y03(44).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X06_Y04(45).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X06_Y05(46).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X06_Y06(47).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X06_Y07(48).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X06_Y08(49).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X07_Y01(50).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X07_Y02(51).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X07_Y03(52).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X07_Y04(53).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X07_Y05(54).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X07_Y06(55).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X07_Y07(56).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X07_Y08(57).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X08_Y01(58).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X08_Y02(59).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X08_Y03(60).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X08_Y04(61).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X08_Y05(62).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X08_Y06(63).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X08_Y07(64).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    },
+    {
+      "source_member": "Main_data/MP_on_glass_and_si/on_glass/Nylon/nylon_ag_X08_Y08(65).spc",
+      "reason": "SPC branch retained in original archive; not decoded in this import."
+    }
+  ],
+  "recommended_split": "Block original map/sample directories, byte-identical spectra and shared specimen links across modalities. Do not split map pixels randomly. Separate source study from all other tasks for source-level transfer tests.",
+  "limitations": [
+    "This import contains five polymer identities. It does not claim all six identities or all branches in the full paper.",
+    "All retained map pixels are spectra, not independent samples. Independent preparation and substrate IDs beyond source folders are unavailable.",
+    "SPC files and environmental/concentration branches remain in the original archive but are not counted in these two tasks.",
+    "Directory-derived labels describe the sample composition; an individual map pixel may contain no detectable polymer signal.",
+    "Raman reference spectra and SERS mixture spectra share one source study and may share parent materials; they are not independent source studies.",
+    "Exact repeated CSV spectra are listed in identical_spectrum_clusters. Keep each cluster in one validation fold; any conflicting-label clusters require review or exclusion."
+  ],
+  "Data_id": "GSAD0009",
+  "task": "Classification",
+  "molecule_order": [
+    "Polystyrene",
+    "Polyethylene",
+    "Polymethylmethacrylate",
+    "Polytetrafluoroethylene",
+    "Nylon"
+  ],
+  "n_group": 12,
+  "n_spectra": 1468,
+  "groups": [
+    {
+      "folder": "Class_0_0_0_0_1_000001",
+      "labels": [
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "source_group": "Main_data/MP_on_glass_and_si/Nylon",
+      "n_spectra": 132,
+      "group_definition": "Original map/sample directory. Pixels and repeated map exports stay together.",
+      "independent_preparation_id": null
+    },
+    {
+      "folder": "Class_0_0_0_0_1_000002",
+      "labels": [
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "source_group": "Main_data/MP_on_glass_and_si/Nylon1",
+      "n_spectra": 100,
+      "group_definition": "Original map/sample directory. Pixels and repeated map exports stay together.",
+      "independent_preparation_id": null
+    },
+    {
+      "folder": "Class_0_1_0_0_0_000003",
+      "labels": [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "source_group": "Main_data/MP_on_glass_and_si/PE",
+      "n_spectra": 168,
+      "group_definition": "Original map/sample directory. Pixels and repeated map exports stay together.",
+      "independent_preparation_id": null
+    },
+    {
+      "folder": "Class_0_0_1_0_0_000004",
+      "labels": [
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      "source_group": "Main_data/MP_on_glass_and_si/PMMA",
+      "n_spectra": 168,
+      "group_definition": "Original map/sample directory. Pixels and repeated map exports stay together.",
+      "independent_preparation_id": null
+    },
+    {
+      "folder": "Class_0_0_1_0_0_000005",
+      "labels": [
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      "source_group": "Main_data/MP_on_glass_and_si/PMMA1",
+      "n_spectra": 100,
+      "group_definition": "Original map/sample directory. Pixels and repeated map exports stay together.",
+      "independent_preparation_id": null
+    },
+    {
+      "folder": "Class_1_0_0_0_0_000006",
+      "labels": [
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "source_group": "Main_data/MP_on_glass_and_si/PS",
+      "n_spectra": 168,
+      "group_definition": "Original map/sample directory. Pixels and repeated map exports stay together.",
+      "independent_preparation_id": null
+    },
+    {
+      "folder": "Class_0_0_0_1_0_000007",
+      "labels": [
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "source_group": "Main_data/MP_on_glass_and_si/PTFE",
+      "n_spectra": 168,
+      "group_definition": "Original map/sample directory. Pixels and repeated map exports stay together.",
+      "independent_preparation_id": null
+    },
+    {
+      "folder": "Class_0_0_0_1_0_000008",
+      "labels": [
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "source_group": "Main_data/MP_on_glass_and_si/PTFE1",
+      "n_spectra": 100,
+      "group_definition": "Original map/sample directory. Pixels and repeated map exports stay together.",
+      "independent_preparation_id": null
+    },
+    {
+      "folder": "Class_0_0_0_0_1_000009",
+      "labels": [
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "source_group": "Main_data/MP_on_glass_and_si/on_glass/Nylon",
+      "n_spectra": 64,
+      "group_definition": "Original map/sample directory. Pixels and repeated map exports stay together.",
+      "independent_preparation_id": null
+    },
+    {
+      "folder": "Class_0_1_0_0_0_000010",
+      "labels": [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "source_group": "Main_data/MP_on_glass_and_si/on_glass/PE",
+      "n_spectra": 100,
+      "group_definition": "Original map/sample directory. Pixels and repeated map exports stay together.",
+      "independent_preparation_id": null
+    },
+    {
+      "folder": "Class_0_0_1_0_0_000011",
+      "labels": [
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      "source_group": "Main_data/MP_on_glass_and_si/on_glass/PMMA_glass",
+      "n_spectra": 100,
+      "group_definition": "Original map/sample directory. Pixels and repeated map exports stay together.",
+      "independent_preparation_id": null
+    },
+    {
+      "folder": "Class_0_0_0_1_0_000012",
+      "labels": [
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "source_group": "Main_data/MP_on_glass_and_si/on_glass/PTFE_glas",
+      "n_spectra": 100,
+      "group_definition": "Original map/sample directory. Pixels and repeated map exports stay together.",
+      "independent_preparation_id": null
+    }
+  ],
+  "import_date": "2026-11-04",
+  "spectral_processing_by_importer": "None. Row sorting only; no interpolation, normalization, baseline correction or smoothing.",
+  "intensity_unit": "Original arbitrary instrument units; not harmonized across instruments.",
+  "raman_shift_unit": "cm^-1",
+  "license_evidence": "E:\\Research\\国自然\\data\\公开光谱任务库\\metadata\\SpecATNet_kaggle_metadata.json",
+  "label_granularity": "Source sample/map composition; individual pixels inherit sample-level presence labels and can contain no detectable analyte signal.",
+  "identical_spectrum_clusters": [
+    {
+      "sha256": "60d99916ee01fb98356c9c4638c5017372f919394ecf6739f3ebda5d3340413d",
+      "records": [
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000019.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000020.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000021.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000022.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000029.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000030.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000031.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000032.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000039.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000040.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000041.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000042.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000049.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000050.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000051.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000052.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000059.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000060.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000061.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000062.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000069.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000070.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000071.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000072.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000079.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000080.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000081.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000082.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000089.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000090.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000091.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000092.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000099.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000100.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000101.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000102.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000108.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000109.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000110.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000111.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000112.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000118.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000119.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000120.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000121.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000122.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000128.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000129.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000130.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000131.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000001/spectrum_000132.csv",
+          "group_id": "Class_0_0_0_0_1_000001"
+        }
+      ],
+      "spans_groups": false,
+      "conflicting_labels": false
+    },
+    {
+      "sha256": "b432c0ffaeb9be616a579b4a417caf82b4bd8005b53dda5252f739fac9c66df8",
+      "records": [
+        {
+          "file": "Class_0_0_0_0_1_000002/spectrum_000009.csv",
+          "group_id": "Class_0_0_0_0_1_000002"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000002/spectrum_000010.csv",
+          "group_id": "Class_0_0_0_0_1_000002"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000002/spectrum_000019.csv",
+          "group_id": "Class_0_0_0_0_1_000002"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000002/spectrum_000020.csv",
+          "group_id": "Class_0_0_0_0_1_000002"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000002/spectrum_000029.csv",
+          "group_id": "Class_0_0_0_0_1_000002"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000002/spectrum_000030.csv",
+          "group_id": "Class_0_0_0_0_1_000002"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000002/spectrum_000039.csv",
+          "group_id": "Class_0_0_0_0_1_000002"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000002/spectrum_000040.csv",
+          "group_id": "Class_0_0_0_0_1_000002"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000002/spectrum_000049.csv",
+          "group_id": "Class_0_0_0_0_1_000002"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000002/spectrum_000050.csv",
+          "group_id": "Class_0_0_0_0_1_000002"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000002/spectrum_000058.csv",
+          "group_id": "Class_0_0_0_0_1_000002"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000002/spectrum_000059.csv",
+          "group_id": "Class_0_0_0_0_1_000002"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000002/spectrum_000060.csv",
+          "group_id": "Class_0_0_0_0_1_000002"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000002/spectrum_000068.csv",
+          "group_id": "Class_0_0_0_0_1_000002"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000002/spectrum_000069.csv",
+          "group_id": "Class_0_0_0_0_1_000002"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000002/spectrum_000070.csv",
+          "group_id": "Class_0_0_0_0_1_000002"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000002/spectrum_000078.csv",
+          "group_id": "Class_0_0_0_0_1_000002"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000002/spectrum_000079.csv",
+          "group_id": "Class_0_0_0_0_1_000002"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000002/spectrum_000080.csv",
+          "group_id": "Class_0_0_0_0_1_000002"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000002/spectrum_000088.csv",
+          "group_id": "Class_0_0_0_0_1_000002"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000002/spectrum_000089.csv",
+          "group_id": "Class_0_0_0_0_1_000002"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000002/spectrum_000090.csv",
+          "group_id": "Class_0_0_0_0_1_000002"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000002/spectrum_000098.csv",
+          "group_id": "Class_0_0_0_0_1_000002"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000002/spectrum_000099.csv",
+          "group_id": "Class_0_0_0_0_1_000002"
+        },
+        {
+          "file": "Class_0_0_0_0_1_000002/spectrum_000100.csv",
+          "group_id": "Class_0_0_0_0_1_000002"
+        }
+      ],
+      "spans_groups": false,
+      "conflicting_labels": false
+    },
+    {
+      "sha256": "61b5b918424fd7fb860f3feb4e47fe34435d2412a26fee7c65e3e04e5eaf6b73",
+      "records": [
+        {
+          "file": "Class_0_1_0_0_0_000003/spectrum_000011.csv",
+          "group_id": "Class_0_1_0_0_0_000003"
+        },
+        {
+          "file": "Class_0_1_0_0_0_000003/spectrum_000012.csv",
+          "group_id": "Class_0_1_0_0_0_000003"
+        },
+        {
+          "file": "Class_0_1_0_0_0_000003/spectrum_000023.csv",
+          "group_id": "Class_0_1_0_0_0_000003"
+        },
+        {
+          "file": "Class_0_1_0_0_0_000003/spectrum_000024.csv",
+          "group_id": "Class_0_1_0_0_0_000003"
+        },
+        {
+          "file": "Class_0_1_0_0_0_000003/spectrum_000035.csv",
+          "group_id": "Class_0_1_0_0_0_000003"
+        },
+        {
+          "file": "Class_0_1_0_0_0_000003/spectrum_000036.csv",
+          "group_id": "Class_0_1_0_0_0_000003"
+        },
+        {
+          "file": "Class_0_1_0_0_0_000003/spectrum_000047.csv",
+          "group_id": "Class_0_1_0_0_0_000003"
+        },
+        {
+          "file": "Class_0_1_0_0_0_000003/spectrum_000048.csv",
+          "group_id": "Class_0_1_0_0_0_000003"
+        },
+        {
+          "file": "Class_0_1_0_0_0_000003/spectrum_000059.csv",
+          "group_id": "Class_0_1_0_0_0_000003"
+        },
+        {
+          "file": "Class_0_1_0_0_0_000003/spectrum_000060.csv",
+          "group_id": "Class_0_1_0_0_0_000003"
+        },
+        {
+          "file": "Class_0_1_0_0_0_000003/spectrum_000071.csv",
+          "group_id": "Class_0_1_0_0_0_000003"
+        },
+        {
+          "file": "Class_0_1_0_0_0_000003/spectrum_000072.csv",
+          "group_id": "Class_0_1_0_0_0_000003"
+        },
+        {
+          "file": "Class_0_1_0_0_0_000003/spectrum_000083.csv",
+          "group_id": "Class_0_1_0_0_0_000003"
+        },
+        {
+          "file": "Class_0_1_0_0_0_000003/spectrum_000084.csv",
+          "group_id": "Class_0_1_0_0_0_000003"
+        },
+        {
+          "file": "Class_0_1_0_0_0_000003/spectrum_000095.csv",
+          "group_id": "Class_0_1_0_0_0_000003"
+        },
+        {
+          "file": "Class_0_1_0_0_0_000003/spectrum_000096.csv",
+          "group_id": "Class_0_1_0_0_0_000003"
+        },
+        {
+          "file": "Class_0_1_0_0_0_000003/spectrum_000107.csv",
+          "group_id": "Class_0_1_0_0_0_000003"
+        },
+        {
+          "file": "Class_0_1_0_0_0_000003/spectrum_000108.csv",
+          "group_id": "Class_0_1_0_0_0_000003"
+        },
+        {
+          "file": "Class_0_1_0_0_0_000003/spectrum_000119.csv",
+          "group_id": "Class_0_1_0_0_0_000003"
+        },
+        {
+          "file": "Class_0_1_0_0_0_000003/spectrum_000120.csv",
+          "group_id": "Class_0_1_0_0_0_000003"
+        },
+        {
+          "file": "Class_0_1_0_0_0_000003/spectrum_000131.csv",
+          "group_id": "Class_0_1_0_0_0_000003"
+        },
+        {
+          "file": "Class_0_1_0_0_0_000003/spectrum_000132.csv",
+          "group_id": "Class_0_1_0_0_0_000003"
+        },
+        {
+          "file": "Class_0_1_0_0_0_000003/spectrum_000143.csv",
+          "group_id": "Class_0_1_0_0_0_000003"
+        },
+        {
+          "file": "Class_0_1_0_0_0_000003/spectrum_000144.csv",
+          "group_id": "Class_0_1_0_0_0_000003"
+        },
+        {
+          "file": "Class_0_1_0_0_0_000003/spectrum_000154.csv",
+          "group_id": "Class_0_1_0_0_0_000003"
+        },
+        {
+          "file": "Class_0_1_0_0_0_000003/spectrum_000155.csv",
+          "group_id": "Class_0_1_0_0_0_000003"
+        },
+        {
+          "file": "Class_0_1_0_0_0_000003/spectrum_000156.csv",
+          "group_id": "Class_0_1_0_0_0_000003"
+        },
+        {
+          "file": "Class_0_1_0_0_0_000003/spectrum_000166.csv",
+          "group_id": "Class_0_1_0_0_0_000003"
+        },
+        {
+          "file": "Class_0_1_0_0_0_000003/spectrum_000167.csv",
+          "group_id": "Class_0_1_0_0_0_000003"
+        },
+        {
+          "file": "Class_0_1_0_0_0_000003/spectrum_000168.csv",
+          "group_id": "Class_0_1_0_0_0_000003"
+        }
+      ],
+      "spans_groups": false,
+      "conflicting_labels": false
+    },
+    {
+      "sha256": "c397c1c87b4f92206e56a75e2b06482ba7a36ef175401004e770fc2c5ccc7e59",
+      "records": [
+        {
+          "file": "Class_1_0_0_0_0_000006/spectrum_000010.csv",
+          "group_id": "Class_1_0_0_0_0_000006"
+        },
+        {
+          "file": "Class_1_0_0_0_0_000006/spectrum_000011.csv",
+          "group_id": "Class_1_0_0_0_0_000006"
+        },
+        {
+          "file": "Class_1_0_0_0_0_000006/spectrum_000012.csv",
+          "group_id": "Class_1_0_0_0_0_000006"
+        },
+        {
+          "file": "Class_1_0_0_0_0_000006/spectrum_000022.csv",
+          "group_id": "Class_1_0_0_0_0_000006"
+        },
+        {
+          "file": "Class_1_0_0_0_0_000006/spectrum_000023.csv",
+          "group_id": "Class_1_0_0_0_0_000006"
+        },
+        {
+          "file": "Class_1_0_0_0_0_000006/spectrum_000024.csv",
+          "group_id": "Class_1_0_0_0_0_000006"
+        },
+        {
+          "file": "Class_1_0_0_0_0_000006/spectrum_000034.csv",
+          "group_id": "Class_1_0_0_0_0_000006"
+        },
+        {
+          "file": "Class_1_0_0_0_0_000006/spectrum_000035.csv",
+          "group_id": "Class_1_0_0_0_0_000006"
+        },
+        {
+          "file": "Class_1_0_0_0_0_000006/spectrum_000036.csv",
+          "group_id": "Class_1_0_0_0_0_000006"
+        },
+        {
+          "file": "Class_1_0_0_0_0_000006/spectrum_000046.csv",
+          "group_id": "Class_1_0_0_0_0_000006"
+        },
+        {
+          "file": "Class_1_0_0_0_0_000006/spectrum_000047.csv",
+          "group_id": "Class_1_0_0_0_0_000006"
+        },
+        {
+          "file": "Class_1_0_0_0_0_000006/spectrum_000048.csv",
+          "group_id": "Class_1_0_0_0_0_000006"
+        },
+        {
+          "file": "Class_1_0_0_0_0_000006/spectrum_000058.csv",
+          "group_id": "Class_1_0_0_0_0_000006"
+        },
+        {
+          "file": "Class_1_0_0_0_0_000006/spectrum_000059.csv",
+          "group_id": "Class_1_0_0_0_0_000006"
+        },
+        {
+          "file": "Class_1_0_0_0_0_000006/spectrum_000060.csv",
+          "group_id": "Class_1_0_0_0_0_000006"
+        },
+        {
+          "file": "Class_1_0_0_0_0_000006/spectrum_000070.csv",
+          "group_id": "Class_1_0_0_0_0_000006"
+        },
+        {
+          "file": "Class_1_0_0_0_0_000006/spectrum_000071.csv",
+          "group_id": "Class_1_0_0_0_0_000006"
+        },
+        {
+          "file": "Class_1_0_0_0_0_000006/spectrum_000072.csv",
+          "group_id": "Class_1_0_0_0_0_000006"
+        },
+        {
+          "file": "Class_1_0_0_0_0_000006/spectrum_000082.csv",
+          "group_id": "Class_1_0_0_0_0_000006"
+        },
+        {
+          "file": "Class_1_0_0_0_0_000006/spectrum_000083.csv",
+          "group_id": "Class_1_0_0_0_0_000006"
+        },
+        {
+          "file": "Class_1_0_0_0_0_000006/spectrum_000084.csv",
+          "group_id": "Class_1_0_0_0_0_000006"
+        },
+        {
+          "file": "Class_1_0_0_0_0_000006/spectrum_000094.csv",
+          "group_id": "Class_1_0_0_0_0_000006"
+        },
+        {
+          "file": "Class_1_0_0_0_0_000006/spectrum_000095.csv",
+          "group_id": "Class_1_0_0_0_0_000006"
+        },
+        {
+          "file": "Class_1_0_0_0_0_000006/spectrum_000096.csv",
+          "group_id": "Class_1_0_0_0_0_000006"
+        },
+        {
+          "file": "Class_1_0_0_0_0_000006/spectrum_000106.csv",
+          "group_id": "Class_1_0_0_0_0_000006"
+        },
+        {
+          "file": "Class_1_0_0_0_0_000006/spectrum_000107.csv",
+          "group_id": "Class_1_0_0_0_0_000006"
+        },
+        {
+          "file": "Class_1_0_0_0_0_000006/spectrum_000108.csv",
+          "group_id": "Class_1_0_0_0_0_000006"
+        },
+        {
+          "file": "Class_1_0_0_0_0_000006/spectrum_000118.csv",
+          "group_id": "Class_1_0_0_0_0_000006"
+        },
+        {
+          "file": "Class_1_0_0_0_0_000006/spectrum_000119.csv",
+          "group_id": "Class_1_0_0_0_0_000006"
+        },
+        {
+          "file": "Class_1_0_0_0_0_000006/spectrum_000120.csv",
+          "group_id": "Class_1_0_0_0_0_000006"
+        },
+        {
+          "file": "Class_1_0_0_0_0_000006/spectrum_000130.csv",
+          "group_id": "Class_1_0_0_0_0_000006"
+        },
+        {
+          "file": "Class_1_0_0_0_0_000006/spectrum_000131.csv",
+          "group_id": "Class_1_0_0_0_0_000006"
+        },
+        {
+          "file": "Class_1_0_0_0_0_000006/spectrum_000132.csv",
+          "group_id": "Class_1_0_0_0_0_000006"
+        },
+        {
+          "file": "Class_1_0_0_0_0_000006/spectrum_000142.csv",
+          "group_id": "Class_1_0_0_0_0_000006"
+        },
+        {
+          "file": "Class_1_0_0_0_0_000006/spectrum_000143.csv",
+          "group_id": "Class_1_0_0_0_0_000006"
+        },
+        {
+          "file": "Class_1_0_0_0_0_000006/spectrum_000144.csv",
+          "group_id": "Class_1_0_0_0_0_000006"
+        },
+        {
+          "file": "Class_1_0_0_0_0_000006/spectrum_000154.csv",
+          "group_id": "Class_1_0_0_0_0_000006"
+        },
+        {
+          "file": "Class_1_0_0_0_0_000006/spectrum_000155.csv",
+          "group_id": "Class_1_0_0_0_0_000006"
+        },
+        {
+          "file": "Class_1_0_0_0_0_000006/spectrum_000156.csv",
+          "group_id": "Class_1_0_0_0_0_000006"
+        },
+        {
+          "file": "Class_1_0_0_0_0_000006/spectrum_000166.csv",
+          "group_id": "Class_1_0_0_0_0_000006"
+        },
+        {
+          "file": "Class_1_0_0_0_0_000006/spectrum_000167.csv",
+          "group_id": "Class_1_0_0_0_0_000006"
+        },
+        {
+          "file": "Class_1_0_0_0_0_000006/spectrum_000168.csv",
+          "group_id": "Class_1_0_0_0_0_000006"
+        }
+      ],
+      "spans_groups": false,
+      "conflicting_labels": false
+    },
+    {
+      "sha256": "2359ca960f3deda972ac1794686bb05161d290544345c1f738461d40c041f6fc",
+      "records": [
+        {
+          "file": "Class_0_0_0_1_0_000008/spectrum_000007.csv",
+          "group_id": "Class_0_0_0_1_0_000008"
+        },
+        {
+          "file": "Class_0_0_0_1_0_000008/spectrum_000008.csv",
+          "group_id": "Class_0_0_0_1_0_000008"
+        },
+        {
+          "file": "Class_0_0_0_1_0_000008/spectrum_000009.csv",
+          "group_id": "Class_0_0_0_1_0_000008"
+        },
+        {
+          "file": "Class_0_0_0_1_0_000008/spectrum_000010.csv",
+          "group_id": "Class_0_0_0_1_0_000008"
+        },
+        {
+          "file": "Class_0_0_0_1_0_000008/spectrum_000017.csv",
+          "group_id": "Class_0_0_0_1_0_000008"
+        },
+        {
+          "file": "Class_0_0_0_1_0_000008/spectrum_000018.csv",
+          "group_id": "Class_0_0_0_1_0_000008"
+        },
+        {
+          "file": "Class_0_0_0_1_0_000008/spectrum_000019.csv",
+          "group_id": "Class_0_0_0_1_0_000008"
+        },
+        {
+          "file": "Class_0_0_0_1_0_000008/spectrum_000020.csv",
+          "group_id": "Class_0_0_0_1_0_000008"
+        },
+        {
+          "file": "Class_0_0_0_1_0_000008/spectrum_000027.csv",
+          "group_id": "Class_0_0_0_1_0_000008"
+        },
+        {
+          "file": "Class_0_0_0_1_0_000008/spectrum_000028.csv",
+          "group_id": "Class_0_0_0_1_0_000008"
+        },
+        {
+          "file": "Class_0_0_0_1_0_000008/spectrum_000029.csv",
+          "group_id": "Class_0_0_0_1_0_000008"
+        },
+        {
+          "file": "Class_0_0_0_1_0_000008/spectrum_000030.csv",
+          "group_id": "Class_0_0_0_1_0_000008"
+        },
+        {
+          "file": "Class_0_0_0_1_0_000008/spectrum_000037.csv",
+          "group_id": "Class_0_0_0_1_0_000008"
+        },
+        {
+          "file": "Class_0_0_0_1_0_000008/spectrum_000038.csv",
+          "group_id": "Class_0_0_0_1_0_000008"
+        },
+        {
+          "file": "Class_0_0_0_1_0_000008/spectrum_000039.csv",
+          "group_id": "Class_0_0_0_1_0_000008"
+        },
+        {
+          "file": "Class_0_0_0_1_0_000008/spectrum_000040.csv",
+          "group_id": "Class_0_0_0_1_0_000008"
+        },
+        {
+          "file": "Class_0_0_0_1_0_000008/spectrum_000046.csv",
+          "group_id": "Class_0_0_0_1_0_000008"
+        },
+        {
+          "file": "Class_0_0_0_1_0_000008/spectrum_000047.csv",
+          "group_id": "Class_0_0_0_1_0_000008"
+        },
+        {
+          "file": "Class_0_0_0_1_0_000008/spectrum_000048.csv",
+          "group_id": "Class_0_0_0_1_0_000008"
+        },
+        {
+          "file": "Class_0_0_0_1_0_000008/spectrum_000049.csv",
+          "group_id": "Class_0_0_0_1_0_000008"
+        },
+        {
+          "file": "Class_0_0_0_1_0_000008/spectrum_000050.csv",
+          "group_id": "Class_0_0_0_1_0_000008"
+        },
+        {
+          "file": "Class_0_0_0_1_0_000008/spectrum_000056.csv",
+          "group_id": "Class_0_0_0_1_0_000008"
+        },
+        {
+          "file": "Class_0_0_0_1_0_000008/spectrum_000057.csv",
+          "group_id": "Class_0_0_0_1_0_000008"
+        },
+        {
+          "file": "Class_0_0_0_1_0_000008/spectrum_000058.csv",
+          "group_id": "Class_0_0_0_1_0_000008"
+        },
+        {
+          "file": "Class_0_0_0_1_0_000008/spectrum_000059.csv",
+          "group_id": "Class_0_0_0_1_0_000008"
+        },
+        {
+          "file": "Class_0_0_0_1_0_000008/spectrum_000060.csv",
+          "group_id": "Class_0_0_0_1_0_000008"
+        },
+        {
+          "file": "Class_0_0_0_1_0_000008/spectrum_000066.csv",
+          "group_id": "Class_0_0_0_1_0_000008"
+        },
+        {
+          "file": "Class_0_0_0_1_0_000008/spectrum_000067.csv",
+          "group_id": "Class_0_0_0_1_0_000008"
+        },
+        {
+          "file": "Class_0_0_0_1_0_000008/spectrum_000068.csv",
+          "group_id": "Class_0_0_0_1_0_000008"
+        },
+        {
+          "file": "Class_0_0_0_1_0_000008/spectrum_000069.csv",
+          "group_id": "Class_0_0_0_1_0_000008"
+        },
+        {
+          "file": "Class_0_0_0_1_0_000008/spectrum_000070.csv",
+          "group_id": "Class_0_0_0_1_0_000008"
+        },
+        {
+          "file": "Class_0_0_0_1_0_000008/spectrum_000076.csv",
+          "group_id": "Class_0_0_0_1_0_000008"
+        },
+        {
+          "file": "Class_0_0_0_1_0_000008/spectrum_000077.csv",
+          "group_id": "Class_0_0_0_1_0_000008"
+        },
+        {
+          "file": "Class_0_0_0_1_0_000008/spectrum_000078.csv",
+          "group_id": "Class_0_0_0_1_0_000008"
+        },
+        {
+          "file": "Class_0_0_0_1_0_000008/spectrum_000079.csv",
+          "group_id": "Class_0_0_0_1_0_000008"
+        },
+        {
+          "file": "Class_0_0_0_1_0_000008/spectrum_000080.csv",
+          "group_id": "Class_0_0_0_1_0_000008"
+        },
+        {
+          "file": "Class_0_0_0_1_0_000008/spectrum_000086.csv",
+          "group_id": "Class_0_0_0_1_0_000008"
+        },
+        {
+          "file": "Class_0_0_0_1_0_000008/spectrum_000087.csv",
+          "group_id": "Class_0_0_0_1_0_000008"
+        },
+        {
+          "file": "Class_0_0_0_1_0_000008/spectrum_000088.csv",
+          "group_id": "Class_0_0_0_1_0_000008"
+        },
+        {
+          "file": "Class_0_0_0_1_0_000008/spectrum_000089.csv",
+          "group_id": "Class_0_0_0_1_0_000008"
+        },
+        {
+          "file": "Class_0_0_0_1_0_000008/spectrum_000090.csv",
+          "group_id": "Class_0_0_0_1_0_000008"
+        },
+        {
+          "file": "Class_0_0_0_1_0_000008/spectrum_000096.csv",
+          "group_id": "Class_0_0_0_1_0_000008"
+        },
+        {
+          "file": "Class_0_0_0_1_0_000008/spectrum_000097.csv",
+          "group_id": "Class_0_0_0_1_0_000008"
+        },
+        {
+          "file": "Class_0_0_0_1_0_000008/spectrum_000098.csv",
+          "group_id": "Class_0_0_0_1_0_000008"
+        },
+        {
+          "file": "Class_0_0_0_1_0_000008/spectrum_000099.csv",
+          "group_id": "Class_0_0_0_1_0_000008"
+        },
+        {
+          "file": "Class_0_0_0_1_0_000008/spectrum_000100.csv",
+          "group_id": "Class_0_0_0_1_0_000008"
+        }
+      ],
+      "spans_groups": false,
+      "conflicting_labels": false
+    }
+  ]
+}

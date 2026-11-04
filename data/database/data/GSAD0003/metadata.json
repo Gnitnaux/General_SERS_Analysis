@@ -1,0 +1,3502 @@
+{
+  "source_url": "https://github.com/Alvaro-FG/Raman_Sugars",
+  "source_family": "Raman_Sugars_245_wells",
+  "modality": "Raman",
+  "role": "auxiliary_non_SERS",
+  "license": "Repository MIT license; no separate data license statement found in repository README.",
+  "source_files": [
+    {
+      "path": "E:\\Research\\国自然\\data\\公开光谱任务库\\downloads\\Alvaro-FG_Raman_Sugars\\Sugar_Concentration_Test_ALL_spectra.csv",
+      "sha256": "23e9caaeeb7a6f26e54874bf76349ecb54e10a45806970957e8169fba3a74dbd"
+    },
+    {
+      "path": "E:\\Research\\国自然\\data\\公开光谱任务库\\downloads\\Alvaro-FG_Raman_Sugars\\Sugar_Concentration_Test_ALL_metadata.csv",
+      "sha256": "063b864642a394eb2a6bd01d947c88c70bf1a24da9405b8a45f8591d84415180"
+    },
+    {
+      "path": "E:\\Research\\国自然\\data\\公开光谱任务库\\downloads\\Alvaro-FG_Raman_Sugars\\Sugar_Concentration_Test_Fast_ALL_spectra.csv",
+      "sha256": "2d24d5fe7f675ff530e96ce19fba1e54ae60b5d759dd520a1309b8ef72210ada"
+    },
+    {
+      "path": "E:\\Research\\国自然\\data\\公开光谱任务库\\downloads\\Alvaro-FG_Raman_Sugars\\Sugar_Concentration_Test_Fast_ALL_metadata.csv",
+      "sha256": "e6f892a011a3d28711ceed55f3f0cf199f6b6d170888fa3173a1ff60fdcaf324"
+    }
+  ],
+  "preprocessing_in_source": "Author README explicitly states no preprocessing has been performed.",
+  "label_basis": "Author metadata mixing volumes and README nominal 1 M stocks, diluted to 375 uL total; concentrations in mM.",
+  "label_uncertainty": "Nominal preparation labels; no independent chemical assay uncertainty is supplied.",
+  "conditions": {
+    "excitation_nm": 785,
+    "power_mW": 36.3,
+    "spectra_by_condition": {
+      "high": 1960,
+      "low": 7840
+    }
+  },
+  "recommended_split": "Keep every spectrum from the same physical well together, across rounds, repeats and acquisition conditions.",
+  "limitations": [
+    "This is conventional Raman, not SERS. Exclude modality=Raman for SERS-only experiments.",
+    "High/low integration-time spectra share the same wells. Low integration-time data were measured 24 h after preparation; acquisition time and sample age are confounded.",
+    "Stock concentrations are author-declared nominal values. No correction from weighed masses or solution density is applied.",
+    "Reducing sugars exist as solution equilibria; provided molecular SMILES are reference parent structures, not measured anomer populations."
+  ],
+  "Data_id": "GSAD0003",
+  "task": "Multi-Component Quantification",
+  "molecule_order": [
+    "Sucrose",
+    "Fructose",
+    "Maltose",
+    "Glucose"
+  ],
+  "n_group": 245,
+  "n_spectra": 9800,
+  "groups": [
+    {
+      "folder": "Quan_80_80_200_320_000001",
+      "labels": [
+        80.0,
+        80.0,
+        200.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:2:E:6",
+      "plate": "2",
+      "row": "E",
+      "column": "6",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_0_80_200_000002",
+      "labels": [
+        0.0,
+        0.0,
+        80.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:3:D:7",
+      "plate": "3",
+      "row": "D",
+      "column": "7",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_200_320_200_000003",
+      "labels": [
+        80.0,
+        200.0,
+        320.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:2:C:11",
+      "plate": "2",
+      "row": "C",
+      "column": "11",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_320_0_0_000004",
+      "labels": [
+        320.0,
+        320.0,
+        0.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:1:A:10",
+      "plate": "1",
+      "row": "A",
+      "column": "10",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_80_80_0_000005",
+      "labels": [
+        200.0,
+        80.0,
+        80.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:1:H:10",
+      "plate": "1",
+      "row": "H",
+      "column": "10",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_80_200_200_000006",
+      "labels": [
+        0.0,
+        80.0,
+        200.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:3:B:11",
+      "plate": "3",
+      "row": "B",
+      "column": "11",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_0_200_320_000007",
+      "labels": [
+        200.0,
+        0.0,
+        200.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:2:A:7",
+      "plate": "2",
+      "row": "A",
+      "column": "7",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_320_320_320_000008",
+      "labels": [
+        0.0,
+        320.0,
+        320.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:2:G:10",
+      "plate": "2",
+      "row": "G",
+      "column": "10",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_200_200_0_000009",
+      "labels": [
+        80.0,
+        200.0,
+        200.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:2:D:5",
+      "plate": "2",
+      "row": "D",
+      "column": "5",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_80_320_80_000010",
+      "labels": [
+        200.0,
+        80.0,
+        320.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:1:H:1",
+      "plate": "1",
+      "row": "H",
+      "column": "1",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_200_80_0_000011",
+      "labels": [
+        200.0,
+        200.0,
+        80.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:1:G:6",
+      "plate": "1",
+      "row": "G",
+      "column": "6",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_320_80_80_000012",
+      "labels": [
+        320.0,
+        320.0,
+        80.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:1:A:5",
+      "plate": "1",
+      "row": "A",
+      "column": "5",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_0_0_200_000013",
+      "labels": [
+        320.0,
+        0.0,
+        0.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:1:E:4",
+      "plate": "1",
+      "row": "E",
+      "column": "4",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_0_0_320_000014",
+      "labels": [
+        0.0,
+        0.0,
+        0.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:3:D:10",
+      "plate": "3",
+      "row": "D",
+      "column": "10",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_320_0_200_000015",
+      "labels": [
+        200.0,
+        320.0,
+        0.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:1:F:5",
+      "plate": "1",
+      "row": "F",
+      "column": "5",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_200_320_200_000016",
+      "labels": [
+        0.0,
+        200.0,
+        320.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:3:A:3",
+      "plate": "3",
+      "row": "A",
+      "column": "3",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_0_200_80_000017",
+      "labels": [
+        320.0,
+        0.0,
+        200.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:1:D:9",
+      "plate": "1",
+      "row": "D",
+      "column": "9",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_80_0_80_000018",
+      "labels": [
+        200.0,
+        80.0,
+        0.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:2:A:1",
+      "plate": "2",
+      "row": "A",
+      "column": "1",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_80_0_320_000019",
+      "labels": [
+        0.0,
+        80.0,
+        0.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:3:C:6",
+      "plate": "3",
+      "row": "C",
+      "column": "6",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_80_0_80_000020",
+      "labels": [
+        320.0,
+        80.0,
+        0.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:1:D:1",
+      "plate": "1",
+      "row": "D",
+      "column": "1",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_200_320_80_000021",
+      "labels": [
+        80.0,
+        200.0,
+        320.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:2:C:12",
+      "plate": "2",
+      "row": "C",
+      "column": "12",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_200_200_80_000022",
+      "labels": [
+        320.0,
+        200.0,
+        200.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:1:B:2",
+      "plate": "1",
+      "row": "B",
+      "column": "2",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_200_0_80_000023",
+      "labels": [
+        200.0,
+        200.0,
+        0.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:1:G:9",
+      "plate": "1",
+      "row": "G",
+      "column": "9",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_80_200_80_000024",
+      "labels": [
+        0.0,
+        80.0,
+        200.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:3:B:12",
+      "plate": "3",
+      "row": "B",
+      "column": "12",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_0_0_200_000025",
+      "labels": [
+        200.0,
+        0.0,
+        0.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:2:B:4",
+      "plate": "2",
+      "row": "B",
+      "column": "4",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_320_320_0_000026",
+      "labels": [
+        80.0,
+        320.0,
+        320.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:2:B:9",
+      "plate": "2",
+      "row": "B",
+      "column": "9",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_80_320_320_000027",
+      "labels": [
+        0.0,
+        80.0,
+        320.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:3:B:6",
+      "plate": "3",
+      "row": "B",
+      "column": "6",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_80_80_200_000028",
+      "labels": [
+        320.0,
+        80.0,
+        80.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:1:C:8",
+      "plate": "1",
+      "row": "C",
+      "column": "8",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_0_80_200_000029",
+      "labels": [
+        320.0,
+        0.0,
+        80.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:1:D:12",
+      "plate": "1",
+      "row": "D",
+      "column": "12",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_200_200_200_000030",
+      "labels": [
+        200.0,
+        200.0,
+        200.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:1:F:12",
+      "plate": "1",
+      "row": "F",
+      "column": "12",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_200_320_80_000031",
+      "labels": [
+        200.0,
+        200.0,
+        320.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:1:F:9",
+      "plate": "1",
+      "row": "F",
+      "column": "9",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_0_200_320_000032",
+      "labels": [
+        320.0,
+        0.0,
+        200.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:1:D:7",
+      "plate": "1",
+      "row": "D",
+      "column": "7",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_200_0_0_000033",
+      "labels": [
+        80.0,
+        200.0,
+        0.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:2:E:1",
+      "plate": "2",
+      "row": "E",
+      "column": "1",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_200_0_0_000034",
+      "labels": [
+        320.0,
+        200.0,
+        0.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:1:B:11",
+      "plate": "1",
+      "row": "B",
+      "column": "11",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_0_0_0_000035",
+      "labels": [
+        200.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:2:B:6",
+      "plate": "2",
+      "row": "B",
+      "column": "6",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_200_0_80_000036",
+      "labels": [
+        80.0,
+        200.0,
+        0.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:2:D:12",
+      "plate": "2",
+      "row": "D",
+      "column": "12",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_320_200_0_000037",
+      "labels": [
+        80.0,
+        320.0,
+        200.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:2:C:1",
+      "plate": "2",
+      "row": "C",
+      "column": "1",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_200_320_320_000038",
+      "labels": [
+        0.0,
+        200.0,
+        320.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:3:A:2",
+      "plate": "3",
+      "row": "A",
+      "column": "2",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_80_0_200_000039",
+      "labels": [
+        80.0,
+        80.0,
+        0.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:2:F:3",
+      "plate": "2",
+      "row": "F",
+      "column": "3",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_0_80_80_000040",
+      "labels": [
+        320.0,
+        0.0,
+        80.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:1:E:1",
+      "plate": "1",
+      "row": "E",
+      "column": "1",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_320_0_80_000041",
+      "labels": [
+        320.0,
+        320.0,
+        0.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:1:A:9",
+      "plate": "1",
+      "row": "A",
+      "column": "9",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_80_200_320_000042",
+      "labels": [
+        0.0,
+        80.0,
+        200.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:3:B:10",
+      "plate": "3",
+      "row": "B",
+      "column": "10",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_200_200_0_000043",
+      "labels": [
+        200.0,
+        200.0,
+        200.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:1:G:2",
+      "plate": "1",
+      "row": "G",
+      "column": "2",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_80_200_80_000044",
+      "labels": [
+        200.0,
+        80.0,
+        200.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:1:H:5",
+      "plate": "1",
+      "row": "H",
+      "column": "5",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_200_80_200_000045",
+      "labels": [
+        0.0,
+        200.0,
+        80.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:3:A:11",
+      "plate": "3",
+      "row": "A",
+      "column": "11",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_80_200_80_000046",
+      "labels": [
+        80.0,
+        80.0,
+        200.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:2:E:8",
+      "plate": "2",
+      "row": "E",
+      "column": "8",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_0_0_0_000047",
+      "labels": [
+        320.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:1:E:6",
+      "plate": "1",
+      "row": "E",
+      "column": "6",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_80_80_200_000048",
+      "labels": [
+        0.0,
+        80.0,
+        80.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:3:C:3",
+      "plate": "3",
+      "row": "C",
+      "column": "3",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_80_200_0_000049",
+      "labels": [
+        0.0,
+        80.0,
+        200.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:3:C:1",
+      "plate": "3",
+      "row": "C",
+      "column": "1",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_200_80_320_000050",
+      "labels": [
+        320.0,
+        200.0,
+        80.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:1:B:4",
+      "plate": "1",
+      "row": "B",
+      "column": "4",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_80_0_80_000051",
+      "labels": [
+        0.0,
+        80.0,
+        0.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:3:C:8",
+      "plate": "3",
+      "row": "C",
+      "column": "8",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_0_80_320_000052",
+      "labels": [
+        80.0,
+        0.0,
+        80.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:2:G:2",
+      "plate": "2",
+      "row": "G",
+      "column": "2",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_320_0_320_000053",
+      "labels": [
+        80.0,
+        320.0,
+        0.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:2:C:6",
+      "plate": "2",
+      "row": "C",
+      "column": "6",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_0_80_0_000054",
+      "labels": [
+        200.0,
+        0.0,
+        80.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:2:B:2",
+      "plate": "2",
+      "row": "B",
+      "column": "2",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_200_0_200_000055",
+      "labels": [
+        320.0,
+        200.0,
+        0.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:1:B:9",
+      "plate": "1",
+      "row": "B",
+      "column": "9",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_320_0_0_000056",
+      "labels": [
+        0.0,
+        320.0,
+        0.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:3:A:1",
+      "plate": "3",
+      "row": "A",
+      "column": "1",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_80_80_0_000057",
+      "labels": [
+        0.0,
+        80.0,
+        80.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:3:C:5",
+      "plate": "3",
+      "row": "C",
+      "column": "5",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_320_200_80_000058",
+      "labels": [
+        80.0,
+        320.0,
+        200.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:2:B:12",
+      "plate": "2",
+      "row": "B",
+      "column": "12",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_200_0_320_000059",
+      "labels": [
+        80.0,
+        200.0,
+        0.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:2:D:10",
+      "plate": "2",
+      "row": "D",
+      "column": "10",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_320_200_80_000060",
+      "labels": [
+        200.0,
+        320.0,
+        200.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:1:E:10",
+      "plate": "1",
+      "row": "E",
+      "column": "10",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_80_80_200_000061",
+      "labels": [
+        200.0,
+        80.0,
+        80.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:1:H:8",
+      "plate": "1",
+      "row": "H",
+      "column": "8",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_320_80_320_000062",
+      "labels": [
+        200.0,
+        320.0,
+        80.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:1:E:12",
+      "plate": "1",
+      "row": "E",
+      "column": "12",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_80_200_200_000063",
+      "labels": [
+        320.0,
+        80.0,
+        200.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:1:C:4",
+      "plate": "1",
+      "row": "C",
+      "column": "4",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_200_0_80_000064",
+      "labels": [
+        0.0,
+        200.0,
+        0.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:3:B:4",
+      "plate": "3",
+      "row": "B",
+      "column": "4",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_200_0_0_000065",
+      "labels": [
+        200.0,
+        200.0,
+        0.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:1:G:10",
+      "plate": "1",
+      "row": "G",
+      "column": "10",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_320_0_320_000066",
+      "labels": [
+        320.0,
+        320.0,
+        0.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:1:A:7",
+      "plate": "1",
+      "row": "A",
+      "column": "7",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_200_80_200_000067",
+      "labels": [
+        200.0,
+        200.0,
+        80.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:1:G:4",
+      "plate": "1",
+      "row": "G",
+      "column": "4",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_80_0_0_000068",
+      "labels": [
+        80.0,
+        80.0,
+        0.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:2:F:5",
+      "plate": "2",
+      "row": "F",
+      "column": "5",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_320_80_200_000069",
+      "labels": [
+        80.0,
+        320.0,
+        80.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:2:C:3",
+      "plate": "2",
+      "row": "C",
+      "column": "3",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_200_80_80_000070",
+      "labels": [
+        320.0,
+        200.0,
+        80.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:1:B:6",
+      "plate": "1",
+      "row": "B",
+      "column": "6",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_0_0_320_000071",
+      "labels": [
+        80.0,
+        0.0,
+        0.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:2:G:6",
+      "plate": "2",
+      "row": "G",
+      "column": "6",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_0_200_0_000072",
+      "labels": [
+        200.0,
+        0.0,
+        200.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:2:A:10",
+      "plate": "2",
+      "row": "A",
+      "column": "10",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_80_320_80_000073",
+      "labels": [
+        80.0,
+        80.0,
+        320.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:2:E:4",
+      "plate": "2",
+      "row": "E",
+      "column": "4",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_320_0_80_000074",
+      "labels": [
+        80.0,
+        320.0,
+        0.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:2:C:8",
+      "plate": "2",
+      "row": "C",
+      "column": "8",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_80_0_200_000075",
+      "labels": [
+        320.0,
+        80.0,
+        0.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:1:C:12",
+      "plate": "1",
+      "row": "C",
+      "column": "12",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_80_0_0_000076",
+      "labels": [
+        200.0,
+        80.0,
+        0.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:2:A:2",
+      "plate": "2",
+      "row": "A",
+      "column": "2",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_0_200_80_000077",
+      "labels": [
+        200.0,
+        0.0,
+        200.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:2:A:9",
+      "plate": "2",
+      "row": "A",
+      "column": "9",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_320_200_0_000078",
+      "labels": [
+        0.0,
+        320.0,
+        200.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:2:H:5",
+      "plate": "2",
+      "row": "H",
+      "column": "5",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_200_80_0_000079",
+      "labels": [
+        80.0,
+        200.0,
+        80.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:2:D:9",
+      "plate": "2",
+      "row": "D",
+      "column": "9",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_0_80_0_000080",
+      "labels": [
+        320.0,
+        0.0,
+        80.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:1:E:2",
+      "plate": "1",
+      "row": "E",
+      "column": "2",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_320_320_0_000081",
+      "labels": [
+        320.0,
+        320.0,
+        320.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:1:A:1",
+      "plate": "1",
+      "row": "A",
+      "column": "1",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_320_0_200_000082",
+      "labels": [
+        0.0,
+        320.0,
+        0.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:2:H:11",
+      "plate": "2",
+      "row": "H",
+      "column": "11",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_200_200_80_000083",
+      "labels": [
+        0.0,
+        200.0,
+        200.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:3:A:8",
+      "plate": "3",
+      "row": "A",
+      "column": "8",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_320_80_200_000084",
+      "labels": [
+        200.0,
+        320.0,
+        80.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:1:F:1",
+      "plate": "1",
+      "row": "F",
+      "column": "1",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_80_320_0_000085",
+      "labels": [
+        0.0,
+        80.0,
+        320.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:3:B:9",
+      "plate": "3",
+      "row": "B",
+      "column": "9",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_200_80_320_000086",
+      "labels": [
+        0.0,
+        200.0,
+        80.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:3:A:10",
+      "plate": "3",
+      "row": "A",
+      "column": "10",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_0_320_80_000087",
+      "labels": [
+        0.0,
+        0.0,
+        320.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:3:C:12",
+      "plate": "3",
+      "row": "C",
+      "column": "12",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_80_320_320_000088",
+      "labels": [
+        80.0,
+        80.0,
+        320.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:2:E:2",
+      "plate": "2",
+      "row": "E",
+      "column": "2",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_0_320_320_000089",
+      "labels": [
+        200.0,
+        0.0,
+        320.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:2:A:3",
+      "plate": "2",
+      "row": "A",
+      "column": "3",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_80_200_320_000090",
+      "labels": [
+        200.0,
+        80.0,
+        200.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:1:H:3",
+      "plate": "1",
+      "row": "H",
+      "column": "3",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_0_200_200_000091",
+      "labels": [
+        200.0,
+        0.0,
+        200.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:2:A:8",
+      "plate": "2",
+      "row": "A",
+      "column": "8",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_320_200_320_000092",
+      "labels": [
+        80.0,
+        320.0,
+        200.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:2:B:10",
+      "plate": "2",
+      "row": "B",
+      "column": "10",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_80_200_0_000093",
+      "labels": [
+        320.0,
+        80.0,
+        200.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:1:C:6",
+      "plate": "1",
+      "row": "C",
+      "column": "6",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_0_80_0_000094",
+      "labels": [
+        0.0,
+        0.0,
+        80.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:3:D:9",
+      "plate": "3",
+      "row": "D",
+      "column": "9",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_320_80_320_000095",
+      "labels": [
+        0.0,
+        320.0,
+        80.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:2:H:6",
+      "plate": "2",
+      "row": "H",
+      "column": "6",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_80_0_320_000096",
+      "labels": [
+        200.0,
+        80.0,
+        0.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:1:H:11",
+      "plate": "1",
+      "row": "H",
+      "column": "11",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_320_80_0_000097",
+      "labels": [
+        80.0,
+        320.0,
+        80.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:2:C:5",
+      "plate": "2",
+      "row": "C",
+      "column": "5",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_320_0_0_000098",
+      "labels": [
+        200.0,
+        320.0,
+        0.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:1:F:7",
+      "plate": "1",
+      "row": "F",
+      "column": "7",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_320_200_0_000099",
+      "labels": [
+        200.0,
+        320.0,
+        200.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:1:E:11",
+      "plate": "1",
+      "row": "E",
+      "column": "11",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_80_80_320_000100",
+      "labels": [
+        80.0,
+        80.0,
+        80.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:2:E:10",
+      "plate": "2",
+      "row": "E",
+      "column": "10",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_320_200_0_000101",
+      "labels": [
+        320.0,
+        320.0,
+        200.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:1:A:3",
+      "plate": "1",
+      "row": "A",
+      "column": "3",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_80_80_320_000102",
+      "labels": [
+        200.0,
+        80.0,
+        80.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:1:H:7",
+      "plate": "1",
+      "row": "H",
+      "column": "7",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_200_200_200_000103",
+      "labels": [
+        0.0,
+        200.0,
+        200.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:3:A:7",
+      "plate": "3",
+      "row": "A",
+      "column": "7",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_320_200_200_000104",
+      "labels": [
+        0.0,
+        320.0,
+        200.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:2:H:3",
+      "plate": "2",
+      "row": "H",
+      "column": "3",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_320_80_200_000105",
+      "labels": [
+        0.0,
+        320.0,
+        80.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:2:H:7",
+      "plate": "2",
+      "row": "H",
+      "column": "7",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_200_0_80_000106",
+      "labels": [
+        320.0,
+        200.0,
+        0.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:1:B:10",
+      "plate": "1",
+      "row": "B",
+      "column": "10",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_1000_0_0_0_000107",
+      "labels": [
+        1000.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:3:E:2",
+      "plate": "3",
+      "row": "E",
+      "column": "2",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_200_80_200_000108",
+      "labels": [
+        80.0,
+        200.0,
+        80.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:2:D:7",
+      "plate": "2",
+      "row": "D",
+      "column": "7",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_80_80_80_000109",
+      "labels": [
+        80.0,
+        80.0,
+        80.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:2:E:12",
+      "plate": "2",
+      "row": "E",
+      "column": "12",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_0_200_80_000110",
+      "labels": [
+        80.0,
+        0.0,
+        200.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:2:F:12",
+      "plate": "2",
+      "row": "F",
+      "column": "12",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_0_320_200_000111",
+      "labels": [
+        80.0,
+        0.0,
+        320.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:2:F:7",
+      "plate": "2",
+      "row": "F",
+      "column": "7",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_80_200_0_000112",
+      "labels": [
+        200.0,
+        80.0,
+        200.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:1:H:6",
+      "plate": "1",
+      "row": "H",
+      "column": "6",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_80_200_80_000113",
+      "labels": [
+        320.0,
+        80.0,
+        200.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:1:C:5",
+      "plate": "1",
+      "row": "C",
+      "column": "5",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_80_80_200_000114",
+      "labels": [
+        80.0,
+        80.0,
+        80.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:2:E:11",
+      "plate": "2",
+      "row": "E",
+      "column": "11",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_80_200_320_000115",
+      "labels": [
+        320.0,
+        80.0,
+        200.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:1:C:3",
+      "plate": "1",
+      "row": "C",
+      "column": "3",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_200_200_320_000116",
+      "labels": [
+        0.0,
+        200.0,
+        200.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:3:A:6",
+      "plate": "3",
+      "row": "A",
+      "column": "6",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_80_320_200_000117",
+      "labels": [
+        320.0,
+        80.0,
+        320.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:1:B:12",
+      "plate": "1",
+      "row": "B",
+      "column": "12",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_0_200_320_000118",
+      "labels": [
+        0.0,
+        0.0,
+        200.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:3:D:2",
+      "plate": "3",
+      "row": "D",
+      "column": "2",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_200_200_0_000119",
+      "labels": [
+        0.0,
+        200.0,
+        200.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:3:A:9",
+      "plate": "3",
+      "row": "A",
+      "column": "9",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_320_0_200_000120",
+      "labels": [
+        320.0,
+        320.0,
+        0.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:1:A:8",
+      "plate": "1",
+      "row": "A",
+      "column": "8",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_320_80_80_000121",
+      "labels": [
+        80.0,
+        320.0,
+        80.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:2:C:4",
+      "plate": "2",
+      "row": "C",
+      "column": "4",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_200_200_200_000122",
+      "labels": [
+        80.0,
+        200.0,
+        200.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:2:D:3",
+      "plate": "2",
+      "row": "D",
+      "column": "3",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_200_200_200_000123",
+      "labels": [
+        320.0,
+        200.0,
+        200.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:1:B:1",
+      "plate": "1",
+      "row": "B",
+      "column": "1",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_0_1000_0_000124",
+      "labels": [
+        0.0,
+        0.0,
+        1000.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:3:E:4",
+      "plate": "3",
+      "row": "E",
+      "column": "4",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_0_200_0_000125",
+      "labels": [
+        0.0,
+        0.0,
+        200.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:3:D:5",
+      "plate": "3",
+      "row": "D",
+      "column": "5",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_80_80_80_000126",
+      "labels": [
+        0.0,
+        80.0,
+        80.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:3:C:4",
+      "plate": "3",
+      "row": "C",
+      "column": "4",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_80_0_320_000127",
+      "labels": [
+        320.0,
+        80.0,
+        0.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:1:C:11",
+      "plate": "1",
+      "row": "C",
+      "column": "11",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_200_80_0_000128",
+      "labels": [
+        320.0,
+        200.0,
+        80.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:1:B:7",
+      "plate": "1",
+      "row": "B",
+      "column": "7",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_320_320_200_000129",
+      "labels": [
+        0.0,
+        320.0,
+        320.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:2:G:11",
+      "plate": "2",
+      "row": "G",
+      "column": "11",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_0_320_320_000130",
+      "labels": [
+        320.0,
+        0.0,
+        320.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:1:D:3",
+      "plate": "1",
+      "row": "D",
+      "column": "3",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_320_0_320_000131",
+      "labels": [
+        0.0,
+        320.0,
+        0.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:2:H:10",
+      "plate": "2",
+      "row": "H",
+      "column": "10",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_0_320_0_000132",
+      "labels": [
+        80.0,
+        0.0,
+        320.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:2:F:9",
+      "plate": "2",
+      "row": "F",
+      "column": "9",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_200_320_80_000133",
+      "labels": [
+        320.0,
+        200.0,
+        320.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:1:A:11",
+      "plate": "1",
+      "row": "A",
+      "column": "11",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_0_0_0_000134",
+      "labels": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:3:E:1",
+      "plate": "3",
+      "row": "E",
+      "column": "1",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_0_320_80_000135",
+      "labels": [
+        320.0,
+        0.0,
+        320.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:1:D:5",
+      "plate": "1",
+      "row": "D",
+      "column": "5",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_200_80_200_000136",
+      "labels": [
+        320.0,
+        200.0,
+        80.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:1:B:5",
+      "plate": "1",
+      "row": "B",
+      "column": "5",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_320_320_0_000137",
+      "labels": [
+        0.0,
+        320.0,
+        320.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:2:H:1",
+      "plate": "2",
+      "row": "H",
+      "column": "1",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_320_320_200_000138",
+      "labels": [
+        80.0,
+        320.0,
+        320.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:2:B:7",
+      "plate": "2",
+      "row": "B",
+      "column": "7",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_320_200_200_000139",
+      "labels": [
+        80.0,
+        320.0,
+        200.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:2:B:11",
+      "plate": "2",
+      "row": "B",
+      "column": "11",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_0_80_320_000140",
+      "labels": [
+        200.0,
+        0.0,
+        80.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:2:A:11",
+      "plate": "2",
+      "row": "A",
+      "column": "11",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_0_0_80_000141",
+      "labels": [
+        200.0,
+        0.0,
+        0.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:2:B:5",
+      "plate": "2",
+      "row": "B",
+      "column": "5",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_80_320_0_000142",
+      "labels": [
+        200.0,
+        80.0,
+        320.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:1:H:2",
+      "plate": "1",
+      "row": "H",
+      "column": "2",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_80_320_200_000143",
+      "labels": [
+        200.0,
+        80.0,
+        320.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:1:G:12",
+      "plate": "1",
+      "row": "G",
+      "column": "12",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_0_200_200_000144",
+      "labels": [
+        0.0,
+        0.0,
+        200.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:3:D:3",
+      "plate": "3",
+      "row": "D",
+      "column": "3",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_320_80_0_000145",
+      "labels": [
+        200.0,
+        320.0,
+        80.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:1:F:3",
+      "plate": "1",
+      "row": "F",
+      "column": "3",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_80_0_0_000146",
+      "labels": [
+        320.0,
+        80.0,
+        0.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:1:D:2",
+      "plate": "1",
+      "row": "D",
+      "column": "2",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_80_80_80_000147",
+      "labels": [
+        200.0,
+        80.0,
+        80.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:1:H:9",
+      "plate": "1",
+      "row": "H",
+      "column": "9",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_0_320_80_000148",
+      "labels": [
+        80.0,
+        0.0,
+        320.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:2:F:8",
+      "plate": "2",
+      "row": "F",
+      "column": "8",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_0_320_0_000149",
+      "labels": [
+        200.0,
+        0.0,
+        320.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:2:A:6",
+      "plate": "2",
+      "row": "A",
+      "column": "6",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_200_200_320_000150",
+      "labels": [
+        80.0,
+        200.0,
+        200.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:2:D:2",
+      "plate": "2",
+      "row": "D",
+      "column": "2",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_320_80_0_000151",
+      "labels": [
+        320.0,
+        320.0,
+        80.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:1:A:6",
+      "plate": "1",
+      "row": "A",
+      "column": "6",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_0_320_200_000152",
+      "labels": [
+        0.0,
+        0.0,
+        320.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:3:C:11",
+      "plate": "3",
+      "row": "C",
+      "column": "11",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_320_200_320_000153",
+      "labels": [
+        0.0,
+        320.0,
+        200.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:2:H:2",
+      "plate": "2",
+      "row": "H",
+      "column": "2",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_320_80_0_000154",
+      "labels": [
+        0.0,
+        320.0,
+        80.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:2:H:9",
+      "plate": "2",
+      "row": "H",
+      "column": "9",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_1000_0_0_000155",
+      "labels": [
+        0.0,
+        1000.0,
+        0.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:3:E:3",
+      "plate": "3",
+      "row": "E",
+      "column": "3",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_0_320_0_000156",
+      "labels": [
+        0.0,
+        0.0,
+        320.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:3:D:1",
+      "plate": "3",
+      "row": "D",
+      "column": "1",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_0_0_80_000157",
+      "labels": [
+        80.0,
+        0.0,
+        0.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:2:G:8",
+      "plate": "2",
+      "row": "G",
+      "column": "8",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_0_80_200_000158",
+      "labels": [
+        200.0,
+        0.0,
+        80.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:2:A:12",
+      "plate": "2",
+      "row": "A",
+      "column": "12",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_80_320_200_000159",
+      "labels": [
+        80.0,
+        80.0,
+        320.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:2:E:3",
+      "plate": "2",
+      "row": "E",
+      "column": "3",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_0_0_1000_000160",
+      "labels": [
+        0.0,
+        0.0,
+        0.0,
+        1000.0
+      ],
+      "shared_sample_id": "sugars:well:3:E:5",
+      "plate": "3",
+      "row": "E",
+      "column": "5",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_200_0_0_000161",
+      "labels": [
+        0.0,
+        200.0,
+        0.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:3:B:5",
+      "plate": "3",
+      "row": "B",
+      "column": "5",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_80_0_80_000162",
+      "labels": [
+        80.0,
+        80.0,
+        0.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:2:F:4",
+      "plate": "2",
+      "row": "F",
+      "column": "4",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_80_80_0_000163",
+      "labels": [
+        320.0,
+        80.0,
+        80.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:1:C:10",
+      "plate": "1",
+      "row": "C",
+      "column": "10",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_0_80_80_000164",
+      "labels": [
+        80.0,
+        0.0,
+        80.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:2:G:4",
+      "plate": "2",
+      "row": "G",
+      "column": "4",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_80_80_80_000165",
+      "labels": [
+        320.0,
+        80.0,
+        80.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:1:C:9",
+      "plate": "1",
+      "row": "C",
+      "column": "9",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_320_320_80_000166",
+      "labels": [
+        0.0,
+        320.0,
+        320.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:2:G:12",
+      "plate": "2",
+      "row": "G",
+      "column": "12",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_0_320_200_000167",
+      "labels": [
+        200.0,
+        0.0,
+        320.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:2:A:4",
+      "plate": "2",
+      "row": "A",
+      "column": "4",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_320_320_80_000168",
+      "labels": [
+        200.0,
+        320.0,
+        320.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:1:E:7",
+      "plate": "1",
+      "row": "E",
+      "column": "7",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_200_0_320_000169",
+      "labels": [
+        320.0,
+        200.0,
+        0.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:1:B:8",
+      "plate": "1",
+      "row": "B",
+      "column": "8",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_200_320_200_000170",
+      "labels": [
+        200.0,
+        200.0,
+        320.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:1:F:8",
+      "plate": "1",
+      "row": "F",
+      "column": "8",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_0_0_80_000171",
+      "labels": [
+        0.0,
+        0.0,
+        0.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:3:D:12",
+      "plate": "3",
+      "row": "D",
+      "column": "12",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_80_0_200_000172",
+      "labels": [
+        0.0,
+        80.0,
+        0.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:3:C:7",
+      "plate": "3",
+      "row": "C",
+      "column": "7",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_80_200_200_000173",
+      "labels": [
+        200.0,
+        80.0,
+        200.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:1:H:4",
+      "plate": "1",
+      "row": "H",
+      "column": "4",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_200_80_320_000174",
+      "labels": [
+        80.0,
+        200.0,
+        80.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:2:D:6",
+      "plate": "2",
+      "row": "D",
+      "column": "6",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_80_80_320_000175",
+      "labels": [
+        0.0,
+        80.0,
+        80.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:3:C:2",
+      "plate": "3",
+      "row": "C",
+      "column": "2",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_0_200_0_000176",
+      "labels": [
+        80.0,
+        0.0,
+        200.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:2:G:1",
+      "plate": "2",
+      "row": "G",
+      "column": "1",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_80_0_0_000177",
+      "labels": [
+        0.0,
+        80.0,
+        0.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:3:C:9",
+      "plate": "3",
+      "row": "C",
+      "column": "9",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_0_200_0_000178",
+      "labels": [
+        320.0,
+        0.0,
+        200.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:1:D:10",
+      "plate": "1",
+      "row": "D",
+      "column": "10",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_200_200_0_000179",
+      "labels": [
+        320.0,
+        200.0,
+        200.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:1:B:3",
+      "plate": "1",
+      "row": "B",
+      "column": "3",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_80_0_320_000180",
+      "labels": [
+        80.0,
+        80.0,
+        0.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:2:F:2",
+      "plate": "2",
+      "row": "F",
+      "column": "2",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_200_80_80_000181",
+      "labels": [
+        200.0,
+        200.0,
+        80.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:1:G:5",
+      "plate": "1",
+      "row": "G",
+      "column": "5",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_200_0_320_000182",
+      "labels": [
+        200.0,
+        200.0,
+        0.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:1:G:7",
+      "plate": "1",
+      "row": "G",
+      "column": "7",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_200_200_80_000183",
+      "labels": [
+        80.0,
+        200.0,
+        200.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:2:D:4",
+      "plate": "2",
+      "row": "D",
+      "column": "4",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_320_0_80_000184",
+      "labels": [
+        200.0,
+        320.0,
+        0.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:1:F:6",
+      "plate": "1",
+      "row": "F",
+      "column": "6",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_320_200_200_000185",
+      "labels": [
+        200.0,
+        320.0,
+        200.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:1:E:9",
+      "plate": "1",
+      "row": "E",
+      "column": "9",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_0_200_200_000186",
+      "labels": [
+        80.0,
+        0.0,
+        200.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:2:F:11",
+      "plate": "2",
+      "row": "F",
+      "column": "11",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_0_200_320_000187",
+      "labels": [
+        80.0,
+        0.0,
+        200.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:2:F:10",
+      "plate": "2",
+      "row": "F",
+      "column": "10",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_80_320_320_000188",
+      "labels": [
+        200.0,
+        80.0,
+        320.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:1:G:11",
+      "plate": "1",
+      "row": "G",
+      "column": "11",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_200_80_80_000189",
+      "labels": [
+        0.0,
+        200.0,
+        80.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:3:A:12",
+      "plate": "3",
+      "row": "A",
+      "column": "12",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_0_80_320_000190",
+      "labels": [
+        0.0,
+        0.0,
+        80.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:3:D:6",
+      "plate": "3",
+      "row": "D",
+      "column": "6",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_80_0_200_000191",
+      "labels": [
+        200.0,
+        80.0,
+        0.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:1:H:12",
+      "plate": "1",
+      "row": "H",
+      "column": "12",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_320_0_320_000192",
+      "labels": [
+        200.0,
+        320.0,
+        0.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:1:F:4",
+      "plate": "1",
+      "row": "F",
+      "column": "4",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_200_0_200_000193",
+      "labels": [
+        0.0,
+        200.0,
+        0.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:3:B:3",
+      "plate": "3",
+      "row": "B",
+      "column": "3",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_0_200_200_000194",
+      "labels": [
+        320.0,
+        0.0,
+        200.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:1:D:8",
+      "plate": "1",
+      "row": "D",
+      "column": "8",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_320_320_80_000195",
+      "labels": [
+        80.0,
+        320.0,
+        320.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:2:B:8",
+      "plate": "2",
+      "row": "B",
+      "column": "8",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_0_80_320_000196",
+      "labels": [
+        320.0,
+        0.0,
+        80.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:1:D:11",
+      "plate": "1",
+      "row": "D",
+      "column": "11",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_200_320_0_000197",
+      "labels": [
+        0.0,
+        200.0,
+        320.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:3:A:5",
+      "plate": "3",
+      "row": "A",
+      "column": "5",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_200_320_0_000198",
+      "labels": [
+        320.0,
+        200.0,
+        320.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:1:A:12",
+      "plate": "1",
+      "row": "A",
+      "column": "12",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_80_320_0_000199",
+      "labels": [
+        320.0,
+        80.0,
+        320.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:1:C:2",
+      "plate": "1",
+      "row": "C",
+      "column": "2",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_80_320_80_000200",
+      "labels": [
+        0.0,
+        80.0,
+        320.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:3:B:8",
+      "plate": "3",
+      "row": "B",
+      "column": "8",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_200_80_0_000201",
+      "labels": [
+        0.0,
+        200.0,
+        80.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:3:B:1",
+      "plate": "3",
+      "row": "B",
+      "column": "1",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_0_320_0_000202",
+      "labels": [
+        320.0,
+        0.0,
+        320.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:1:D:6",
+      "plate": "1",
+      "row": "D",
+      "column": "6",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_0_0_200_000203",
+      "labels": [
+        0.0,
+        0.0,
+        0.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:3:D:11",
+      "plate": "3",
+      "row": "D",
+      "column": "11",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_0_80_80_000204",
+      "labels": [
+        0.0,
+        0.0,
+        80.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:3:D:8",
+      "plate": "3",
+      "row": "D",
+      "column": "8",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_200_320_0_000205",
+      "labels": [
+        200.0,
+        200.0,
+        320.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:1:F:10",
+      "plate": "1",
+      "row": "F",
+      "column": "10",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_0_0_200_000206",
+      "labels": [
+        80.0,
+        0.0,
+        0.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:2:G:7",
+      "plate": "2",
+      "row": "G",
+      "column": "7",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_200_0_200_000207",
+      "labels": [
+        200.0,
+        200.0,
+        0.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:1:G:8",
+      "plate": "1",
+      "row": "G",
+      "column": "8",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_0_320_320_000208",
+      "labels": [
+        80.0,
+        0.0,
+        320.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:2:F:6",
+      "plate": "2",
+      "row": "F",
+      "column": "6",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_80_320_0_000209",
+      "labels": [
+        80.0,
+        80.0,
+        320.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:2:E:5",
+      "plate": "2",
+      "row": "E",
+      "column": "5",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_0_80_200_000210",
+      "labels": [
+        80.0,
+        0.0,
+        80.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:2:G:3",
+      "plate": "2",
+      "row": "G",
+      "column": "3",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_200_200_320_000211",
+      "labels": [
+        200.0,
+        200.0,
+        200.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:1:F:11",
+      "plate": "1",
+      "row": "F",
+      "column": "11",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_320_80_200_000212",
+      "labels": [
+        320.0,
+        320.0,
+        80.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:1:A:4",
+      "plate": "1",
+      "row": "A",
+      "column": "4",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_80_200_0_000213",
+      "labels": [
+        80.0,
+        80.0,
+        200.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:2:E:9",
+      "plate": "2",
+      "row": "E",
+      "column": "9",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_0_320_320_000214",
+      "labels": [
+        0.0,
+        0.0,
+        320.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:3:C:10",
+      "plate": "3",
+      "row": "C",
+      "column": "10",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_80_320_200_000215",
+      "labels": [
+        0.0,
+        80.0,
+        320.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:3:B:7",
+      "plate": "3",
+      "row": "B",
+      "column": "7",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_320_0_200_000216",
+      "labels": [
+        80.0,
+        320.0,
+        0.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:2:C:7",
+      "plate": "2",
+      "row": "C",
+      "column": "7",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_320_200_80_000217",
+      "labels": [
+        320.0,
+        320.0,
+        200.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:1:A:2",
+      "plate": "1",
+      "row": "A",
+      "column": "2",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_320_200_80_000218",
+      "labels": [
+        0.0,
+        320.0,
+        200.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:2:H:4",
+      "plate": "2",
+      "row": "H",
+      "column": "4",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_0_0_320_000219",
+      "labels": [
+        320.0,
+        0.0,
+        0.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:1:E:3",
+      "plate": "1",
+      "row": "E",
+      "column": "3",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_320_80_320_000220",
+      "labels": [
+        80.0,
+        320.0,
+        80.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:2:C:2",
+      "plate": "2",
+      "row": "C",
+      "column": "2",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_0_200_80_000221",
+      "labels": [
+        0.0,
+        0.0,
+        200.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:3:D:4",
+      "plate": "3",
+      "row": "D",
+      "column": "4",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_320_0_0_000222",
+      "labels": [
+        80.0,
+        320.0,
+        0.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:2:C:9",
+      "plate": "2",
+      "row": "C",
+      "column": "9",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_200_80_320_000223",
+      "labels": [
+        200.0,
+        200.0,
+        80.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:1:G:3",
+      "plate": "1",
+      "row": "G",
+      "column": "3",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_0_80_80_000224",
+      "labels": [
+        200.0,
+        0.0,
+        80.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:2:B:1",
+      "plate": "2",
+      "row": "B",
+      "column": "1",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_200_200_80_000225",
+      "labels": [
+        200.0,
+        200.0,
+        200.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:1:G:1",
+      "plate": "1",
+      "row": "G",
+      "column": "1",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_0_320_200_000226",
+      "labels": [
+        320.0,
+        0.0,
+        320.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:1:D:4",
+      "plate": "1",
+      "row": "D",
+      "column": "4",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_200_320_0_000227",
+      "labels": [
+        80.0,
+        200.0,
+        320.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:2:D:1",
+      "plate": "2",
+      "row": "D",
+      "column": "1",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_320_80_80_000228",
+      "labels": [
+        200.0,
+        320.0,
+        80.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:1:F:2",
+      "plate": "1",
+      "row": "F",
+      "column": "2",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_80_320_80_000229",
+      "labels": [
+        320.0,
+        80.0,
+        320.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:1:C:1",
+      "plate": "1",
+      "row": "C",
+      "column": "1",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_0_0_0_000230",
+      "labels": [
+        80.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:2:G:9",
+      "plate": "2",
+      "row": "G",
+      "column": "9",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_200_80_80_000231",
+      "labels": [
+        80.0,
+        200.0,
+        80.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:2:D:8",
+      "plate": "2",
+      "row": "D",
+      "column": "8",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_200_0_200_000232",
+      "labels": [
+        80.0,
+        200.0,
+        0.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:2:D:11",
+      "plate": "2",
+      "row": "D",
+      "column": "11",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_320_0_80_000233",
+      "labels": [
+        0.0,
+        320.0,
+        0.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:2:H:12",
+      "plate": "2",
+      "row": "H",
+      "column": "12",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_200_320_80_000234",
+      "labels": [
+        0.0,
+        200.0,
+        320.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:3:A:4",
+      "plate": "3",
+      "row": "A",
+      "column": "4",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_0_0_320_000235",
+      "labels": [
+        200.0,
+        0.0,
+        0.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:2:B:3",
+      "plate": "2",
+      "row": "B",
+      "column": "3",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_0_0_80_000236",
+      "labels": [
+        320.0,
+        0.0,
+        0.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:1:E:5",
+      "plate": "1",
+      "row": "E",
+      "column": "5",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_320_80_80_000237",
+      "labels": [
+        0.0,
+        320.0,
+        80.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:2:H:8",
+      "plate": "2",
+      "row": "H",
+      "column": "8",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_200_320_320_000238",
+      "labels": [
+        80.0,
+        200.0,
+        320.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:2:C:10",
+      "plate": "2",
+      "row": "C",
+      "column": "10",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_320_80_80_320_000239",
+      "labels": [
+        320.0,
+        80.0,
+        80.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:1:C:7",
+      "plate": "1",
+      "row": "C",
+      "column": "7",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_0_320_80_000240",
+      "labels": [
+        200.0,
+        0.0,
+        320.0,
+        80.0
+      ],
+      "shared_sample_id": "sugars:well:2:A:5",
+      "plate": "2",
+      "row": "A",
+      "column": "5",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_0_80_0_000241",
+      "labels": [
+        80.0,
+        0.0,
+        80.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:2:G:5",
+      "plate": "2",
+      "row": "G",
+      "column": "5",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_80_200_200_000242",
+      "labels": [
+        80.0,
+        80.0,
+        200.0,
+        200.0
+      ],
+      "shared_sample_id": "sugars:well:2:E:7",
+      "plate": "2",
+      "row": "E",
+      "column": "7",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_200_320_320_0_000243",
+      "labels": [
+        200.0,
+        320.0,
+        320.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:1:E:8",
+      "plate": "1",
+      "row": "E",
+      "column": "8",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_80_80_80_0_000244",
+      "labels": [
+        80.0,
+        80.0,
+        80.0,
+        0.0
+      ],
+      "shared_sample_id": "sugars:well:2:F:1",
+      "plate": "2",
+      "row": "F",
+      "column": "1",
+      "n_spectra": 40
+    },
+    {
+      "folder": "Quan_0_200_0_320_000245",
+      "labels": [
+        0.0,
+        200.0,
+        0.0,
+        320.0
+      ],
+      "shared_sample_id": "sugars:well:3:B:2",
+      "plate": "3",
+      "row": "B",
+      "column": "2",
+      "n_spectra": 40
+    }
+  ],
+  "import_date": "2026-11-04",
+  "spectral_processing_by_importer": "None. Row sorting only; no interpolation, normalization, baseline correction or smoothing.",
+  "intensity_unit": "Original arbitrary instrument units; not harmonized across instruments.",
+  "raman_shift_unit": "cm^-1",
+  "modality_details": {
+    "scheme_version": "1.0",
+    "classification_basis": "Author experimental README describes conventional Raman measurement of sugar solutions without a SERS substrate.",
+    "evidence_url": "https://github.com/Alvaro-FG/Raman_Sugars",
+    "signal_species_relationship": "Intrinsic Raman signatures of the analytical targets; reference SMILES do not establish adsorbed-state structures.",
+    "assignment_scope": "Imported measurement branch, including its associated blank controls.",
+    "signal_species_identifiers": [
+      "Sucrose",
+      "Fructose",
+      "Maltose",
+      "Glucose"
+    ]
+  }
+}
