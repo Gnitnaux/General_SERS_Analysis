@@ -31,7 +31,7 @@ General_SERS_Analysis/
 └── README.md
 ```
 
-The `.gitkeep` placeholders keep empty directories in Git. Actual datasets, logs, generated outputs, plots and environments are ignored. No existing database has been copied or modified. After moving your database, its index should be `data/database/content.csv`, with `data/database/data/` and `data/database/molecules/` beside it, not nested beneath another database-name folder.
+The `.gitkeep` placeholders keep empty directories in Git. Files under data/ are intended to be tracked in Git. Logs, generated outputs, plots and environments are ignored. No existing database has been copied or modified. After moving your database, its index should be `data/database/content.csv`, with `data/database/data/` and `data/database/molecules/` beside it, not nested beneath another database-name folder.
 
 ## Installation
 

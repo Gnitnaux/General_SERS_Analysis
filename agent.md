@@ -148,3 +148,7 @@ General_SERS_Analysis_Database/
 环境解释器：`E:\myCode\Python\General_SERS_Analysis\.venv\Scripts\python.exe`。requirements 兼容性检查、全部工具模块导入及线性回归数值检查通过。此前 19 项 pytest 测试是在开发检查环境中运行；本次未向新 `.venv` 安装 pytest 开发依赖，也未在其中重跑该测试集。
 
 已安装运行依赖版本：numpy 2.5.4、scipy 1.18.1、scikit-learn 1.9.1、xgboost 3.4.1、pybaselines 1.2.1、joblib 1.6.0。`.venv` 已由 .gitignore 排除，不应提交。编辑器应选择工程 `.venv` 的解释器。
+
+## 10. 数据版本管理约定
+
+用户明确要求 data 不应被 ignore。已删除 .gitignore 中针对 data 的目录排除规则，data/database 与 data/test_data 中的数据文件应允许 Git 跟踪；常规缓存和环境排除规则仍适用。未自动执行 git add 或提交。

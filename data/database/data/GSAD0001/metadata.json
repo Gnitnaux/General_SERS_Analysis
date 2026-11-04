@@ -1,0 +1,480 @@
+{
+  "source_url": "https://zenodo.org/records/7406328",
+  "paper_doi": "10.1073/pnas.2211406119",
+  "source_family": "PNAS_PAH_2211406119",
+  "modality": "direct-SERS",
+  "role": "primary",
+  "license": "CC-BY-4.0",
+  "source_files": [
+    {
+      "path": "E:\\Research\\国自然\\data\\公开光谱任务库\\downloads\\7406328\\SERS Spectra of PAH Mixtures.zip",
+      "sha256": "f18103a24cbe245e0fbd6c611bb5f0433be90393fb1d805339512fc88cab20dc"
+    }
+  ],
+  "label_basis": "Presence of ANTH/PYR/BaP/BaA in author workbook names. Acetone blank has four zero labels.",
+  "excluded_spectra": [
+    {
+      "source_member": "SERS Spectra of PAH Mixtures/SERS 1ANTH+2PYR.xlsx",
+      "source_column": 20,
+      "missing_points": 1,
+      "reason": "Incomplete intensity series. Whole spectrum excluded; no imputation."
+    },
+    {
+      "source_member": "SERS Spectra of PAH Mixtures/SERS 2ANTH+1PYR.xlsx",
+      "source_column": 8,
+      "missing_points": 3,
+      "reason": "Incomplete intensity series. Whole spectrum excluded; no imputation."
+    }
+  ],
+  "preprocessing_in_source": "Not established from the deposited spreadsheet alone. Published numeric spectra; not certified detector-native raw data.",
+  "limitations": [
+    "Absolute concentration units and ratio-to-concentration conversion have not been verified; no quantitative task is imported.",
+    "Workbooks are source groups, not proven independent preparations. Partition by group at minimum; workbook-level splitting alone may still share preparation effects.",
+    "The separately deposited SERS BaP.xlsx is not imported again, avoiding a possible duplicate of the archive member."
+  ],
+  "Data_id": "GSAD0001",
+  "task": "Classification",
+  "molecule_order": [
+    "Anthracene",
+    "Pyrene",
+    "Benzoapyrene",
+    "Benzaanthracene"
+  ],
+  "n_group": 32,
+  "n_spectra": 684,
+  "groups": [
+    {
+      "folder": "Class_1_1_0_0_000001",
+      "labels": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "source_member": "SERS Spectra of PAH Mixtures/SERS 10ANTH+1PYR.xlsx",
+      "n_spectra": 22,
+      "physical_sample_id": null,
+      "group_definition": "One source workbook. Physical preparation identity is not provided."
+    },
+    {
+      "folder": "Class_1_1_0_0_000002",
+      "labels": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "source_member": "SERS Spectra of PAH Mixtures/SERS 1ANTH+10PYR.xlsx",
+      "n_spectra": 17,
+      "physical_sample_id": null,
+      "group_definition": "One source workbook. Physical preparation identity is not provided."
+    },
+    {
+      "folder": "Class_1_1_1_1_000003",
+      "labels": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "source_member": "SERS Spectra of PAH Mixtures/SERS 1ANTH+1PYR+1BaP+1BaA.xlsx",
+      "n_spectra": 24,
+      "physical_sample_id": null,
+      "group_definition": "One source workbook. Physical preparation identity is not provided."
+    },
+    {
+      "folder": "Class_1_1_1_1_000004",
+      "labels": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "source_member": "SERS Spectra of PAH Mixtures/SERS 1ANTH+1PYR+1BaP+2BaA.xlsx",
+      "n_spectra": 23,
+      "physical_sample_id": null,
+      "group_definition": "One source workbook. Physical preparation identity is not provided."
+    },
+    {
+      "folder": "Class_1_1_1_1_000005",
+      "labels": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "source_member": "SERS Spectra of PAH Mixtures/SERS 1ANTH+1PYR+2BaP+1BaA.xlsx",
+      "n_spectra": 25,
+      "physical_sample_id": null,
+      "group_definition": "One source workbook. Physical preparation identity is not provided."
+    },
+    {
+      "folder": "Class_1_1_0_0_000006",
+      "labels": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "source_member": "SERS Spectra of PAH Mixtures/SERS 1ANTH+1PYR.xlsx",
+      "n_spectra": 22,
+      "physical_sample_id": null,
+      "group_definition": "One source workbook. Physical preparation identity is not provided."
+    },
+    {
+      "folder": "Class_1_1_1_1_000007",
+      "labels": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "source_member": "SERS Spectra of PAH Mixtures/SERS 1ANTH+2PYR+1BaP+1BaA.xlsx",
+      "n_spectra": 24,
+      "physical_sample_id": null,
+      "group_definition": "One source workbook. Physical preparation identity is not provided."
+    },
+    {
+      "folder": "Class_1_1_0_0_000008",
+      "labels": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "source_member": "SERS Spectra of PAH Mixtures/SERS 1ANTH+2PYR.xlsx",
+      "n_spectra": 18,
+      "physical_sample_id": null,
+      "group_definition": "One source workbook. Physical preparation identity is not provided."
+    },
+    {
+      "folder": "Class_1_1_0_0_000009",
+      "labels": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "source_member": "SERS Spectra of PAH Mixtures/SERS 1ANTH+5PYR.xlsx",
+      "n_spectra": 25,
+      "physical_sample_id": null,
+      "group_definition": "One source workbook. Physical preparation identity is not provided."
+    },
+    {
+      "folder": "Class_1_0_0_1_000010",
+      "labels": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "source_member": "SERS Spectra of PAH Mixtures/SERS 1BaA+1ANTH.xlsx",
+      "n_spectra": 20,
+      "physical_sample_id": null,
+      "group_definition": "One source workbook. Physical preparation identity is not provided."
+    },
+    {
+      "folder": "Class_0_1_0_1_000011",
+      "labels": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "source_member": "SERS Spectra of PAH Mixtures/SERS 1BaA+1PYR.xlsx",
+      "n_spectra": 20,
+      "physical_sample_id": null,
+      "group_definition": "One source workbook. Physical preparation identity is not provided."
+    },
+    {
+      "folder": "Class_1_0_0_1_000012",
+      "labels": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "source_member": "SERS Spectra of PAH Mixtures/SERS 1BaA+2ANTH.xlsx",
+      "n_spectra": 23,
+      "physical_sample_id": null,
+      "group_definition": "One source workbook. Physical preparation identity is not provided."
+    },
+    {
+      "folder": "Class_0_1_0_1_000013",
+      "labels": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "source_member": "SERS Spectra of PAH Mixtures/SERS 1BaA+2PYR.xlsx",
+      "n_spectra": 24,
+      "physical_sample_id": null,
+      "group_definition": "One source workbook. Physical preparation identity is not provided."
+    },
+    {
+      "folder": "Class_1_0_1_0_000014",
+      "labels": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "source_member": "SERS Spectra of PAH Mixtures/SERS 1BaP+1ANTH.xlsx",
+      "n_spectra": 21,
+      "physical_sample_id": null,
+      "group_definition": "One source workbook. Physical preparation identity is not provided."
+    },
+    {
+      "folder": "Class_0_0_1_1_000015",
+      "labels": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "source_member": "SERS Spectra of PAH Mixtures/SERS 1BaP+1BaA.xlsx",
+      "n_spectra": 25,
+      "physical_sample_id": null,
+      "group_definition": "One source workbook. Physical preparation identity is not provided."
+    },
+    {
+      "folder": "Class_0_1_1_0_000016",
+      "labels": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "source_member": "SERS Spectra of PAH Mixtures/SERS 1BaP+1PYR.xlsx",
+      "n_spectra": 19,
+      "physical_sample_id": null,
+      "group_definition": "One source workbook. Physical preparation identity is not provided."
+    },
+    {
+      "folder": "Class_1_0_1_0_000017",
+      "labels": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "source_member": "SERS Spectra of PAH Mixtures/SERS 1BaP+2ANTH.xlsx",
+      "n_spectra": 20,
+      "physical_sample_id": null,
+      "group_definition": "One source workbook. Physical preparation identity is not provided."
+    },
+    {
+      "folder": "Class_0_0_1_1_000018",
+      "labels": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "source_member": "SERS Spectra of PAH Mixtures/SERS 1BaP+2BaA.xlsx",
+      "n_spectra": 22,
+      "physical_sample_id": null,
+      "group_definition": "One source workbook. Physical preparation identity is not provided."
+    },
+    {
+      "folder": "Class_0_1_1_0_000019",
+      "labels": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "source_member": "SERS Spectra of PAH Mixtures/SERS 1BaP+2PYR.xlsx",
+      "n_spectra": 20,
+      "physical_sample_id": null,
+      "group_definition": "One source workbook. Physical preparation identity is not provided."
+    },
+    {
+      "folder": "Class_1_1_1_1_000020",
+      "labels": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "source_member": "SERS Spectra of PAH Mixtures/SERS 2ANTH+1PYR+1BaP+1BaA.xlsx",
+      "n_spectra": 21,
+      "physical_sample_id": null,
+      "group_definition": "One source workbook. Physical preparation identity is not provided."
+    },
+    {
+      "folder": "Class_1_1_0_0_000021",
+      "labels": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "source_member": "SERS Spectra of PAH Mixtures/SERS 2ANTH+1PYR.xlsx",
+      "n_spectra": 18,
+      "physical_sample_id": null,
+      "group_definition": "One source workbook. Physical preparation identity is not provided."
+    },
+    {
+      "folder": "Class_1_0_0_1_000022",
+      "labels": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "source_member": "SERS Spectra of PAH Mixtures/SERS 2BaA+1ANTH.xlsx",
+      "n_spectra": 22,
+      "physical_sample_id": null,
+      "group_definition": "One source workbook. Physical preparation identity is not provided."
+    },
+    {
+      "folder": "Class_0_1_0_1_000023",
+      "labels": [
+        0,
+        1,
+        0,
+        1
+      ],
+      "source_member": "SERS Spectra of PAH Mixtures/SERS 2BaA+1PYR.xlsx",
+      "n_spectra": 22,
+      "physical_sample_id": null,
+      "group_definition": "One source workbook. Physical preparation identity is not provided."
+    },
+    {
+      "folder": "Class_1_0_1_0_000024",
+      "labels": [
+        1,
+        0,
+        1,
+        0
+      ],
+      "source_member": "SERS Spectra of PAH Mixtures/SERS 2BaP+1ANTH.xlsx",
+      "n_spectra": 20,
+      "physical_sample_id": null,
+      "group_definition": "One source workbook. Physical preparation identity is not provided."
+    },
+    {
+      "folder": "Class_0_0_1_1_000025",
+      "labels": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "source_member": "SERS Spectra of PAH Mixtures/SERS 2BaP+1BaA.xlsx",
+      "n_spectra": 25,
+      "physical_sample_id": null,
+      "group_definition": "One source workbook. Physical preparation identity is not provided."
+    },
+    {
+      "folder": "Class_0_1_1_0_000026",
+      "labels": [
+        0,
+        1,
+        1,
+        0
+      ],
+      "source_member": "SERS Spectra of PAH Mixtures/SERS 2BaP+1PYR.xlsx",
+      "n_spectra": 20,
+      "physical_sample_id": null,
+      "group_definition": "One source workbook. Physical preparation identity is not provided."
+    },
+    {
+      "folder": "Class_1_1_0_0_000027",
+      "labels": [
+        1,
+        1,
+        0,
+        0
+      ],
+      "source_member": "SERS Spectra of PAH Mixtures/SERS 5ANTH+1PYR.xlsx",
+      "n_spectra": 21,
+      "physical_sample_id": null,
+      "group_definition": "One source workbook. Physical preparation identity is not provided."
+    },
+    {
+      "folder": "Class_1_0_0_0_000028",
+      "labels": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "source_member": "SERS Spectra of PAH Mixtures/SERS ANTH.xlsx",
+      "n_spectra": 21,
+      "physical_sample_id": null,
+      "group_definition": "One source workbook. Physical preparation identity is not provided."
+    },
+    {
+      "folder": "Class_0_0_0_0_000029",
+      "labels": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "source_member": "SERS Spectra of PAH Mixtures/SERS Acetone Blank:Background.xlsx",
+      "n_spectra": 21,
+      "physical_sample_id": null,
+      "group_definition": "One source workbook. Physical preparation identity is not provided."
+    },
+    {
+      "folder": "Class_0_0_0_1_000030",
+      "labels": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "source_member": "SERS Spectra of PAH Mixtures/SERS BaA.xlsx",
+      "n_spectra": 17,
+      "physical_sample_id": null,
+      "group_definition": "One source workbook. Physical preparation identity is not provided."
+    },
+    {
+      "folder": "Class_0_0_1_0_000031",
+      "labels": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "source_member": "SERS Spectra of PAH Mixtures/SERS BaP.xlsx",
+      "n_spectra": 21,
+      "physical_sample_id": null,
+      "group_definition": "One source workbook. Physical preparation identity is not provided."
+    },
+    {
+      "folder": "Class_0_1_0_0_000032",
+      "labels": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "source_member": "SERS Spectra of PAH Mixtures/SERS PYR.xlsx",
+      "n_spectra": 21,
+      "physical_sample_id": null,
+      "group_definition": "One source workbook. Physical preparation identity is not provided."
+    }
+  ],
+  "import_date": "2026-11-04",
+  "spectral_processing_by_importer": "None. Row sorting only; no interpolation, normalization, baseline correction or smoothing.",
+  "intensity_unit": "Original arbitrary instrument units; not harmonized across instruments.",
+  "raman_shift_unit": "cm^-1",
+  "modality_details": {
+    "scheme_version": "1.0",
+    "classification_basis": "The study extracts characteristic PAH molecular SERS peaks from mixtures and identifies the component spectra against a PAH library.",
+    "evidence_url": "https://doi.org/10.1073/pnas.2211406119",
+    "signal_species_relationship": "Intrinsic Raman signatures of the analytical targets; reference SMILES do not establish adsorbed-state structures.",
+    "assignment_scope": "Imported measurement branch, including its associated blank controls.",
+    "signal_species_identifiers": [
+      "Anthracene",
+      "Pyrene",
+      "Benzoapyrene",
+      "Benzaanthracene"
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+﻿Data_id,task,modality,n_classes,molecules,quant_unit,quant_datatype,n_group,n_spectra,data_source
+GSAD0001,Classification,direct-SERS,4,Anthracene_Pyrene_Benzoapyrene_Benzaanthracene,null,null,32,684,https://zenodo.org/records/7406328
+GSAD0002,Single-Component Quantification,direct-SERS,1,Adenine,uM,double,1744,3516,https://zenodo.org/records/3572359
+GSAD0003,Multi-Component Quantification,Raman,4,Sucrose_Fructose_Maltose_Glucose,mM,double,245,9800,https://github.com/Alvaro-FG/Raman_Sugars
+GSAD0004,Multi-Component Quantification,direct-SERS,3,Carbophenothion_Oxamyl_Phosmet,ppm,double,11,33,https://github.com/jianlin-cheng/SERSFormer2
+GSAD0005,Single-Component Quantification,Raman,1,Methanol,%v/v,double,9,72,https://figshare.com/articles/dataset/23712891
+GSAD0006,Single-Component Quantification,Raman,1,Serine,g/L,double,6,16,https://figshare.com/articles/dataset/23712891
+GSAD0007,Single-Component Quantification,Raman,1,Glucose,%,double,9,28,https://figshare.com/articles/dataset/23712891
+GSAD0008,Classification,direct-SERS,5,Polystyrene_Polyethylene_Polymethylmethacrylate_Polytetrafluoroethylene_Nylon,null,null,51,14811,https://www.kaggle.com/datasets/andriitrelin/microplastics-raman-spectra
+GSAD0009,Classification,Raman,5,Polystyrene_Polyethylene_Polymethylmethacrylate_Polytetrafluoroethylene_Nylon,null,null,12,1468,https://www.kaggle.com/datasets/andriitrelin/microplastics-raman-spectra
+GSAD0010,Single-Component Quantification,direct-SERS,1,CV,M,double,7,1407,https://figshare.com/articles/dataset/28107305

@@ -1,9 +1,4 @@
-# Local data (retain the directory placeholders only).
-/data/**
-!/data/database/
-!/data/database/.gitkeep
-!/data/test_data/
-!/data/test_data/.gitkeep
+# Generated runtime artifacts.
 /logs/**
 !/logs/.gitkeep
 /outputs/**
