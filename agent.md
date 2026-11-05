@@ -108,7 +108,7 @@ General_SERS_Analysis_Database/
 | 解混 | CLS、NNLS |
 | 聚合/特征提取 | PCA、峰提取、因子分析、均值、中位数、最大值、最小值、光谱作差 |
 
-**当前不实现**命令行入口、数据库读取器、流程执行器、自动搜索/Agent、自动数据划分、学习曲线或数据量预测。目录预留不代表这些功能已完成。用户曾提出的命令行示例 `--task classification --molecules A_B_C --data_dir data/test --output_dir model` 是未来意图，当前不可作为可运行命令。
+**初版范围不实现**命令行入口、数据库读取器、流程执行器、自动搜索/Agent、自动数据划分、学习曲线或数据量预测。后续新增的可视化入口见第 11 节；该后续授权覆盖初版中有关 CLI 和可视化读取的限制。目录预留不代表这些功能已完成。用户曾提出的命令行示例 `--task classification --molecules A_B_C --data_dir data/test --output_dir model` 是未来意图，当前不可作为可运行命令。
 
 ## 6. 接口与科学含义
 
@@ -152,3 +152,52 @@ General_SERS_Analysis_Database/
 ## 10. 数据版本管理约定
 
 用户明确要求 data 不应被 ignore。已删除 .gitignore 中针对 data 的目录排除规则，data/database 与 data/test_data 中的数据文件应允许 Git 跟踪；常规缓存和环境排除规则仍适用。未自动执行 git add 或提交。
+
+## 11. 按 Data_id 绘制组平均光谱
+
+2026-11-04 用户授权在根目录创建 main.py 作为所有任务的主接口，目前仅实现 `visualize` 子命令；不增加训练、流程搜索或数据量分析任务。
+
+- 命令：`.\.venv\Scripts\python.exe main.py visualize --data-id GSAD0004`。
+- 数据默认读取 `data/database/content.csv` 与 `data/database/data/<Data_id>/<group>/*.csv`；数据库已由用户迁入，初版空目录描述仅为历史状态。
+- 每个 group 中重复谱按原始强度作逐点算术平均，每个 group 一条曲线，不合并不同目录、不做前处理。
+- 组内波数轴须相同；递减轴显式反转，其他差异报错，不自动插值。不同 group 可以保留各自波数轴。
+- 默认保存 `visualizations/<Data_id>_group_means.png`；`--show` 额外弹窗，`--groups` 选择组，`--database-dir` 和 `--output-dir` 改变输入和输出位置。同 ID 重跑会覆盖同名图片。
+- 超过 20 组时绘制全部组均值但省略图例；建议用 --groups 查看有标签的子集。索引计数不符会警告，实际读取数量以文件为准。
+- 新增 `src/general_sers_analysis/dataset_visualization.py` 和对应测试；requirements 新增 matplotlib。没有实现其他总任务。
+
+验证结果：新增 4 项 unittest 检查通过；真实 GSAD0004 的 33 条光谱绘制为 11 条组平均谱，图片已人工检查，pip check 通过。matplotlib 3.11.2 已安装。真实 GSAD0005 同组混含 466–2500 与 2628–4000 cm^-1 两个不重叠波段，当前按设计拒绝直接平均，未改动原数据；若要支持该数据，需要先明确分段数据的重复关系与汇总方式。
+
+## 12. GSAD0004 example 工作流（2026-11-05）
+
+用户授权新增 main.py example：使用现有 SpectralCut、Interpolate、AirPLS、MeanAggregator、PLSRRegressor 与 Node/Edge API。可视化采用新增 GroupSpectrumPlot(Node) 适配器，调用已有均值工具后原样传递数据。transform_path 只执行明确指定的无条件默认端口路径，不是通用图执行器；训练在最终边之后显式调用模型 fit。
+
+默认先 cut 600–1800 cm^-1，再按训练数据裁剪公共范围内 2 cm^-1 整数刻度线性插值对齐，不作峰位校准或外推。之后逐谱 airPLS，绘制组平均谱，逐谱训练三输出 PLSR（2 个成分、训练内缩放）。按 group 固定随机划分，8 组训练、3 组测试，测试按组均值计算每组分误差；11 组条件不代表独立制备，不能宣称跨基质验证。默认前两个组分 R2 为负，保留原始预测和指标。
+
+运行命令：`.\.venv\Scripts\python.exe main.py example`；可加 --show。输出 summary.json、test_predictions.csv、workflow.joblib 到 outputs/GSAD0004_example，去基线图到 visualizations/GSAD0004_example_baseline_corrected.png。实际运行和模型重载、分组隔离、三输出与 Node/Edge 类型检查通过；新增 test_example_workflow.py 检查连接执行和外推拒绝。英文用法见 README。原先“不增加训练任务”的限制被本次明确授权覆盖，其他 AutoML、通用图调度和数据量分析仍未实现。
+
+
+## 13. 通用可视化工具与输出图（2026-11-05）
+
+用户要求可视化节点正式放进 tools，不再在 example 中定义。现已新增 tools/visualization.py：GroupSpectrumPlot（组平均谱）、PredictionPlot（多目标 pred-vs-true 子图）、ConfusionMatrixPlot（单标签混淆矩阵或多标签按组分二分类子图）。均继承 Node，transform 保存图后原样返回输入；预测图以 X 传预测、y_true 传真值，可按 groups 聚合。混淆矩阵行是真值、列是预测，normalize 可选 true/pred/all，不能输入概率矩阵冒充标签。
+
+example 已改为导入工具库节点，添加 PLSR 到 PredictionPlot 的 target_values Edge。每次运行将平均谱和测试集定量图写入 outputs/GSAD0004_example/figures，并复制到 visualizations；summary.json 的 figures 字段记录两图路径。定量图每个分子一个 subplot，共用一张图，显示与组均值评估一致的 RMSE/R2。GSAD0004 不含分类模型，故该例不生成伪造的混淆矩阵。
+
+已重跑完整例子，数值结果未变化；6 项可视化节点检查和 2 项工作流连接检查通过，模型重载与图片路径检查通过。可视化类已从 example 中移除，旧的模块属性通过导入仍可解析。以上约定更新第 12 节关于本地可视化适配器的位置描述。
+
+
+## 14. 用户更正输出目录含义（2026-11-05，优先于第 13 节）
+
+outputs 中的“图”指整个算法流程 graph，不是光谱/定量等业务 plot。正式约定：outputs/<run>/ 保存模型、数值结果与 workflow_graph.png/.svg/.json；visualizations/<run>/ 保存各可视化 Node 生成的光谱、pred-vs-true、混淆矩阵等图，按 outputs 的运行相对目录镜像组织，不再把业务图复制到 outputs。
+
+example 已据此修改并重跑：outputs/GSAD0004_example/ 中生成实际节点和连接的流程图，visualizations/GSAD0004_example/ 中保存两张业务图。summary.json 分别记录 workflow_graph 与 figures。若 --output-dir 位于项目 outputs 根下，完整保留相对层级；若是外部目录，则使用末级目录名作为 visualization root 下的运行目录。--visualization-dir 指可视化根目录。没有 outputs 运行目录的独立 visualize 指令维持已有显式输出路径语义。
+
+新增 workflow_graph.py，按真实 Node/Edge 拓扑绘制节点名称、主要参数和边数据类型，导出完整 JSON。不是图执行器。运行检查包含目录镜像、无效连接/环拒绝、图文件生成；示例数值不变。已检查流程图外观并删除上一轮放错位置的四张重复图片，原始数据未动。
+
+
+## 15. 通用工作流执行器（2026-11-05）
+
+用户授权升级执行器，避免 PLSR 特殊处理。新增 workflow.py：NodeSpec 声明工具、输出方法、运行阶段、逐谱映射与堆叠；Workflow 从 Edge 拓扑排序执行 fit/predict/evaluate。fit 克隆工具并训练 requires_fit 节点，预测和评价不再 fit。预测不需要标签，评价可输入真值和分组并画图。外部 input 端口包括 X/y/groups，target_port=input 对应 X，fit:y 只传入训练，fit:X 可覆盖参考谱等训练输入。输出工具端口目前仅 output。支持无条件 DAG 分支与显式命名汇合，不处理自动元数据重排、条件分流或多输出端口提取。预测器之后再训练学习器需要 OOF，首版明确拒绝该结构。
+
+example 已删除 transform_path 与手写 PLSR fit/predict，改为统一 Workflow 接口；依然按完整 group 留出。固定插值网格默认 602–1798、步长2；平均谱绘图现在只展示测试组，训练和普通推理不执行绘图。数值与此前一致，前两目标负 R2 保留。输出新增 workflow_spec.json 与 execution_trace.json，joblib 包含已拟合 Workflow；流程图显示实际数据和标签/分组边，业务图仍在 visualizations 对应运行目录。
+
+to_dict/from_dict 可通过显式工具白名单导出/重建声明；重建必须重新 fit，不从 JSON 恢复训练状态。不自动分数据，不进行 AutoML；上层算法应提供组级验证或交叉验证。7 项执行器和 2 项示例映射检查通过，包含训练状态隔离、PLSR/分类器通用性、声明往返、分支汇合、无效结构/不安全级联拒绝。已重跑真实 example 并检查保存模型和阶段日志。新的说明覆盖第 12 节的固定路径执行限制。

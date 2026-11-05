@@ -1,6 +1,6 @@
 # 工具库检查说明
 
-本版只实现节点、边和单个工具，不包含自动搜索、图执行器、数据库读取、CLI 或数据量分析。
+工具库实现节点、边和单个工具，不包含自动搜索、图执行器或数据量分析。根目录 main.py 另提供按 Data_id 读取数据库并绘制组平均谱的 visualize 子命令，使用方法见英文 README。
 
 ## 三个主要动作
 
@@ -40,8 +40,24 @@
 
 1. 没有自动划分训练/验证数据，也没有自动生成折外预测；不能直接把预测级联视为已避免泄漏。
 2. 没有自动选择“最好流程”。
-3. 没有从 content.csv 读取或下载数据库；data/database 保持占位，供手工迁入。
+3. visualize 可从 content.csv 定位已迁入的数据并读取光谱；仍没有数据库下载、格式转换或训练数据加载流程。
 4. 没有训练任何深度学习模型，也没有引入深度学习依赖。
 5. 测试仅检查数学操作、输入约束和接口行为，不能证明真实 SERS 分析的准确度。
 
 详细默认值、局限与研究来源参见根目录英文 README 和源码注释。
+
+
+## 可视化节点
+
+工具位置：`tools/visualization.py`。三个节点均继承 Node，调用 transform 保存图片后原样传回输入，不在绘图过程中训练模型。
+
+- GroupSpectrumPlot：输入 Spectra 和可选 groups，用已有 MeanAggregator 计算组平均谱。
+- PredictionPlot：输入预测值 X 和真值 y_true；多分子分别画 subplot，可选 groups 对重复结果先平均。unit 标注单位，molecule_names 指定目标顺序。
+- ConfusionMatrixPlot：输入预测标签 X 和真值 y_true；默认画计数，行是真值、列是预测。labels 指定类别顺序，normalize 选择归一化；多标签需显式 multilabel=True。
+
+output_path 指定图片输出位置，show=True 额外弹窗。example 的光谱与定量图只保存在 visualizations/GSAD0004_example 中，与 outputs 的运行目录结构对应；outputs/GSAD0004_example 中保存实际 Node/Edge 流程的 workflow_graph.png/.svg/.json。所有路径写入 summary.json。详见 README 的输入和使用说明。
+
+
+## 统一执行器
+
+workflow.py 的 Workflow 与 NodeSpec 已取代示例 transform_path。执行器根据 Edge 排序，不按模型名称分支。fit 学习训练参数，predict 复用参数，evaluate 额外接入真值/分组绘图。方法与阶段通过 NodeSpec 声明；标签训练边使用 fit:y。工作流声明可保存为 JSON 并通过工具白名单重建，详细示例和当前限制见 README。阶段图/日志在 outputs，业务图在 visualizations 对应运行目录。需要 OOF 的模型级联、条件路由和自动分组重排尚未实现，不能认为所有图都已可安全执行。

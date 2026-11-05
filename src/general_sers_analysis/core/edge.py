@@ -1,4 +1,4 @@
-"""Connection descriptions only. No graph executor or search algorithm yet."""
+"""Connection descriptions consumed by the Workflow executor and graph renderer."""
 from dataclasses import dataclass
 from typing import Any, Literal
 import operator
