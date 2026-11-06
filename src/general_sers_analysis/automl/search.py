@@ -34,6 +34,16 @@ from ..util import write_json as _json, subset_spectra as subset, visualization_
 
 @dataclass(frozen=True)
 class Candidate:
+    """Historical fixed-chain search configuration with a model-specific main parameter.
+
+    Attributes
+    ----------
+    model: Predictor family name, such as pls, ridge, svr or rf.
+    normalization: Per-spectrum normalization: none, snv or peak.
+    parameter: Family-specific main parameter: components, regularization, C or leaf size.
+    pca: Number of PCA components; zero disables PCA.
+    preprocessing: Preprocessing choice: raw, sg, derivative, airpls or airpls_sg.
+    """
     preprocessing: str = 'raw'
     normalization: str = 'none'
     pca: int = 0

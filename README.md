@@ -272,6 +272,10 @@ The completed 2026-11-05 benchmark attempted 96 candidates per task on all ten d
 
 ## Shared data API and module boundaries
 
+Spectral values are read from original two-column CSV files, not from generated JSON outputs. `content.csv` supplies task metadata; group names supply labels. Dataset `metadata.json` and `spectrum_manifest.csv` are optional auxiliary inputs for provenance, dependency links and review flags. They can affect eligibility/splitting when present; they are not required to load a new compatible CSV database. `load_dataset(..., use_metadata=False)` explicitly ignores both auxiliary files. Missing experimental identities remain unknown.
+
+Raw CSV input is authoritative. The earlier `metadata` generation command was removed: auxiliary source metadata remains optional and is not an intermediate spectral format. Existing source metadata is preserved; experimental result JSON remains an output artifact.
+
 ```text
 src/general_sers_analysis/
   core/data.py             # Spectra, Dataset, read_spectrum, load_dataset
@@ -294,6 +298,23 @@ dataset = load_dataset("data/database", "GSAD0004")
 # dataset.group_metadata: machine-readable source sample/preparation/review fields
 ```
 
-The default `label_policy="exclude_flagged"` excludes records carrying existing unresolved source-review flags. `include_flagged` retains them for inspection; `error` rejects a dataset containing flagged groups. These flags are not proof that each affected label is wrong: GSAD0002 conservatively flags entire cAg@785 and sAg@532 methods, including blanks whose numeric zero labels agree. Its CSV and supplementary Table S1 conflict in some concentration mappings, while supplementary Table S8 supports the CSV ranges. Original labels are retained pending source clarification; no guessed correction is applied. `read_labels=False` supports raw inspection of legacy indexes without target metadata.
+Explicit `label_policy="exclude_flagged"` excludes records carrying existing unresolved source-review flags. `include_flagged` retains them for inspection; `error` rejects a dataset containing flagged groups. These flags are not proof that each affected label is wrong: GSAD0002 conservatively flags entire cAg@785 and sAg@532 methods, including blanks whose numeric zero labels agree. Its CSV and supplementary Table S1 conflict in some concentration mappings, while supplementary Table S8 supports the CSV ranges. Original labels are retained pending source clarification; no guessed correction is applied. `read_labels=False` supports raw inspection of legacy indexes without target metadata.
 
-The public reader is shared; algorithms choose representations explicitly afterwards. The historical AutoML still uses fixed group means before CV. Although averaging is now an explicit MeanAggregator Node in a preparation workflow, aggregation presence, location and pooling scheme are not searched, and general metadata/label routing across sample-changing Nodes remains future work. The refactor does not create new independent samples, change archived scores or establish single-spectrum performance. Earlier verification source hashes describe the archived experiment version and intentionally differ from the refactored code.
+The public reader is shared; algorithms choose representations explicitly afterwards. Default `label_policy="include_flagged"` retains existing source notes without treating them as mandatory admission checks. The historical AutoML still uses fixed group means before CV. Although averaging is now an explicit MeanAggregator Node in a preparation workflow, aggregation presence, location and pooling scheme are not searched, and general metadata/label routing across sample-changing Nodes remains future work. The refactor does not create new independent samples, change archived scores or establish single-spectrum performance. Earlier verification source hashes describe the archived experiment version and intentionally differ from the refactored code.
+
+
+## Row-aware joint search (2026-11-06)
+
+`main.py automl` uses the joint structural search through one experiment runner. An exact `--data-id` runs one task; `--data-id all` runs the indexed tasks with the same algorithm. Each task failure is recorded in runs.json and batch execution continues; the CLI exits nonzero if any task fails. The search-mode CLI switch was removed. The old search module remains for historical model/API compatibility and is not a command-line mode.
+
+```powershell
+.\.venv\Scripts\python.exe main.py automl --data-id GSAD0004 --output-dir outputs/new_joint_run --trials 64
+```
+
+Raw CSVs enter a `DataBatch` containing X, optional y, unique row_ids, original groups and input-row lineage. `Workflow` propagates batches through the same Node/Edge declarations. `NodeSpec.row_action` declares preserve, aggregate or select. Preserve rejects unexplained row-count changes; aggregate verifies output group order and equal member labels; select requires a RowSelection with unique valid indices. Named branch inputs are aligned by row IDs. Ordinary array/Spectra execution remains supported. Serialized specs include row_action. Predict needs no true labels.
+
+Joint random search varies aggregation presence and position (before preprocessing, before model, after model), mean/median, baseline/smoothing order, optional parallel PCA feature concatenation, sub-window, grid step, airPLS lambda, SG window, PCA and model parameters. This remains bounded structural random search, not arbitrary graph learning or meta-learning. All candidates use the same eligible cohort covering the user-declared outer window. Only narrower candidate windows are searched. Group/duplicate blocks are split before any learning or pooling; source test markers are retained when present. Candidate scores always use one result per original group (mean of binary decisions, ties positive, for classification); concentration labels are never silently averaged. Fold-training group labels define the regression scale. Components/windows incompatible with a training fold are rejected before fitting. Trial budgets count attempted candidates, including invalid ones.
+
+Each candidate is trained only inside development folds. Final selection is refitted on development rows, evaluated once, and saved with a complete raw-spectrum workflow, group-level CSV predictions, traces, declaration, graph and business plots. `predict` detects raw-batch models and follows their original interpolation/aggregation path rather than averaging inputs in advance. Fixed majority/mean and simple model baselines are reported on the same split. No cross-task learner or supervised prediction cascade is implemented. Tests and small real runs validate execution, not broad scientific performance. For repeat-rich groups, unpooled training still weights rows equally; sample weighting is not implemented.
+
+The generated metadata export function/CLI and their dedicated tests were removed. Optional source metadata and manifest files remain useful provenance/dependency inputs; CSV parsing stays centralized in core.data. No source database files were deleted or modified.

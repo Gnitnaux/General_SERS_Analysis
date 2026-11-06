@@ -8,7 +8,23 @@ from .aggregation import MeanAggregator
 
 
 class _PlotNode(Node):
+    """Shared backend selection, figure saving and optional interactive display.
+
+    Attributes
+    ----------
+    last_output_path_: Absolute path of the most recently saved image.
+
+    Inherited interface
+    -------------------
+    See Node for methods and attributes not overridden here.
+    """
     def _pyplot(self):
+        """Select a suitable plotting backend and return pyplot.
+
+        Returns and state
+        -----------------
+        The pyplot module.
+        """
         import matplotlib
         if not self.show:
             matplotlib.use("Agg")
@@ -16,6 +32,17 @@ class _PlotNode(Node):
         return plt
 
     def _save(self, fig, plt):
+        """Save a figure, update last_output_path_, and optionally display it; the caller closes it.
+
+        Parameters
+        ----------
+        fig: Matplotlib Figure to save.
+        plt: Current pyplot module.
+
+        Returns and state
+        -----------------
+        None; writes an image and updates last_output_path_.
+        """
         target = Path(self.output_path).resolve()
         target.parent.mkdir(parents=True, exist_ok=True)
         fig.savefig(target, dpi=180)
@@ -25,15 +52,56 @@ class _PlotNode(Node):
 
 
 class GroupSpectrumPlot(_PlotNode):
-    """One within-group arithmetic mean per curve; no baseline correction or normalization."""
+    """Save source-group mean spectra and return the original input unchanged.
+
+    Attributes
+    ----------
+    group_ids_: Group order used by the most recent spectrum plot.
+    output_path: Destination image path.
+    show: Whether to additionally display an interactive figure.
+    title: Figure title.
+    ylabel: Spectral y-axis label, including source units when appropriate.
+
+    Inherited interface
+    -------------------
+    See _PlotNode for methods and attributes not overridden here.
+    """
     def __init__(self, output_path, show=False, title="Group mean spectra",
                  ylabel="Intensity (source units)"):
+        """Store configuration without fitting training data. See the class attributes for constructor parameter meanings.
+
+        Parameters
+        ----------
+        output_path: Destination image path.
+        show: Whether to additionally display an interactive figure.
+        title: Figure title.
+        ylabel: Spectral y-axis label, including source units when appropriate.
+
+        Returns and state
+        -----------------
+        None. Stores configuration only.
+        """
         self.output_path = output_path
         self.show = show
         self.title = title
         self.ylabel = ylabel
 
     def transform(self, X, *, groups=None):
+        """Compute optional group means, save the spectrum plot, and return X unchanged.
+
+        Parameters
+        ----------
+        X: Current input data, usually rows=samples and columns=features. Workflow additionally accepts DataBatch.
+        groups: Source-group identifiers aligned with current rows; determine pooling membership.
+
+        Returns and state
+        -----------------
+        Compute optional group means, save the spectrum plot, and return X unchanged.
+
+        Raises
+        ------
+        TypeError when the input, fitted-state or supported-interface conditions checked below are violated.
+        """
         if not isinstance(X, Spectra):
             raise TypeError("GroupSpectrumPlot requires Spectra with an explicit axis.")
         ids = list(groups) if groups is not None else list(X.sample_ids or range(len(X.intensity)))
@@ -56,13 +124,37 @@ class GroupSpectrumPlot(_PlotNode):
 
 
 class PredictionPlot(_PlotNode):
-    """Predicted versus true numeric targets, one subplot per molecule.
+    """Save per-target predicted-versus-true plots and RMSE/R2; return the input unchanged.
 
-    X is the prediction matrix; y_true has identical sample/target ordering.
-    Optional groups averages true and predicted values before plotting.
+    Attributes
+    ----------
+    metrics_: Per-target RMSE/R2 from the most recent plot; constant-target R2 is None.
+    molecule_names: Display names in target-column order; omitted names are generated.
+    output_path: Destination image path.
+    show: Whether to additionally display an interactive figure.
+    title: Figure title.
+    unit: Source target unit displayed on plots.
+
+    Inherited interface
+    -------------------
+    See _PlotNode for methods and attributes not overridden here.
     """
     def __init__(self, output_path, molecule_names=None, unit="", show=False,
                  title="Predicted vs true"):
+        """Store configuration without fitting training data. See the class attributes for constructor parameter meanings.
+
+        Parameters
+        ----------
+        output_path: Destination image path.
+        molecule_names: Display names in target-column order; omitted names are generated.
+        unit: Source target unit displayed on plots.
+        show: Whether to additionally display an interactive figure.
+        title: Figure title.
+
+        Returns and state
+        -----------------
+        None. Stores configuration only.
+        """
         self.output_path = output_path
         self.molecule_names = molecule_names
         self.unit = unit
@@ -70,6 +162,22 @@ class PredictionPlot(_PlotNode):
         self.title = title
 
     def transform(self, X, *, y_true, groups=None):
+        """Validate aligned truth/predictions, optionally average by group, save plots/update metrics_, and return X unchanged.
+
+        Parameters
+        ----------
+        X: Current input data, usually rows=samples and columns=features. Workflow additionally accepts DataBatch.
+        y_true: True targets/labels in exactly the same row and target order as predictions X.
+        groups: Source-group identifiers aligned with current rows; determine pooling membership.
+
+        Returns and state
+        -----------------
+        Validate aligned truth/predictions, optionally average by group, save plots/update metrics_, and return X unchanged.
+
+        Raises
+        ------
+        ValueError when the input, fitted-state or supported-interface conditions checked below are violated.
+        """
         pred = np.asarray(X, dtype=float)
         truth = np.asarray(y_true, dtype=float)
         if pred.ndim == 1:
@@ -120,13 +228,41 @@ class PredictionPlot(_PlotNode):
 
 
 class ConfusionMatrixPlot(_PlotNode):
-    """Single-label confusion matrix, or one binary matrix per multilabel component.
+    """Save single-label or per-component binary confusion matrices from discrete predictions.
 
-    X must contain predicted labels, not probabilities. Rows are true labels.
-    labels explicitly controls single-label class order; omitted order uses observed labels.
+    Attributes
+    ----------
+    class_names: Display names for classes or molecular components.
+    labels: Explicit class ordering for a single-label confusion matrix.
+    matrices_: Most recently plotted confusion matrices, after optional normalization.
+    multilabel: Plot one binary confusion matrix per target column instead of a single-label matrix.
+    normalize: Confusion normalization: None, true, pred or all.
+    output_path: Destination image path.
+    show: Whether to additionally display an interactive figure.
+    title: Figure title.
+
+    Inherited interface
+    -------------------
+    See _PlotNode for methods and attributes not overridden here.
     """
     def __init__(self, output_path, labels=None, class_names=None, normalize=None,
                  multilabel=False, show=False, title="Confusion matrix"):
+        """Store configuration without fitting training data. See the class attributes for constructor parameter meanings.
+
+        Parameters
+        ----------
+        output_path: Destination image path.
+        labels: Explicit class ordering for a single-label confusion matrix.
+        class_names: Display names for classes or molecular components.
+        normalize: Confusion normalization: None, true, pred or all.
+        multilabel: Use a binary component-presence matrix instead of a single-label class vector.
+        show: Whether to additionally display an interactive figure.
+        title: Figure title.
+
+        Returns and state
+        -----------------
+        None. Stores configuration only.
+        """
         self.output_path = output_path
         self.labels = labels
         self.class_names = class_names
@@ -136,6 +272,21 @@ class ConfusionMatrixPlot(_PlotNode):
         self.title = title
 
     def transform(self, X, *, y_true):
+        """Validate discrete labels, compute/normalize confusion matrices, save plots and return X unchanged.
+
+        Parameters
+        ----------
+        X: Current input data, usually rows=samples and columns=features. Workflow additionally accepts DataBatch.
+        y_true: True targets/labels in exactly the same row and target order as predictions X.
+
+        Returns and state
+        -----------------
+        Validate discrete labels, compute/normalize confusion matrices, save plots and return X unchanged.
+
+        Raises
+        ------
+        ValueError when the input, fitted-state or supported-interface conditions checked below are violated.
+        """
         pred, truth = np.asarray(X), np.asarray(y_true)
         if pred.shape != truth.shape or not pred.size:
             raise ValueError("Predicted and true labels must have matching nonempty shapes.")

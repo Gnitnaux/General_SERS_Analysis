@@ -15,7 +15,7 @@ from general_sers_analysis.automl.representation import prepare_group_means
 
 
 def load_dataset(root, data_id, **options):
-    return prepare_group_means(load_raw_dataset(root, data_id), **options)
+    return prepare_group_means(load_raw_dataset(root, data_id, label_policy='exclude_flagged'), **options)
 
 from general_sers_analysis.core import Spectra
 from general_sers_analysis.workflow import Workflow
@@ -77,7 +77,7 @@ class AutoMLTests(unittest.TestCase):
             groups[0]['label_review_status'] = 'conflict_requires_source_clarification'
             p = Path(tmp) / 'data/T001/metadata.json'
             p.write_text(json.dumps({'groups': groups}), encoding='utf-8')
-            self.assertEqual(len(load_raw_dataset(tmp, 'T001').spectra), 30)
+            self.assertEqual(len(load_raw_dataset(tmp, 'T001', label_policy='exclude_flagged').spectra), 30)
             included = load_raw_dataset(tmp, 'T001', label_policy='include_flagged')
             self.assertEqual(len(included.spectra), 32)
             self.assertIn('conflict', included.audit['quality_flags'][groups[0]['folder']])

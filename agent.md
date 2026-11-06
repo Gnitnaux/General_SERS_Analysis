@@ -228,3 +228,14 @@ to_dict/from_dict 可通过显式工具白名单导出/重建声明；重建必�
 - label_policy 显式支持 exclude_flagged/include_flagged/error。GSAD0002 的 709 组/1401 谱是两个测量方法整体的保守复核标记，并非每条标签均已证实错误；其中空白 0 标签并无数值分歧。已有数据表、SI Table S1 和 Table S8 的对应关系不完全一致，不能凭空修正。归档保留与可训练资格必须区分。
 - 旧平均谱基线移至 automl/representation.py，用 Interpolate 与 MeanAggregator 的显式准备工作流实现，后续运行导出 representation_spec.json。它仍是固定准备分支，未实现聚合有无/位置/策略搜索，也未实现一般聚合后的标签与元数据自动路由；不得宣称已经完成该研究问题。
 - 此次仅重构旧基线的组织，不扩大超参数搜索或重跑旧测试集挑选结果。52 项测试通过；真实 GSAD0004 的 33 条谱经显式节点生成 11 条均值，旧模型全部该任务测试预测与输入指纹一致；历史模型重载检查通过。旧 verification.json 的源码指纹对应旧版本，重构后不应仍称为当前源码指纹。
+
+## 18. 原始 CSV 与可选元信息生成（2026-11-06）
+
+光谱数值始终从原 CSV 读取，标签来自组目录、任务信息来自 content.csv。metadata.json 和 spectrum_manifest.csv 为可选辅助文件，存在时可影响关联划分和既有复核策略；运行后产生的结果 JSON 不作为新训练输入。新增 core.data.generate_metadata 与 main.py metadata 命令，从原 CSV、组名和索引直接生成可选元信息，不读取现有辅助文件，不推测实验身份，不覆盖已有 JSON。新增 load_dataset(use_metadata=False) 明确忽略两类辅助文件。迁移到符合既定布局的新 CSV 数据库无需预先生成 JSON；任意厂商原始格式仍需显式适配。
+
+
+## 19. Joint structural search and lightweight execution (2026-11-06)
+
+CSV remains authoritative. Removed generate_metadata and the metadata CLI; preserved useful optional source metadata and experiment result JSON. Default include_flagged keeps source review notes without automatic exclusion. DataBatch/RowSelection adds row-preserving, selection, aggregation and identity-aligned branch execution to Workflow. Joint search is the default, with --search-mode legacy preserving the old baseline. Joint mode varies pooling presence/location/mean-median, limited preprocessing order, PCA feature branching, spectral window/step, airPLS/SG settings and model parameters. Split before fitting/pooling; score every candidate by the same original-group unit on one eligible cohort. This is bounded random structural search, not cross-task learning. No predictive cascade or group-balanced training weights. See README for limits and commands.
+
+CLI cleanup (2026-11-06): removed search-mode selection and import alias replacement. main delegates AutoML to cli.run_automl_command; automl.runner.run_experiment uniformly runs an exact ID or all indexed IDs through joint search, checkpoints runs.json, continues on task errors and returns nonzero CLI status for failures. Batch orchestration and raw model inference tests passed.

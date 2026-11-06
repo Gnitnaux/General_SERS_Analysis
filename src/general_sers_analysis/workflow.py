@@ -7,24 +7,57 @@ import numpy as np
 from sklearn.base import clone
 from sklearn.exceptions import NotFittedError
 from .core import Node, Edge, Spectra
+from .core.batch import DataBatch, RowSelection
 
 
 @dataclass
 class NodeSpec:
+    """Tool configuration, output method, execution stages and row-mapping contract.
+
+    Attributes
+    ----------
+    map_samples: Apply a stateless tool separately to each spectrum in a raw input sequence.
+    method: Output method: transform, predict, predict_proba or predict_scores.
+    row_action: preserve keeps identities; aggregate updates group labels/lineage; select requires RowSelection.
+    stack_output: Stack mapped Spectra into a shared-grid batch; coordinate arrays must match.
+    stages: Execution stages selected from fit, predict and evaluate; learned nodes participate in all three.
+    tool: Unfitted Node configuration; Workflow.fit clones it before execution.
+    """
     tool: Node
     method: str = "transform"
     stages: tuple = ("fit", "predict", "evaluate")
     map_samples: bool = False
     stack_output: bool = False
+    row_action: str = 'preserve'
 
 
 class Workflow:
-    """External inputs are named ports of `input`; tool outputs use the `output` port.
+    """Topologically execute a Node/Edge DAG. Fit clones tools; inference reuses learned state. Supports ordinary payloads and DataBatch.
 
-    target_port=input binds X; fit:<name> binds only the fit call, while other ports
-    bind named arguments of transform/predict. Metadata is never silently broadcast.
+    Attributes
+    ----------
+    edges: Directed Edge objects defining dependencies and argument bindings.
+    fit_trace_: Node execution records from the most recent successful fit.
+    is_fitted_: Whether fitting completed successfully; typically created or set by fit.
+    last_trace_: Most recent execution records; batch execution also records input/output row counts.
+    nodes_: Cloned execution tools from the most recent fit, including learned state.
+    order: Validated topological execution order.
+    output_node: ID of the node whose output is returned by predict.
+    specs: Mapping from node IDs to original NodeSpec configurations.
     """
     def __init__(self, nodes, edges, output_node):
+        """Store configuration without fitting training data. See the class attributes for constructor parameter meanings.
+
+        Parameters
+        ----------
+        nodes: Mapping from node IDs to NodeSpec configurations.
+        edges: Directed Edge objects defining dependencies and argument bindings.
+        output_node: ID of the node whose output is returned by predict.
+
+        Returns and state
+        -----------------
+        None. Stores configuration only.
+        """
         self.specs = dict(nodes)
         self.edges = list(edges)
         self.output_node = output_node
@@ -32,11 +65,23 @@ class Workflow:
         self.is_fitted_ = False
 
     def _validate(self):
+        """Validate node/port/stage bindings and DAG topology; reject unsafe predictive cascades and build order.
+
+        Returns and state
+        -----------------
+        None; populates topological order or rejects the declaration.
+
+        Raises
+        ------
+        TypeError, ValueError when the input, fitted-state or supported-interface conditions checked below are violated.
+        """
         if "input" in self.specs or self.output_node not in self.specs:
             raise ValueError("input is reserved; output_node must reference a tool.")
         for key, spec in self.specs.items():
             if not isinstance(spec, NodeSpec) or not isinstance(spec.tool, Node):
                 raise TypeError(f"{key}: expected NodeSpec containing a Node.")
+            if spec.row_action not in ('preserve', 'aggregate', 'select'):
+                raise ValueError('Unknown row action.')
             if spec.method not in {"transform", "predict", "predict_proba", "predict_scores"}:
                 raise ValueError(f"{key}: unsupported output method {spec.method}.")
             if not spec.stages or not set(spec.stages) <= {"fit", "predict", "evaluate"}:
@@ -110,6 +155,21 @@ class Workflow:
 
     @staticmethod
     def _kind(value, kind):
+        """Check coarse payload type, not chemical meaning, units or experimental independence.
+
+        Parameters
+        ----------
+        value: Comparison threshold or reference value.
+        kind: Expected coarse payload category, or None to skip this check.
+
+        Returns and state
+        -----------------
+        None; raises on an incompatible payload.
+
+        Raises
+        ------
+        ValueError when the input, fitted-state or supported-interface conditions checked below are violated.
+        """
         if kind is None: return
         if kind == "spectra":
             valid = isinstance(value, Spectra) or (isinstance(value, (list, tuple)) and len(value) > 0
@@ -123,6 +183,27 @@ class Workflow:
         if not valid: raise ValueError(f"Edge data does not match {kind}.")
 
     def _execute(self, stage, external):
+        """Dispatch ordinary or batch execution for the requested stage and record traces.
+
+        Parameters
+        ----------
+        stage: Execution stage: fit, predict or evaluate.
+        external: External input mapping; X may be an ordinary payload or DataBatch.
+
+        Returns and state
+        -----------------
+        Mapping from node IDs to output payloads; also updates last_trace_.
+
+        Raises
+        ------
+        ValueError when the input, fitted-state or supported-interface conditions checked below are violated.
+        """
+        if isinstance(external.get('X'), DataBatch):
+            if external.get('y') is not None:
+                batch = external['X']
+                external = {**external, 'X': DataBatch(batch.X, batch.row_ids, batch.groups,
+                                                       external['y'], batch.lineage)}
+            return self._execute_batch(stage, external)
         outputs, trace = {}, []
         for key in self.order:
             spec = self.specs[key]
@@ -168,7 +249,90 @@ class Workflow:
         self.last_trace_ = trace
         return outputs
 
+    def _execute_batch(self, stage, external):
+        """Execute nodes in topological order while propagating labels, identities, pooling and selection mappings.
+
+        Parameters
+        ----------
+        stage: Execution stage: fit, predict or evaluate.
+        external: External input mapping; X may be an ordinary payload or DataBatch.
+
+        Returns and state
+        -----------------
+        Mapping from node IDs to DataBatch outputs; also updates last_trace_.
+
+        Raises
+        ------
+        ValueError when the input, fitted-state or supported-interface conditions checked below are violated.
+        """
+        outputs, trace = {}, []
+        for key in self.order:
+            spec = self.specs[key]
+            if stage not in spec.stages:
+                continue
+            edges = [e for e in self.edges if e.target == key]
+            main = next(e for e in edges if e.target_port == 'input')
+            batch = external['X'] if main.source == 'input' else outputs[main.source]
+            arguments, fit_arguments = {'X': batch.X}, {}
+            for edge in edges:
+                port = edge.target_port
+                if port == 'input' or (port.startswith('fit:') and stage != 'fit'):
+                    continue
+                name = port.removeprefix('fit:')
+                if edge.source == 'input' and edge.source_port in ('y', 'groups'):
+                    value = batch.y if edge.source_port == 'y' else batch.groups
+                else:
+                    value = external[edge.source_port] if edge.source == 'input' else outputs[edge.source]
+                    if isinstance(value, DataBatch):
+                        if set(value.row_ids) != set(batch.row_ids):
+                            raise ValueError('Branch join requires matching row identities.')
+                        aligned = value.take([value.row_ids.index(r) for r in batch.row_ids])
+                        if aligned.groups != batch.groups or aligned.lineage != batch.lineage:
+                            raise ValueError('Feature branches must describe the same source rows and groups.')
+                        value = aligned.X
+                (fit_arguments if port.startswith('fit:') else arguments)[name] = value
+            tool = self.nodes_[key]
+            tick = time.perf_counter()
+            if stage == 'fit' and tool.requires_fit:
+                tool.fit(**{**arguments, **fit_arguments})
+            if spec.map_samples:
+                result = [getattr(tool, spec.method)(**{**arguments, 'X': item}) for item in batch.X]
+                if spec.stack_output:
+                    axis = result[0].axis
+                    if not all(np.array_equal(s.axis, axis) for s in result):
+                        raise ValueError('Mapped spectra require matching axes before stacking.')
+                    result = Spectra(np.vstack([s.intensity for s in result]), axis, batch.row_ids)
+            else:
+                result = getattr(tool, spec.method)(**arguments)
+            if spec.row_action == 'aggregate':
+                result = batch.aggregate(result)
+            elif spec.row_action == 'select':
+                if not isinstance(result, RowSelection):
+                    raise ValueError('Selection nodes must return RowSelection.')
+                result = batch.take(result.indices)
+            else:
+                result = batch.replace(result)
+            outputs[key] = result
+            trace.append({'node': key, 'stage': stage, 'fit': stage == 'fit' and tool.requires_fit,
+                          'row_action': spec.row_action, 'input_rows': len(batch.row_ids),
+                          'output_rows': len(result.row_ids), 'seconds': time.perf_counter()-tick})
+        self.last_trace_ = trace
+        return outputs
+
     def fit(self, X, y=None, *, groups=None, **ports):
+        """Invalidate fitted state, clone configured tools, execute training, and save fit_trace_. Failure leaves the workflow unfitted.
+
+        Parameters
+        ----------
+        X: Current input data, usually rows=samples and columns=features. Workflow additionally accepts DataBatch.
+        y: Ground-truth targets aligned with rows, usually (n_rows, n_targets); never predictions.
+        groups: Source-group identifiers aligned with current rows; determine pooling membership.
+        ports: External named ports bound explicitly by Edge declarations.
+
+        Returns and state
+        -----------------
+        self. Learned attributes are stored on the instance; see the class attribute descriptions.
+        """
         self.is_fitted_ = False
         self.nodes_ = {key: clone(spec.tool) for key, spec in self.specs.items()}
         external = {"X": X, **ports}
@@ -180,18 +344,64 @@ class Workflow:
         return self
 
     def _inference(self, stage, X, ports):
+        """Require a fitted workflow and execute an inference stage without refitting.
+
+        Parameters
+        ----------
+        stage: Execution stage: fit, predict or evaluate.
+        X: Current input data, usually rows=samples and columns=features. Workflow additionally accepts DataBatch.
+        ports: External named ports bound explicitly by Edge declarations.
+
+        Returns and state
+        -----------------
+        Mapping from node IDs to inference outputs.
+
+        Raises
+        ------
+        NotFittedError when the input, fitted-state or supported-interface conditions checked below are violated.
+        """
         if not self.is_fitted_: raise NotFittedError("Call Workflow.fit first.")
         return self._execute(stage, {"X": X, **ports})
 
     def predict(self, X, **ports):
+        """Execute prediction without refitting and return output_node. Batch input returns a DataBatch, whose y still contains ground truth when supplied.
+
+        Parameters
+        ----------
+        X: Current input data, usually rows=samples and columns=features. Workflow additionally accepts DataBatch.
+        ports: External named ports bound explicitly by Edge declarations.
+
+        Returns and state
+        -----------------
+        Execute prediction without refitting and return output_node. Batch input returns a DataBatch, whose y still contains ground truth when supplied.
+        """
         return self._inference("predict", X, ports)[self.output_node]
 
     def evaluate(self, X, y, *, groups=None, **ports):
+        """Execute evaluation-only nodes with true labels/groups, without refitting; return all node outputs.
+
+        Parameters
+        ----------
+        X: Current input data, usually rows=samples and columns=features. Workflow additionally accepts DataBatch.
+        y: Ground-truth targets aligned with rows, usually (n_rows, n_targets); never predictions.
+        groups: Source-group identifiers aligned with current rows; determine pooling membership.
+        ports: External named ports bound explicitly by Edge declarations.
+
+        Returns and state
+        -----------------
+        Boolean comparison result, or a Workflow mapping of evaluation node outputs.
+        """
         ports["y"] = y
         if groups is not None: ports["groups"] = groups
         return self._inference("evaluate", X, ports)
 
     def to_dict(self):
+        """Export configuration and nested Node declarations, excluding learned parameters.
+
+        Returns and state
+        -----------------
+        JSON-compatible configuration without learned state.
+        """
         def serial(value):
             if isinstance(value, Node):
                 return {"__node__": type(value).__name__, "parameters": serial(value.get_params(deep=False))}
@@ -205,12 +415,26 @@ class Workflow:
                        "nodes": {key: {"tool": type(spec.tool).__name__,
                            "parameters": spec.tool.get_params(deep=False), "method": spec.method,
                            "stages": spec.stages, "map_samples": spec.map_samples,
-                           "stack_output": spec.stack_output} for key,spec in self.specs.items()},
+                           "stack_output": spec.stack_output, "row_action": spec.row_action} for key,spec in self.specs.items()},
                        "edges": [asdict(edge) for edge in self.edges]})
 
     @classmethod
     def from_dict(cls, record, registry):
-        """Instantiate only explicitly allowlisted tool names; never dynamically import code."""
+        """Reconstruct an unfitted workflow using an explicit tool-class allowlist only.
+
+        Parameters
+        ----------
+        record: Configuration dictionary exported by to_dict.
+        registry: Explicit mapping from allowed tool names to classes, including nested tools.
+
+        Returns and state
+        -----------------
+        Unfitted Workflow.
+
+        Raises
+        ------
+        ValueError when the input, fitted-state or supported-interface conditions checked below are violated.
+        """
         if record.get("version") != 1: raise ValueError("Unsupported workflow spec version.")
         def restore(value):
             if isinstance(value, dict):

@@ -15,6 +15,17 @@ from ..workflow import Workflow, NodeSpec
 
 @dataclass
 class PreparedDataset:
+    """Historical group-mean preparation result; each row is one source-folder mean.
+
+    Attributes
+    ----------
+    X: Shared-grid Spectra with one arithmetic-mean row per original source folder.
+    audit: Input paths, counts, exclusions, fingerprints and the effective loading/preparation policy.
+    groups: Dependency-block IDs aligned with the prepared source-folder means.
+    metadata: Dataset-level content.csv fields, including task, molecule order and units.
+    representation_workflow: Actual interpolation/pooling preparation workflow, exportable as a declaration.
+    y: Ground-truth targets aligned with rows, usually (n_rows, n_targets); never predictions.
+    """
     X: object
     y: np.ndarray
     groups: np.ndarray

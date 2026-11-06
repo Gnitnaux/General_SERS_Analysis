@@ -11,6 +11,15 @@ from .util import natural_key as _natural_key
 
 @dataclass(frozen=True)
 class GroupMean:
+    """One source group's arithmetic mean for visualization, without implicit interpolation or baseline correction.
+
+    Attributes
+    ----------
+    axis: Strictly increasing one-dimensional Raman-shift coordinates, normally in cm^-1.
+    group_id: Original source-group folder identifier.
+    intensity: One-dimensional mean intensity array, ordered by axis; not an immutable Spectra matrix.
+    n_spectra: Number of spectra contributing to this group mean.
+    """
     group_id: str
     n_spectra: int
     axis: np.ndarray
