@@ -1,13 +1,12 @@
 """Read standardized database CSVs and visualize raw within-group mean spectra."""
-import csv
 from dataclasses import dataclass
 from pathlib import Path
-import re
 import warnings
 
 import numpy as np
 
-from .core import Spectra
+from .core.data import load_dataset, read_spectrum as _read_spectrum
+from .util import natural_key as _natural_key
 
 
 @dataclass(frozen=True)
@@ -18,79 +17,25 @@ class GroupMean:
     intensity: np.ndarray
 
 
-def _natural_key(path):
-    return tuple((1, int(part)) if part.isdigit() else (0, part.casefold())
-                 for part in re.split(r"(\d+)", path.name))
-
-
-def _read_spectrum(path):
-    """Accept increasing or decreasing axes; reverse decreasing data without interpolation."""
-    try:
-        with path.open(encoding="utf-8-sig", newline="") as stream:
-            header = next(csv.reader(stream), [])
-            if [column.strip() for column in header] != ["RamanShift", "intensity"]:
-                raise ValueError("Expected exactly two columns: RamanShift,intensity.")
-            values = np.loadtxt(stream, delimiter=",", ndmin=2)
-        if values.ndim != 2 or values.shape[1] != 2 or len(values) < 2:
-            raise ValueError("A spectrum needs at least two rows and exactly two numeric columns.")
-        if np.all(np.diff(values[:, 0]) < 0):
-            values = values[::-1]
-        spectrum = Spectra(values[:, 1][None, :], values[:, 0])
-        return spectrum.axis, spectrum.intensity[0]
-    except (ValueError, OSError) as error:
-        raise ValueError(f"Invalid spectrum {path}: {error}") from error
-
-
 def load_group_means(database_dir, data_id, *, groups=None):
-    """Return index metadata and one raw arithmetic mean per group (no preprocessing)."""
-    root = Path(database_dir).resolve()
-    if not data_id or data_id in {".", ".."} or any(c in data_id for c in "/\\"):
-        raise ValueError("data_id must be an exact dataset identifier, not a path.")
-    with (root / "content.csv").open(encoding="utf-8-sig", newline="") as stream:
-        reader = csv.DictReader(stream)
-        if not reader.fieldnames or "Data_id" not in reader.fieldnames:
-            raise ValueError("content.csv must contain a Data_id column.")
-        rows = [row for row in reader if row["Data_id"] == data_id]
-    if len(rows) != 1:
-        raise ValueError(f"Expected one index row for {data_id}; found {len(rows)}.")
-    metadata = rows[0]
-    dataset = root / "data" / data_id
-    if not dataset.is_dir():
-        raise ValueError(f"Dataset data directory does not exist: {dataset}")
-    folders = sorted((path for path in dataset.iterdir() if path.is_dir() and not path.name.startswith(".")),
-                     key=_natural_key)
-    selected = set(groups) if groups is not None else None
-    if selected is not None:
-        missing = selected - {path.name for path in folders}
-        if missing:
-            raise ValueError(f"Unknown group folders: {', '.join(sorted(missing))}")
-        folders = [path for path in folders if path.name in selected]
-    if not folders:
-        raise ValueError(f"No group directories found for {data_id}.")
-
+    """Strict raw-axis visualization using the shared reader; no implicit alignment."""
+    dataset = load_dataset(database_dir, data_id, groups=groups, read_labels=False,
+                           label_policy='include_flagged')
     means = []
-    for folder in folders:
-        paths = sorted((path for path in folder.iterdir() if path.is_file() and path.suffix.lower() == ".csv"),
-                       key=_natural_key)
-        if not paths:
-            raise ValueError(f"Group contains no spectrum CSV files: {folder}")
-        axis, average = _read_spectrum(paths[0])
-        average = average.copy()
-        for count, path in enumerate(paths[1:], start=2):
-            next_axis, values = _read_spectrum(path)
-            if not np.array_equal(next_axis, axis):
-                raise ValueError(f"RamanShift mismatch within {folder.name}: {paths[0].name} vs {path.name}. "
-                                 "Align spectra explicitly before averaging.")
-            # Online arithmetic mean keeps memory independent of the number of repeats.
-            average += (values - average) / count
-        means.append(GroupMean(folder.name, len(paths), axis, average))
-
-    if selected is None:
-        for key, observed in (("n_group", len(means)), ("n_spectra", sum(g.n_spectra for g in means))):
-            recorded = metadata.get(key, "").strip()
-            if recorded and recorded.lower() != "null" and int(recorded) != observed:
-                warnings.warn(f"{data_id}: index {key}={recorded}, observed {observed}.", stacklevel=2)
-    return metadata, means
+    for group in sorted(set(dataset.group_ids), key=_natural_key):
+        indices = np.flatnonzero(dataset.group_ids == group)
+        spectra = [dataset.spectra[i] for i in indices]
+        axis = spectra[0].axis
+        if any(not np.array_equal(s.axis, axis) for s in spectra):
+            raise ValueError(f'RamanShift mismatch within {group}; align spectra explicitly before averaging.')
+        means.append(GroupMean(group, len(spectra), axis,
+                               np.mean([s.intensity[0] for s in spectra], axis=0)))
+    if groups is None:
+        for key, observed in (('n_group', len(means)), ('n_spectra', len(dataset.spectra))):
+            recorded = dataset.metadata.get(key, '').strip()
+            if recorded and recorded.lower() != 'null' and int(recorded) != observed:
+                warnings.warn(f'{data_id}: index {key}={recorded}, observed {observed}.', stacklevel=2)
+    return dataset.metadata, means
 
 
 def visualize_dataset(database_dir, data_id, output_dir, *, groups=None, show=False):

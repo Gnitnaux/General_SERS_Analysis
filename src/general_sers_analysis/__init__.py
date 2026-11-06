@@ -1,4 +1,4 @@
-"""Classical spectral tools. Workflow execution is available; automatic workflow search is not implemented."""
+"""Classical spectral tools, reusable DAG execution and blocked-CV workflow search."""
 from .core import Node, Edge, Condition, Spectra, UnmixingResult
 
 __version__ = "0.1.0"

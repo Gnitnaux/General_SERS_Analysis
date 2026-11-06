@@ -1,4 +1,4 @@
-"""Main entry point; visualization and a fixed PLSR example are implemented."""
+"""Main entry point for spectral visualization, workflows and AutoML."""
 import argparse
 from pathlib import Path
 
@@ -31,6 +31,25 @@ def build_parser():
     example.add_argument("--seed", type=int, default=0)
     example.add_argument("--lam", type=float, default=1e5)
     example.add_argument("--show", action="store_true")
+    automl = tasks.add_parser("automl", help="Search classical workflows with blocked CV and an untouched holdout.")
+    automl.add_argument("--data-id", required=True, help="Exact Data_id, or 'all' to benchmark the database.")
+    automl.add_argument("--database-dir", type=Path, default=PROJECT_ROOT / "data" / "database")
+    automl.add_argument("--output-dir", type=Path, required=True, help="New empty run directory (benchmark root for 'all').")
+    automl.add_argument("--visualization-dir", type=Path, default=PROJECT_ROOT / "visualizations")
+    automl.add_argument("--trials", type=int, default=64)
+    automl.add_argument("--cv", type=int, default=3)
+    automl.add_argument("--seed", type=int, default=0)
+    automl.add_argument("--test-size", type=float, default=.25)
+    automl.add_argument("--time-budget", type=float, default=1800, help="Search seconds per dataset; checked between trials.")
+    automl.add_argument("--jobs", type=int, default=1, help="CPU/BLAS worker limit.")
+    automl.add_argument("--lower", type=float, default=600)
+    automl.add_argument("--upper", type=float, default=1380)
+    automl.add_argument("--step", type=float, default=2)
+    automl.add_argument("--max-spectra-per-group", type=int, default=0, help="0=all; positive=seeded compute-limited subset.")
+    predict = tasks.add_parser('predict', help='Predict group means from a trusted saved AutoML model.')
+    predict.add_argument('--model', type=Path, required=True, help='Trusted local workflow.joblib.')
+    predict.add_argument('--input-dir', type=Path, required=True, help='A folder of spectra or group subfolders.')
+    predict.add_argument('--output-file', type=Path, required=True, help='New predictions CSV file.')
     return parser
 
 
@@ -57,6 +76,25 @@ def main(argv=None):
             print(f"Plots: {summary['visualization_dir']}")
             print(f"Results: {args.output_dir}")
             print("Metrics on held-out group means:", summary["metrics_on_group_means"])
+        elif args.command == "automl":
+            from general_sers_analysis.automl import run_automl, run_benchmark
+            options = dict(n_trials=args.trials, cv=args.cv, seed=args.seed, test_size=args.test_size,
+                           time_budget=args.time_budget, jobs=args.jobs, lower=args.lower,
+                           upper=args.upper, step=args.step, max_spectra_per_group=args.max_spectra_per_group)
+            if args.data_id == 'all':
+                result = run_benchmark(args.database_dir, args.output_dir, args.visualization_dir, **options)
+                print(f"Completed datasets: {sum(r['status'] == 'ok' for r in result)}/{len(result)}")
+                print(f"Benchmark: {args.output_dir / 'benchmark.json'}")
+                if any(r['status'] != 'ok' for r in result):
+                    return 1
+            else:
+                result = run_automl(args.database_dir, args.data_id, args.output_dir, args.visualization_dir, **options)
+                print("Selected:", result['best_candidate'])
+                print("Holdout:", result['holdout_metrics'])
+            print(f"Results: {args.output_dir}")
+        elif args.command == 'predict':
+            from general_sers_analysis.prediction import predict_directory
+            print('Saved:', predict_directory(args.model, args.input_dir, args.output_file))
     except (OSError, ValueError) as error:
         parser.exit(2, f"Error: {error}\n")
     return 0

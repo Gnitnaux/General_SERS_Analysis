@@ -193,6 +193,8 @@ class Workflow:
 
     def to_dict(self):
         def serial(value):
+            if isinstance(value, Node):
+                return {"__node__": type(value).__name__, "parameters": serial(value.get_params(deep=False))}
             if isinstance(value, np.ndarray): return value.tolist()
             if isinstance(value, np.generic): return value.item()
             if isinstance(value, Path): return str(value)
@@ -210,12 +212,23 @@ class Workflow:
     def from_dict(cls, record, registry):
         """Instantiate only explicitly allowlisted tool names; never dynamically import code."""
         if record.get("version") != 1: raise ValueError("Unsupported workflow spec version.")
+        def restore(value):
+            if isinstance(value, dict):
+                if '__node__' in value:
+                    name = value['__node__']
+                    if name not in registry:
+                        raise ValueError(f"Tool not in registry: {name}")
+                    return registry[name](**restore(value['parameters']))
+                return {k: restore(v) for k, v in value.items()}
+            if isinstance(value, list):
+                return [restore(v) for v in value]
+            return value
         nodes = {}
         for key, value in record["nodes"].items():
             config = dict(value)
             name = config.pop("tool")
             if name not in registry: raise ValueError(f"Tool not in registry: {name}")
-            tool = registry[name](**config.pop("parameters"))
+            tool = registry[name](**restore(config.pop("parameters")))
             config["stages"] = tuple(config["stages"])
             nodes[key] = NodeSpec(tool, **config)
         return cls(nodes, [Edge(**edge) for edge in record["edges"]], record["output_node"])

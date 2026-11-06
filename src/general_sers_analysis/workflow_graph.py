@@ -1,8 +1,10 @@
 """Render an actual Node/Edge DAG for inspection; this module does not execute it."""
 from pathlib import Path
 import json
+import textwrap
 import numpy as np
 from .core import Node, Edge
+from .util import visualization_run_dir
 
 
 def draw_workflow_graph(nodes, edges, output_dir, *, external_nodes=None, note=""):
@@ -47,17 +49,27 @@ def draw_workflow_graph(nodes, edges, output_dir, *, external_nodes=None, note="
                 for name in ("lower", "upper", "lam"):
                     if name in parameters:
                         detail += f" {name}={parameters[name]:g}"
+                for name in ('window_length', 'polyorder', 'deriv', 'scope'):
+                    if name in parameters:
+                        detail += f" {name}={parameters[name]}"
                 if "target_axis" in parameters:
                     grid = np.asarray(parameters["target_axis"])
                     detail += f" {len(grid)} points [{grid[0]:g}, {grid[-1]:g}]"
                 if "parameters" in parameters:
                     detail += f" {parameters['parameters']}"
+                for name in ('regressor', 'classifier'):
+                    nested = parameters.get(name)
+                    if isinstance(nested, Node):
+                        detail += f" {type(nested).__name__}"
+                        for k, value in (nested.get_params(deep=False).get('parameters') or {}).items():
+                            if k not in ('random_state', 'n_jobs', 'verbosity', 'max_iter', 'probability'):
+                                detail += f" {k}={value}"
             ax.add_patch(FancyBboxPatch((x-width/2,y-height/2),width,height,
                          boxstyle="round,pad=0.04", facecolor="#e3eff9" if external else "#e5f3e9",
                          edgecolor="#3a576b", linewidth=1))
             ax.text(x,y+.07,f"{key}\n{tool}",ha="center",va="center",fontsize=10)
             if detail:
-                ax.text(x,y-.12,detail.strip(),ha="center",va="top",fontsize=7)
+                ax.text(x,y-height/2-.08,textwrap.fill(detail.strip(), width=40),ha="center",va="top",fontsize=7)
         for edge in edges:
             curve = .30 if edge.target_port == "y_true" else (.22 if edge.target_port.startswith("fit:") else .14)
             x1,y1=positions[edge.source]; x2,y2=positions[edge.target]
@@ -76,7 +88,7 @@ def draw_workflow_graph(nodes, edges, output_dir, *, external_nodes=None, note="
                     bbox={"facecolor":"white","edgecolor":"none","alpha":.85,"pad":1})
         ax.set_xlim(-1.6,max(x for x,y in positions.values())+1.6)
         ax.set_ylim(min(y for x,y in positions.values())-3.2,max(y for x,y in positions.values())+.9)
-        ax.set_title("GSAD0004 example: declared Node / Edge workflow",fontsize=13)
+        ax.set_title("Declared Node / Edge workflow",fontsize=13)
         ax.axis("off")
         if note:
             fig.supxlabel(note,fontsize=9)
@@ -87,6 +99,8 @@ def draw_workflow_graph(nodes, edges, output_dir, *, external_nodes=None, note="
             fig.savefig(paths[suffix],dpi=180)
         from dataclasses import asdict
         def encode(value):
+            if isinstance(value, Node):
+                return {'__node__': type(value).__name__, 'parameters': value.get_params(deep=False)}
             if isinstance(value,np.ndarray): return value.tolist()
             if isinstance(value,Path): return str(value)
             if isinstance(value,np.generic): return value.item()
@@ -98,13 +112,3 @@ def draw_workflow_graph(nodes, edges, output_dir, *, external_nodes=None, note="
     finally:
         plt.close(fig)
     return {suffix:str(path.resolve()) for suffix,path in paths.items()}
-
-
-def visualization_run_dir(output_dir, visualization_root, output_root):
-    """Mirror relative output run paths; external output paths use their final folder name."""
-    output = Path(output_dir).resolve()
-    try:
-        relative = output.relative_to(Path(output_root).resolve())
-    except ValueError:
-        relative = Path(output.name)
-    return Path(visualization_root).resolve() / relative

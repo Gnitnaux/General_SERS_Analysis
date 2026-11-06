@@ -4,7 +4,7 @@ Composable, non-deep-learning tools for Raman and SERS analysis.
 
 Research context, agreed dataset conventions and development scope are recorded in [agent.md](agent.md) (Chinese).
 
-This version implements **nodes, edge descriptions, individual tools, and a main.py entry point with dataset visualization and a fixed PLSR example**. It implements a reusable unconditional DAG executor but does not implement AutoML search, general model-training commands, data acquisition/import conversion, cross-validation management or data-volume planning. The workflow-design and data-planning directories are reserved for later review.
+This version implements classical spectral tools, a reusable Node/Edge DAG executor, dataset visualization, a fixed PLSR example, and **budgeted AutoML pipeline search with blocked cross-validation, held-out evaluation, and saved-model prediction**. Data acquisition/import conversion, learned graph design, conditional predictive cascades and data-volume planning remain outside this implementation. The workflow-design and data-planning directories are reserved for later review.
 
 ## Layout
 
@@ -25,7 +25,7 @@ General_SERS_Analysis/
 ├── scripts/                # Reserved entry scripts
 ├── tests/                  # Synthetic, in-memory behavior tests
 ├── docs/tool_library.md    # Chinese tool/API guide
-├── main.py                 # Shared entry point; currently visualization only
+├── main.py                 # Shared visualization, workflow, AutoML and prediction entry point
 ├── .gitignore
 ├── pyproject.toml
 ├── requirements.txt
@@ -64,7 +64,7 @@ The default output is `visualizations/<Data_id>_group_means.png`; running the sa
 .\.venv\Scripts\python.exe main.py visualize --data-id GSAD0004 --groups Quan_0_0_0_000001 Quan_1_1_0_000005 --show
 ```
 
-Use `--database-dir "PATH"` to select another database root, `--output-dir "PATH"` to change the figure destination, and `--show` to additionally open a plot window on a desktop with a working graphical backend. Without `--show` the command saves the PNG without requiring a display. `python main.py --help` and `python main.py visualize --help` list the available options. No other task commands are implemented yet.
+Use `--database-dir "PATH"` to select another database root, `--output-dir "PATH"` to change the figure destination, and `--show` to additionally open a plot window on a desktop with a working graphical backend. Without `--show` the command saves the PNG without requiring a display. `python main.py --help` and `python main.py visualize --help` list the available options. The `example`, `automl` and `predict` commands are described below.
 
 ## Data and API contract
 
@@ -227,6 +227,73 @@ The reserved external node input exposes X, y, groups and caller-supplied keywor
 
 Execution order comes from edges, including branches and named-input merges. Validation rejects missing/duplicate input ports, unknown endpoints, cycles, incompatible method arguments and incompatible stage dependencies. data_kind checks coarse data shapes/types, not units, molecule order, sample identity or experimental independence. Labels and groups must be correctly aligned by the caller.
 
-Current limits: conditional/sample-mask routing, loops, automatic multi-output-port extraction, automatic metadata reindexing after group aggregation, grouped cross-validation and out-of-fold training are not implemented. Learning downstream of prediction nodes is rejected: training-internal predictions must not be used to train a second learner without out-of-fold handling. The executor does not split data or search workflows.
+Current limits: conditional/sample-mask routing, loops, automatic multi-output-port extraction, automatic metadata reindexing after group aggregation, out-of-fold cascade training are not implemented inside the executor. Blocked cross-validation is implemented separately by the AutoML layer. Learning downstream of prediction nodes is rejected: training-internal predictions must not be used to train a second learner without out-of-fold handling. The executor does not split data or search workflows; the separate AutoML layer controls those operations.
 
 workflow.to_dict() exports a JSON-compatible declaration. Workflow.from_dict(spec, registry) rebuilds it using a caller-supplied allowlist of tool names/classes, without importing arbitrary code. Reconstructed workflows must be fitted; JSON does not contain learned parameters. joblib preserves a trusted fitted executor. fit_trace_ and last_trace_ describe stages, fit calls, output methods and timing. Upper-level algorithms can generate declarations, validate/build them and evaluate them using a separately controlled validation scheme.
+
+
+## AutoML search and benchmark
+
+```powershell
+# A new run directory is required; existing experiments are never overwritten.
+.\.venv\Scripts\python.exe main.py automl --data-id GSAD0004 --output-dir outputs/my_automl_run --trials 96
+# All indexed datasets; one independent search and one report per task:
+.\.venv\Scripts\python.exe main.py automl --data-id all --output-dir outputs/my_benchmark --trials 96 --cv 3 --time-budget 1200
+# Expand the measurement window explicitly when appropriate for a task:
+.\.venv\Scripts\python.exe main.py automl --data-id GSAD0003 --output-dir outputs/sugars_full_window --lower 400 --upper 1800 --trials 96
+```
+
+`core.data.load_dataset` is the shared database reader for visualization, examples and AutoML. It returns individual spectra on original axes, row-aligned targets, source-folder group IDs, connected split-block IDs and source metadata; it never averages, interpolates or splits data. `automl/representation.py` explicitly prepares the historical group-mean baseline using Interpolate and MeanAggregator Nodes, with a separately saved `representation_spec.json`. The default measurement window is **600–1380 cm^-1 at 2 cm^-1 spacing**, declared before splitting and shared across tasks. Linear interpolation never extrapolates. Spectra that do not cover this window are excluded and enumerated in `data_audit.json`. This is a window-specific benchmark, not a claim that excluded acquisition modes have been modeled. For GSAD0005 the two disjoint source windows are never concatenated or treated as repeat measurements of the same coordinates. Source labels explicitly marked as conflicting are excluded without modifying raw files.
+
+The model input is **one arithmetic mean per original group folder**, interpolating each eligible spectrum before averaging. All spectra are used by default. `--max-spectra-per-group N` optionally uses a seeded subset for compute-limited exploration; reports record selected filenames and counts. A group mean from a spatial map is not an independent preparation. Modeling individual noisy pixels is a separate objective.
+
+The split unit conservatively joins folder IDs, known shared sample/preparation IDs, duplicate-connected metadata and exact spectrum hashes. Thus shared sugar wells, adenine samples across batches, and known duplicate spectra cannot cross partitions. When source metadata supplies author `test` markers (GSAD0002), all connected blocks containing those records are held out. Otherwise a fixed seeded block split reserves 25% of blocks. The remaining blocks undergo three-fold shuffled GroupKFold. Neither the held-out labels nor scores select candidates, parameters, or seeds.
+
+The dependency minimum is scikit-learn 1.6 because this implementation uses the reproducible `shuffle`/`random_state` interface of [GroupKFold](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GroupKFold.html), introduced in that version. `threadpoolctl` is declared directly for CPU thread limits.
+
+Search composes real Node/Edge declarations: optional SG smoothing, first derivative or airPLS; optional row standardization (SNV) or peak normalization; training-fitted feature standardization; optional PCA; and a classical predictor. Regression searches PLSR, ridge, RBF kernel ridge, SVR, random forest and XGBoost. Classification searches independent binary SVM, logistic and random-forest models for the molecular presence matrix, with constants when a fold contains only one label. Model families and parameter grids are fixed in `automl/search.py: candidate_space`; the requested budget takes a seeded subset, starting with simple model coverage. This is bounded pipeline search, not arbitrary graph topology learning.
+
+All learned preprocessing and target scaling are fitted inside each development fold. Feature-prefix results are cached only within that fold. Regression models learn standardized training targets and predictions are converted back to source units, including molarity near 1e-10. Regression selection maximizes negative mean per-target RMSE divided by the corresponding fold-training target SD; classification maximizes macro F1 across the fixed molecular columns. Each fold and each original folder contributes equally. Absent-positive classification columns have F1=0, as recorded by `zero_division=0`.
+
+Invalid candidates (e.g. too many PLS/PCA components for a tiny training fold) are recorded as failures and search continues. `--time-budget` limits search between completed trials; loading, a running trial, final refit and exports can exceed it. `--jobs` limits both estimator workers and BLAS threads (default 1). Search history is checkpointed after each candidate. The best CV candidate is refitted using development groups only, and the held-out groups are evaluated alongside fixed training-mean/majority and airPLS+PLS2 regression baselines. The saved model retains the evaluation split: test data are not silently added in a final all-data fit.
+
+Each run stores `config.json`, `data_audit.json` (including source limitations and input hashes), `splits.json`, `trials.json`, `summary.json`, `test_predictions.csv`, trusted `workflow.joblib`, fixed `baseline_constant.joblib` and regression `baseline_fixed_pls2.joblib`, `workflow_spec.json`, `execution_trace.json`, and `workflow_graph.png/.svg/.json`. Summary records exact dependency versions, CV score, actual trial count and per-target held-out metrics. Business plots are stored under the matching `visualizations/<run>/` directory. `automl --data-id all` also checkpoints `benchmark.json` after each dataset, including task failures. Do not compare raw RMSE values across incompatible units or average Raman and SERS tasks into a single claimed SERS accuracy.
+
+## Predict new group means
+
+```powershell
+.\.venv\Scripts\python.exe main.py predict --model outputs/my_automl_run/workflow.joblib --input-dir data/test_data/new_groups --output-file outputs/new_predictions.csv
+```
+
+`--input-dir` contains either CSV spectra directly (one group) or immediate group subfolders (one result per folder). CSV columns remain `RamanShift,intensity`. Labels and chemical names in folder names are unnecessary for inference. Every supplied spectrum must cover the saved model grid; inference rejects incomplete coverage rather than silently dropping records. Interpolation and averaging match training. The output includes group name, spectrum count and ordered predictions in the saved source units (or 0/1 component presence). Existing output CSVs are protected. Only load trusted local joblib files.
+
+The completed 2026-11-05 benchmark attempted 96 candidates per task on all ten datasets. See [the local experiment report](outputs/automl_benchmark_20261105/report.md) for every task, fixed baseline comparisons and limitations, and `verification.json` beside it for full-input hash, split isolation and saved-prediction reproduction checks. GSAD0001 achieved macro F1 0.95; GSAD0002 achieved R2 0.7994 versus fixed PLS2 0.3605; GSAD0003 achieved per-target R2 0.9938–0.9988. AutoML underperformed fixed PLS2 on several small panels, including GSAD0004 and GSAD0006; results are preserved without test-based replacement. These generated artifacts are local and ignored by Git. The software suite passed 50 tests.
+
+
+## Shared data API and module boundaries
+
+```text
+src/general_sers_analysis/
+  core/data.py             # Spectra, Dataset, read_spectrum, load_dataset
+  util.py                  # JSON writing, spectral subsetting, path mapping, natural sorting
+  automl/
+    __init__.py            # Public AutoML exports; old saved Candidate objects remain loadable
+    search.py              # Search space, CV, model selection and benchmark runner
+    representation.py      # Explicit fixed group-mean preparation workflow for the old baseline
+```
+
+```python
+from general_sers_analysis.core.data import load_dataset
+
+dataset = load_dataset("data/database", "GSAD0004")
+# dataset.spectra: one Spectra per input file, each retaining its measured axis
+# dataset.y: one target row per spectrum
+# dataset.group_ids: original data/<Data_id>/<group>/ identity per spectrum
+# dataset.split_blocks: dependency block per spectrum; split by these IDs
+# dataset.sample_ids: exact source-file identifiers
+# dataset.group_metadata: machine-readable source sample/preparation/review fields
+```
+
+The default `label_policy="exclude_flagged"` excludes records carrying existing unresolved source-review flags. `include_flagged` retains them for inspection; `error` rejects a dataset containing flagged groups. These flags are not proof that each affected label is wrong: GSAD0002 conservatively flags entire cAg@785 and sAg@532 methods, including blanks whose numeric zero labels agree. Its CSV and supplementary Table S1 conflict in some concentration mappings, while supplementary Table S8 supports the CSV ranges. Original labels are retained pending source clarification; no guessed correction is applied. `read_labels=False` supports raw inspection of legacy indexes without target metadata.
+
+The public reader is shared; algorithms choose representations explicitly afterwards. The historical AutoML still uses fixed group means before CV. Although averaging is now an explicit MeanAggregator Node in a preparation workflow, aggregation presence, location and pooling scheme are not searched, and general metadata/label routing across sample-changing Nodes remains future work. The refactor does not create new independent samples, change archived scores or establish single-spectrum performance. Earlier verification source hashes describe the archived experiment version and intentionally differ from the refactored code.

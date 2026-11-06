@@ -201,3 +201,30 @@ example 已据此修改并重跑：outputs/GSAD0004_example/ 中生成实际节�
 example 已删除 transform_path 与手写 PLSR fit/predict，改为统一 Workflow 接口；依然按完整 group 留出。固定插值网格默认 602–1798、步长2；平均谱绘图现在只展示测试组，训练和普通推理不执行绘图。数值与此前一致，前两目标负 R2 保留。输出新增 workflow_spec.json 与 execution_trace.json，joblib 包含已拟合 Workflow；流程图显示实际数据和标签/分组边，业务图仍在 visualizations 对应运行目录。
 
 to_dict/from_dict 可通过显式工具白名单导出/重建声明；重建必须重新 fit，不从 JSON 恢复训练状态。不自动分数据，不进行 AutoML；上层算法应提供组级验证或交叉验证。7 项执行器和 2 项示例映射检查通过，包含训练状态隔离、PLSR/分类器通用性、声明往返、分支汇合、无效结构/不安全级联拒绝。已重跑真实 example 并检查保存模型和阶段日志。新的说明覆盖第 12 节的固定路径执行限制。
+
+## 16. AutoML 主功能授权与实现（2026-11-05）
+
+用户明确要求按照 AutoML 思路实现主功能，并在现有数据集上改善性能；随后离开数小时，授权继续完成实现、测试和本地实验。本次授权覆盖此前“不实现流程搜索”的历史范围限制。不涉及深度学习、数据量分析、外部发布或修改原始数据库。
+
+- `main.py automl --data-id <ID|all> --output-dir <新目录>`：训练集内部按关联样本块交叉验证，搜索前处理、归一化、PCA、经典模型及其超参数；选择后在开发数据上重训，评价固定留出集。`all` 对每个任务独立运行并保存 benchmark.json。
+- `main.py predict --model <可信 workflow.joblib> --input-dir <新谱目录> --output-file <新CSV>`：无需标签，按保存网格插值、组内平均并输出预测。已有输出文件不覆盖。
+- 新模块 `automl_data.py` 读取索引、来源元数据和 manifest，排除来源明确标记的标签冲突。将共享样本/制备身份、重复谱关联与目录约束合并成保守划分块。GSAD0002 保留原始 test 标记并扩展到关联块；其他任务固定 seed=0 分块留出。训练内 GroupKFold，不能将测试表现用于挑选随机种子、模型或搜索预算。
+- 默认固定 600–1380 cm^-1、2 cm^-1 网格；不覆盖该窗口的谱明确排除并记录，不外推、不拼接不连续窗口。默认读取全部可用谱，每个原始目录形成一条均值输入。此评价单位是目录均值，不是逐像素识别，也不是已证实的独立制备。
+- 可选前处理：SG、导数、airPLS；可选 SNV/峰值归一化与 PCA。回归：PLSR、ridge、RBF kernel ridge、SVR、RF、XGBoost。多标签分类：逐分子 SVM、logistic、RF；训练折缺少某类别时使用该列的训练常量。
+- 每折独立拟合学习型前处理及目标缩放；目标按训练均值和标准差变换，预测恢复来源单位，避免极小 M 数值使部分算法直接学成常量。相同前处理前缀仅在同一训练折内缓存。
+- 每轮保存 trials.json（含失败、警告、分折分数、时间）；保存划分、数据审计/输入指纹、版本、指标、预测、模型、可重建的真实 Node/Edge 声明及流程图。流程 JSON 新增嵌套 Node 的白名单序列化；不动态导入工具。业务图仍在镜像 visualizations 目录。
+- 模型选择只使用内部验证；留出集同时报告固定均值/多数标签基线及固定 airPLS+PLS2 回归基线。后者使用相同组均值和相同测量窗口，与历史逐谱示例不完全等同。不能承诺所有小数据任务一定改善，也不能用窗口筛选后的结果代表被排除的采集模式。
+- 运行依赖沿用现有环境；测试通过把已有基础环境的 pytest 路径附加到工程解释器搜索路径运行，没有安装新包。英文命令和完整解释集中于 README；实验汇总保存在 outputs/automl_benchmark_20261105。
+
+本轮完成：50 项测试通过；10/10 数据集各尝试 96 个候选。GSAD0001 宏平均 F1=0.95；GSAD0002 R²=0.7994（同划分固定 PLS2 为 0.3605）；GSAD0003 四目标 R²=0.9938–0.9988。GSAD0004、GSAD0006 等小面板的 AutoML 选择仍可能明显差于固定基线，不据测试分数替换结果。固定基线模型一并保存，用户可直接比较使用。已重新读取全部实际使用输入、核对指纹及所有分组/交叉验证隔离，并重载十个选中模型复现全部留出预测；验证记录及代码指纹见 verification.json，完整优劣结果见同目录 report.md。原始数据库无修改，未提交 Git。
+
+## 17. 公共数据接口与研究范围更正（2026-11-05）
+
+用户要求数据读取归 core/data.py、AutoML 归独立子包、通用帮助函数归 util.py；并指出固定波段/参数、默认平均谱、目录表述及“学习”含义的限制。
+
+- 已将根级 automl.py 移为 automl/search.py，公开入口保留在 automl/__init__.py，历史保存的 Candidate 对象可继续重载。删除 automl_data.py。util.py 集中 JSON 保存、Spectra 子集、排序与可视化路径映射。
+- core.data.load_dataset 是唯一数据库读取入口；read_dataset_index/read_spectrum 提供共享索引与单谱读取。默认返回逐条原始谱，保留各自坐标、逐谱标签、group_ids、split_blocks、sample_ids、group_metadata 和审计信息；不插值、不平均、不划分。example、visualize、AutoML 均已接入，预测共用单谱解析器。
+- group_ids 指 data/database/data/<Data_id>/<group>/ 这一层的原始样本组目录，不指仓库或算法目录；split_blocks 依据 metadata.json 中共享身份及 manifest/实际文件的重复哈希合并。浓度或类别相同不会自动合并。字段是项目约定，不是已实现完整验证的外部标准；未知制备独立性仍未知。
+- label_policy 显式支持 exclude_flagged/include_flagged/error。GSAD0002 的 709 组/1401 谱是两个测量方法整体的保守复核标记，并非每条标签均已证实错误；其中空白 0 标签并无数值分歧。已有数据表、SI Table S1 和 Table S8 的对应关系不完全一致，不能凭空修正。归档保留与可训练资格必须区分。
+- 旧平均谱基线移至 automl/representation.py，用 Interpolate 与 MeanAggregator 的显式准备工作流实现，后续运行导出 representation_spec.json。它仍是固定准备分支，未实现聚合有无/位置/策略搜索，也未实现一般聚合后的标签与元数据自动路由；不得宣称已经完成该研究问题。
+- 此次仅重构旧基线的组织，不扩大超参数搜索或重跑旧测试集挑选结果。52 项测试通过；真实 GSAD0004 的 33 条谱经显式节点生成 11 条均值，旧模型全部该任务测试预测与输入指纹一致；历史模型重载检查通过。旧 verification.json 的源码指纹对应旧版本，重构后不应仍称为当前源码指纹。

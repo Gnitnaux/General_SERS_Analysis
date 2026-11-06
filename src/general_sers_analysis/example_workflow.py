@@ -11,12 +11,13 @@ from sklearn.model_selection import GroupShuffleSplit
 
 from .core import Edge, Spectra
 from .workflow import Workflow, NodeSpec
-from .dataset_visualization import _read_spectrum
+from .core.data import load_dataset
 from .tools.preprocessing import SpectralCut, Interpolate, AirPLS
 from .tools.aggregation import MeanAggregator
 from .tools.regression import PLSRRegressor
 from .tools.visualization import GroupSpectrumPlot, PredictionPlot
-from .workflow_graph import draw_workflow_graph, visualization_run_dir
+from .workflow_graph import draw_workflow_graph
+from .util import visualization_run_dir
 
 
 def run_example(database_dir, output_dir, visualization_dir, *, lower=600, upper=1800,
@@ -26,40 +27,17 @@ def run_example(database_dir, output_dir, visualization_dir, *, lower=600, upper
         raise ValueError("Supply a finite lower < upper and positive grid step.")
     if not 0 < test_size < 1:
         raise ValueError("test_size must lie between 0 and 1.")
-    root = Path(database_dir)
-    with (root / "content.csv").open(encoding="utf-8-sig", newline="") as stream:
-        rows = [row for row in csv.DictReader(stream) if row["Data_id"] == "GSAD0004"]
-    if len(rows) != 1:
-        raise ValueError("Expected exactly one GSAD0004 row in content.csv.")
-    metadata = rows[0]
-    molecules = metadata["molecules"].split("_")
-    n_targets = int(metadata["n_classes"])
-    if len(molecules) != n_targets or metadata["task"] != "Multi-Component Quantification":
-        raise ValueError("GSAD0004 metadata must describe the expected multi-component task.")
-    raw, targets, groups, files = [], [], [], []
-    for folder in sorted((root / "data" / "GSAD0004").iterdir()):
-        if not folder.is_dir() or folder.name.startswith("."):
-            continue
-        tokens = folder.name.split("_")
-        if tokens[0] != "Quan" or len(tokens) != n_targets + 2:
-            raise ValueError(f"Invalid quantification group name: {folder.name}")
-        label = np.asarray([float(value) for value in tokens[1:-1]])
-        if not np.isfinite(label).all() or (label < 0).any():
-            raise ValueError(f"Invalid concentration label: {folder.name}")
-        spectra = sorted(folder.glob("*.csv"))
-        if not spectra:
-            raise ValueError(f"Empty group: {folder}")
-        for path in spectra:
-            axis, intensity = _read_spectrum(path)
-            raw.append(Spectra(intensity[None, :], axis, (str(path.relative_to(root)),)))
-            targets.append(label)
-            groups.append(folder.name)
-            files.append(str(path.relative_to(root)))
-    if len(set(groups)) < 3:
-        raise ValueError("Need at least three groups for this example.")
-    y = np.asarray(targets)
+    dataset = load_dataset(database_dir, 'GSAD0004')
+    metadata = dataset.metadata
+    molecules = metadata['molecules'].split('_')
+    if metadata['task'] != 'Multi-Component Quantification':
+        raise ValueError('GSAD0004 must describe a multi-component task.')
+    raw = list(dataset.spectra)
+    y = dataset.y
+    groups = dataset.group_ids.tolist()
+    files = list(dataset.sample_ids)
     train, test = next(GroupShuffleSplit(n_splits=1, test_size=test_size, random_state=seed)
-                       .split(np.zeros(len(raw)), y, groups))
+                       .split(np.zeros(len(raw)), y, dataset.split_blocks))
     # Fixed, declared target grid; no test data or labels select preprocessing parameters.
     grid = np.arange(lower + step, upper, step)
     if len(grid) < 2:
